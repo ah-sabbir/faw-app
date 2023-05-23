@@ -1,0 +1,8 @@
+blog design: https://thefashionguitar.com/
+product layout & nav-bar: https://www.the-atlantic-pacific.com/
+
+landing page layout: https://chakra-ui-and-nextjs-landing-page.vercel.app/
+
+video tutorial: https://www.youtube.com/watch?v=7dSOsUNTxJE
+git source: https://github.com/hqasmei/chakra-ui-and-nextjs-landing-page
+
