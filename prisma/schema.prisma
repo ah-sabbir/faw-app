@@ -12,19 +12,36 @@ datasource db {
 }
 
 
-
 model User {
-  id            String       @default(cuid()) @id
-  name          String
-  email         String   @unique
-  phone         String   @unique
-  password      String    
-  role          String
-  status        String    @default("active")
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  meals         Meal[]
-  costs         Cost[]
-  memberRents   MemberRent[]
-  @@map(name: "users")
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String   @unique
+  password  String
+  aboutUser String
+  role      String
+  status    String   @default("active")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  posts     Posts[]
 }
+
+model Posts {
+  id           String       @id @default(cuid())
+  title        String
+  postImages   PostImages[]
+  descriptions String
+  createdAt    DateTime     @default(now()) @map(name: "created_at")
+  updatedAt    DateTime     @updatedAt @map(name: "updated_at")
+  userId       String?
+  user         User?        @relation(fields: [userId], references: [id])
+}
+
+model PostImages {
+  id       String @id @default(cuid())
+  postId   String?
+  posts    Posts?  @relation(fields: [postId], references: [id])
+}
+
+
+
