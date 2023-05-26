@@ -31,6 +31,7 @@ model Posts {
   title        String
   postImages   PostImages[]
   descriptions String
+  category     String
   createdAt    DateTime     @default(now()) @map(name: "created_at")
   updatedAt    DateTime     @updatedAt @map(name: "updated_at")
   userId       String?
