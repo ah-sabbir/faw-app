@@ -32,4 +32,11 @@ To run the FashionAnywhere project locally, follow these steps:
    ```bash
    git clone https://github.com/your-username/fashion-anywhere.git
 
+   cd fashion-anywhere
+   npm install
+
+   npx prisma migrate dev --preview-feature
+
+   npm run dev
+
 
