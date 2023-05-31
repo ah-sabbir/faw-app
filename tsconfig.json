@@ -1,5 +1,17 @@
 {
   "compilerOptions": {
+    
+    
+    
+
+    "types": ["node", "bcrypt"],
+    "typeRoots": ["./typings", "./node_modules/@types"],
+  
+
+
+    
+    
+    
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
