@@ -1,15 +1,13 @@
 import prisma from '@/app/lib/prisma';
-// import bcrypt from "bcryptjs";
-import { NextResponse } from 'next/server';
+import bcrypt from "bcrypt";
+import { NextResponse, NextRequest } from 'next/server';
 
-export async function POST(request: Request) { 
-  const data: user_data[] = await request.json();
-  // const {firstname, lastname, email, phone} = await request.json();
 
-  const {firstname, lastname, email,aboutUser, password, phone,profileImage, country, city } = data[0];
+export async function POST(request:Request) { 
+   const {firstName, lastName, email, phone, password} = await request.json()
 
   // checking if all fields are entered
-  if (!firstname || !lastname || !email || !password) {
+  if (!firstName || !email || !email || !password) {
     return NextResponse.json({
       ok: false,
       message: "Please provide all the required fields",
@@ -29,21 +27,17 @@ export async function POST(request: Request) {
     }
 
     // password converting normal to hash
-    // const salt = bcrypt.genSaltSync(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
      
     // creating user
     const User = await prisma.user.create({
       data: {
-        firstname, 
-        lastname, 
+        firstName, 
+        lastName, 
         email,
-        aboutUser,
-        password: password,
+        password: hashedPassword,
         phone,
-        profileImage,
-        country,
-        city,
         role: "blogger"
       },
     });
@@ -54,6 +48,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: "Something want wrong." });
   }
 
-
-  return NextResponse.json({firstname:firstname, lastname:lastname, email:email});
 }

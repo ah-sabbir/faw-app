@@ -13,38 +13,44 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  firstname String
-  lastname  String
+  firstName String   @map("first_name")
+  lastName  String?  @map("last_name")
   email     String   @unique
   phone     String   @unique
-  profileImage    String
-  country   String
-  city      String
-  password  String
-  aboutUser String
-  role      String
+  avatar    String?
+  country   String?
+  city      String?
+  password  String?
+  role      String   @default("admin")
   status    String   @default("active")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
   posts     Posts[]
 }
 
+model Category {
+  id           String       @id @default(cuid())
+  title        String
+  posts        Posts[]
+}
+
 model Posts {
   id           String       @id @default(cuid())
   title        String
-  postImages   PostImages[]
-  descriptions String
-  category     String
+  description  String
+  categoryId   String       @map("category_id")
+  category     Category     @relation(fields: [categoryId], references: [id])
   createdAt    DateTime     @default(now()) @map(name: "created_at")
   updatedAt    DateTime     @updatedAt @map(name: "updated_at")
   userId       String?
   user         User?        @relation(fields: [userId], references: [id])
+  images       PostImages[]
 }
 
 model PostImages {
   id       String @id @default(cuid())
-  postId   String?
-  posts    Posts?  @relation(fields: [postId], references: [id])
+  postId   String @map("post_id")
+  posts    Posts  @relation(fields: [postId], references: [id])
 }
 
 
