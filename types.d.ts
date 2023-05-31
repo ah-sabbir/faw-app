@@ -12,6 +12,12 @@ type user_data = {
 };
 
 
+declare module 'bcrypt' {
+  export function hash(data: string, salt: number): string;
+  // Declare other functions and types used by bcrypt
+}
+
+
 
 // "firstname": "sabbir",
 // "lastname": "ahmmed",
