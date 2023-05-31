@@ -2,7 +2,7 @@ import prisma from '@/app/lib/prisma';
 import * as bcrypt from "bcrypt";
 import { NextResponse, NextRequest } from 'next/server';
 
-const bcryptP:any = bcrypt:
+const bcryptP:any = bcrypt;
 
 export async function PUT(request:Request) { 
    const {id, firstName, lastName, email, phone, password, role} = await request.json()
