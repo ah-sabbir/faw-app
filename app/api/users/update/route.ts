@@ -1,7 +1,8 @@
 import prisma from '@/app/lib/prisma';
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 import { NextResponse, NextRequest } from 'next/server';
 
+const bcryptP:any = bcrypt:
 
 export async function PUT(request:Request) { 
    const {id, firstName, lastName, email, phone, password, role} = await request.json()
@@ -17,8 +18,8 @@ export async function PUT(request:Request) {
   try {
     let hashedPassword = undefined ;
     if (password){
-      const salt = bcrypt.genSaltSync(10);
-      hashedPassword = await bcrypt.hash(password, salt);
+      const salt = bcryptP.genSaltSync(10);
+      hashedPassword = await bcryptP.hash(password, salt);
     }
 
     await prisma.user.update({
