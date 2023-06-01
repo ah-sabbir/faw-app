@@ -1,6 +1,6 @@
 import prisma from '@/app/lib/prisma';
 import bcrypt from "bcryptjs";
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const bcryptP:any = bcrypt;
 
