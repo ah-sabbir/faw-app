@@ -14,7 +14,7 @@
         "@types/react": "18.2.6",
         "@types/react-dom": "18.2.4",
         "autoprefixer": "10.4.14",
-
+        "bcryptjs": "^2.4.3",
         "eslint": "8.41.0",
         "eslint-config-next": "13.4.3",
         "next": "13.4.3",
@@ -25,7 +25,6 @@
         "typescript": "5.0.4"
     },
     "devDependencies": {
-        "prisma": "^4.14.1",
-        "@types/bcrypt": "^5.0.0"
+        "prisma": "^4.14.1"
     }
 }
