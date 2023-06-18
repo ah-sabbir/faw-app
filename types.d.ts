@@ -10,7 +10,7 @@ type user_data = {
 };
 
 
-type user_login = {
+export type user_login = {
     email: string;
     password: string;
 };
