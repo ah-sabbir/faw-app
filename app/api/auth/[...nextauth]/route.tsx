@@ -12,24 +12,25 @@ const handler=NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "Username / Email" },
+        username: { label: "Email", type: "text", placeholder: "Username / Email" },
         password: { label: "Password", type: "password", placeholder: "Password" }
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const res = await fetch("http://localhost:3000/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: credentials?.username,
-            password: credentials?.password,
-          }),
-        });
-        const user = await res.json();
+        const user = { id: "1", email: "a@gmail.com", password: "123" };
+        // const res = await fetch("http://localhost:3000/api/auth/login", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     username: credentials?.username,
+        //     password: credentials?.password,
+        //   }),
+        // });
+        // const user = await res.json();
 
-        if (user) {
+        if (credentials?.username == user.email && credentials.password == user.password) {
           // Any object returned will be saved in `user` property of the JWT
           console.log(user);
           return user

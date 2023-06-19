@@ -23,9 +23,9 @@ export async function POST(request:Request) {
                 message: "incorrect user or password",
                 });
             }
-            const passwordMatch = await bcrypt.compare(
-                data?.password,
-                user?.password
+            const passwordMatch:any = await bcrypt.compare(
+                data?.password || "",
+                user?.password || ""
             );
             if (!passwordMatch) {
                 return NextResponse.json({
