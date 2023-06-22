@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server';
 const bcryptP:any = bcrypt;
 
 export async function PUT(request:Request) { 
-   const {id, firstName, lastName, email, phone, password, role} = await request.json()
+   const {id, firstname, lastname, email, phone, password, role} = await request.json()
 
   // checking if all fields are entered
-  if (!id || !firstName || !email || !email) {
+  if (!id || !firstname || !email || !email) {
     return NextResponse.json({
       ok: false,
       message: "Please provide all the required fields",
@@ -27,8 +27,8 @@ export async function PUT(request:Request) {
         id,
       },
       data: {
-        firstName: firstName ? firstName : undefined, 
-        lastName: lastName ? lastName : undefined, 
+        firstname: firstname ? firstname : undefined, 
+        lastname: lastname ? lastname : undefined, 
         email,
         password: hashedPassword,
         phone,

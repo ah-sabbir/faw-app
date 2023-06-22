@@ -13,8 +13,8 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  firstName String   @map("first_name")
-  lastName  String?  @map("last_name")
+  firstname String   @map("first_name")
+  lastname  String?  @map("last_name")
   email     String   @unique
   phone     String?   @unique
   avatar    String?
@@ -25,9 +25,9 @@ model User {
   status    String   @default("active")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  posts     Post[]
+  posts     Post[] @relation("_posts_author")
   // comments  Comment[]
-  shops     Shop[]
+  shops     Shop[]  @relation("_users_shop")
 
   @@map(name: "users")
 }
@@ -38,24 +38,32 @@ model Post {
   body       String
   // comments          Comment[]
   // categoryId String              @map("category_id")
-  author     User         @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  author     User         @relation("_posts_author", fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   authorId   String
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
   categories Category[]
-  PostImages PostImages[]
+  PostImages PostImages[] @relation("post_images")
+
+  @@map(name: "posts")
+  @@index([authorId])
 }
 
 model Category {
   id    String  @id @default(cuid())
   name  String?
   posts Post[]
+
+  @@map(name: "categories")
 }
 
 model PostImages {
   id     String @id @default(cuid())
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation("post_images", fields: [postId], references: [id])
   postId String
+
+  @@map(name: "post_images")
+  @@index([postId])
 }
 
 // model Comment {
@@ -78,9 +86,12 @@ model Shop {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  products Product[]
-  user     User      @relation(fields: [userId], references: [id])
+  products Product[]  @relation("_users_shop_products")
+  user     User      @relation("_users_shop", fields: [userId], references: [id])
   userId   String
+
+  @@map(name: "shops")
+  @@index([userId])
 }
 
 model Product {
@@ -94,9 +105,12 @@ model Product {
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
-  shop   Shop    @relation(fields: [shopId], references: [id])
+  shop   Shop    @relation("_users_shop_products", fields: [shopId], references: [id])
   shopId String
-  orders Order[]
+  orders Order[] @relation("_products_orders")
+
+  @@map(name: "products")
+  @@index([shopId])
 }
 
 model Order {
@@ -107,6 +121,9 @@ model Order {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation("_products_orders", fields: [productId], references: [id])
   productId String
+
+  @@map(name: "orders")
+  @@index([productId])
 }

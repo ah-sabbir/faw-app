@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const bcryptP:any = bcrypt;
 
 export async function POST(request:NextRequest) { 
-   const data:user_data = await request.json()
+   const data:any = await request.json()
 
   // checking if all fields are entered
   if (!data.firstname || !data.email || !data.password) {
@@ -39,8 +39,8 @@ export async function POST(request:NextRequest) {
       // creating user
       const User = await prisma.user.create({
         data: {
-          firstName: data.firstname,
-          lastName: data.lastname,
+          firstname: data.firstname,
+          lastname: data.lastname,
           email : data.email,
           password: hashedPassword,
           phone: data.phone,
