@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 type NextAuthOptions = /*unresolved*/ any
 
+const NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
 export const Options:NextAuthOptions = {
     session: {
         jwt: true,
@@ -20,31 +22,30 @@ export const Options:NextAuthOptions = {
             password: { label: "Password", type: "password", placeholder: "Password" }
           },
           async authorize(credentials, req) {
-            // Add logic here to look up the user from the credentials supplied
-            const res = await fetch("/api/auth/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: credentials?.email,
-                password: credentials?.password,
-              }),
-            });
-            const user = await res.json();
-    
-            if (user) {
-              // Any object returned will be saved in `user` property of the JWT
-              console.log(user);
-              return user
-            } else {
-              // If you return null then an error will be displayed advising the user to check their details.
-              return null // Redirect to error page
-      
-              // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-              throw new Error('error message') // Redirect to error page
-              
+
+            try{
+                // Add logic here to look up the user from the credentials supplied
+                const res = await fetch(NEXTAUTH_URL+"/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                    email: credentials?.email,
+                    password: credentials?.password,
+                    }),
+                });
+                const user = await res.json();
+        
+                if (user) {
+                    // Any object returned will be saved in `user` property of the JWT
+                    // console.log(user);
+                    return user
+                }
+            }catch(e){
+                return null;
             }
+
           }
         }),
         
@@ -52,16 +53,16 @@ export const Options:NextAuthOptions = {
       pages: {
         signIn: "/auth/signin",
         signOut: "/auth/signout",
-        error: "/auth/error", // Error code passed in query string as ?error=
-        verifyRequest: "/auth/verify-request", // (used for check email message)
+        // error: "/auth/error", // Error code passed in query string as ?error=
+        // verifyRequest: "/auth/verify-request", // (used for check email message)
       },
-      callbacks: {
-        async jwt({ token, user }: { token: any; user: any }) {
-          return { ...token, ...user };
-        },
-        async session({ session, token, user }: { session: any; token: any; user: any }) {
-          session.user = token;
-          return session;
-        },
-      },      
+      // callbacks: {
+      //   async jwt({ token, user }: { token: any; user: any }) {
+      //     return { ...token, ...user };
+      //   },
+      //   async session({ session, token, user }: { session: any; token: any; user: any }) {
+      //     session.user = token;
+      //     return session;
+      //   },
+      // },      
     }

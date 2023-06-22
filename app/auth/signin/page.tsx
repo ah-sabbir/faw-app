@@ -2,23 +2,49 @@
 // import Button from '@/components/elements/Button';
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const getImg = async () => {
+    const res = await fetch("https://api.unsplash.com/photos/random?query=fashion&client_id=n8M49eGl008_oU9oF25eRVYaZDBrH-ajpHX4un8OwYg");
+    const data = await res.json();
+    return data;
+    }
+
 
 const LoginPage = () => {
-
-  console.log("login page");
   
   const email = useRef("");
   const pass = useRef("");
 
+  const [Source, setSource] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  
+  useEffect(() => {
+    const res = getImg();
+    res.then((data) => {
+        const url:string = data.urls.regular;
+        setSource(url || "https://pixabay.com/get/g0e487f3684b06ab38b6b58cd1165ff33a46fa6ac7d532fdd1d7d9cdf5fcbb3be32338b7b831a929ae6776c98f671c30beae6717b11e47dff92791264201123b0_1280.jpg");
+        setIsLoading(false);
+    })
+
+  }, [])
+
   const onSubmit = async () => {
-    console.log(email.current, pass.current);
-    const result = await signIn("credentials", {
-      email: email.current,
-      password: pass.current,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    try {
+        console.log("login button clicked");
+        const result = await signIn("credentials", {
+          email: email.current,
+          password: pass.current,
+          redirect: true,
+          callbackUrl: "/",
+        });
+      
+        // Handle the result or perform any necessary actions
+        console.log("Sign-in successful:", result);
+      } catch (error) {
+        console.error("Sign-in error:", error);
+      }
+      
   };
   return (
         <section className=" bg-gray-50 min-h-screen flex items-center justify-center">
@@ -83,13 +109,15 @@ const LoginPage = () => {
             </div>
 
             {/* <!-- image --> */}
-            <div className="md:block hidden w-1/2">
+            <div className="md:block hidden w-1/2 spinner-container">
+            {isLoading && <div className="spinner w-full h-full"></div>}
             <Image 
             className="rounded-2xl" 
             alt="side image" 
             width={500}
             height={500}
-            src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80"
+            src={Source}
+            style={{ visibility: isLoading ? 'hidden' : 'visible' }}
             />
             </div>
         </div>

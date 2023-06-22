@@ -1,7 +1,7 @@
+import Provider from '@/providers/sessionProvider';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
-import Provider from './Provider';
 
 const inter = Inter({ subsets: ['latin'] })
 

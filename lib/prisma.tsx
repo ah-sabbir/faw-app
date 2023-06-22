@@ -5,7 +5,7 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-const prisma =
+const prisma:any =
   global.prisma ??
   new PrismaClient({
     log: ["query"],
