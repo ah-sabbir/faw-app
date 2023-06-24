@@ -1,3 +1,4 @@
+import Navigation from '@/components/elements/navigation';
 import Provider from '@/providers/sessionProvider';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
@@ -21,6 +22,7 @@ export default function RootLayout({children}: IProps) {
       suppressHydrationWarning={true} 
       >
         <Provider>
+          <Navigation />
           {children}
         </Provider>
         </body>
