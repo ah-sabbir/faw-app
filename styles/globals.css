@@ -217,13 +217,78 @@ h4 {
   }
 }
 
-@media (min-width: 1025px)
-.navigation__logo svg {
+
+
+/* Responsive breakpoints */
+@media (max-width: 767px) {
+  .font-normal {
+    /* Styles for small screens (up to 767px) */
+    font-size: 14px;
+  }
+  
+  .font-lato {
+    /* Styles for small screens (up to 767px) */
+    font-size: 14px;
+  }
+  
+  .box-border {
+    /* Styles for small screens (up to 767px) */
+    box-sizing: border-box;
+  }
+  
+  .border-b {
+    /* Styles for small screens (up to 767px) */
+    border-bottom: none;
+  }
+  
+  .grid {
+    /* Styles for small screens (up to 767px) */
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  
+  .grid-cols-1 {
+    /* Styles for small screens (up to 767px) */
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid {
+    /* Styles for medium screens (768px to 1023px) */
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .grid-cols-2 {
+    /* Styles for medium screens (768px to 1023px) */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    /* Styles for large screens (1024px and above) */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  
+  .grid-cols-2 {
+    /* Styles for large screens (1024px and above) */
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .md\:grid-cols-4 {
+    /* Styles for large screens (1024px and above) */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .navigation__logo svg {
     position: absolute;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
     max-width: 300px;
+}
+
 }
 

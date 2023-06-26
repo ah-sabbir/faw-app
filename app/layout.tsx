@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const metadata = {
-  title: 'Fashion Anywhere',
+  title: 'FASHION ANYWHERE',
   description: 'Trendy Fashions in your door today!',
 }
 
