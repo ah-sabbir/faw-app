@@ -17,7 +17,7 @@ const Navigation = () => {
   };
   
   return (
-    <div className="font-normal text-base leading-7 font-lato tracking-wider box-border border-b border-gray-900 bg-white fixed left-0 right-0 z-31 transition-transform duration-250">
+    <div className="font-normal text-base leading-7 font-lato tracking-wider box-border border-b border-gray-900 bg-white left-0 right-0 z-31 transition-transform duration-250">
       <div className="font-normal text-base leading-7 font-lato tracking-wide box-border w-full mx-auto px-4 max-w-7xl grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-4 pt-6 pb-6 transition duration-250 ease-in-out">
         <nav className="tracking-tighter[0.075em] font-normal text-base leading-[2.7692307692rem] font-lato">
           <ul className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border pl-0 flex justify-between">
