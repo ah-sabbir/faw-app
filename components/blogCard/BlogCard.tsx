@@ -9,7 +9,7 @@ const ArticleCard = ({post}: any) => {
               <Image
                 src={"https://images.unsplash.com/photo-1542009708210-df3fb1850c51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg2NDk0MDR8&ixlib=rb-4.0.3&q=80&w=1080" || post.imageUrl}
                 alt="Fashion Image"
-                className="w-full h-auto bg-blend-color-burn"
+                className="w-full h-auto bg-blend-color-burn object-cover object-center rounded-lg shadow-2xl"
                 height={500}
                 width={500}
               />
@@ -33,7 +33,7 @@ const ArticleCard = ({post}: any) => {
                 <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
               </div>
               <div className="relative mt-8 flex items-center gap-x-4">
-                <Image src={post.author.imageUrl} alt="" height={100} width={100} className="h-10 w-10 rounded-full bg-gray-50" />
+                <Image src={post.author.imageUrl} alt="" height={100} width={100} className="h-10 w-10 rounded-full bg-gray-50 " />
                 <div className="text-sm leading-6">
                   <p className="font-semibold text-gray-900">
                     <a href={post.author.href}>

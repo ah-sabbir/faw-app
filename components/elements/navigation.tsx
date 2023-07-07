@@ -17,14 +17,14 @@ const Navigation = () => {
   };
   
   return (
-    <div className="font-normal text-base leading-7 font-lato tracking-wider box-border border-b border-gray-900 bg-white left-0 right-0 z-31 transition-transform duration-250">
+    <div className=" hidden md:block font-normal text-base leading-7 font-lato tracking-wider box-border border-b border-gray-900 bg-white left-0 right-0 z-31 transition-transform duration-250">
       <div className="font-normal text-base leading-7 font-lato tracking-wide box-border w-full mx-auto px-4 max-w-7xl grid justify-center items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-4 pt-6 pb-6 transition duration-250 ease-in-out">
         <nav className="tracking-tighter[0.075em] font-normal text-base leading-[2.7692307692rem] font-lato">
           <ul className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border pl-0 flex justify-between">
             <li className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border relative inline-block w-auto">
               <Link className="no-underline text-black uppercase font-bold font-lato" href="/posts">Posts</Link>
             </li>
-            <li className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border relative inline-block w-auto">
+            <li className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border relative w-auto  hidden xl:inline-block">
               <Link className="no-underline text-black uppercase font-bold font-lato" href="/my-looks">Trends</Link>
             </li>
             <li className="font-normal text-base leading-[2.7692307692rem] font-lato tracking-[.075em] box-border relative inline-block w-auto">

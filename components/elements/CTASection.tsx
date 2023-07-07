@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import heroImage from '/assets/hero-model.jpeg';
+
+
 
 const getImg = async () => {
-    const res = await fetch("https://api.unsplash.com/photos/random?query=fashion+landscap&client_id=n8M49eGl008_oU9oF25eRVYaZDBrH-ajpHX4un8OwYg");
+    const res = await fetch("https://api.unsplash.com/photos/random?query=fashion+cover&client_id=n8M49eGl008_oU9oF25eRVYaZDBrH-ajpHX4un8OwYg");
     const data = await res.json();
     return data;
     }
@@ -13,6 +16,7 @@ const CtaSection = () => {
   const [subscribed, setSubscribed] = useState(false);
 
   const [Source, setSource] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleSubscribe = (e:any) => {
     e.preventDefault();
@@ -27,8 +31,10 @@ const CtaSection = () => {
     const res = getImg();
     res.then((data) => {
         const url:string = data.urls.regular;
-        setSource(url);
+        setSource(url || "https://pixabay.com/get/g0e487f3684b06ab38b6b58cd1165ff33a46fa6ac7d532fdd1d7d9cdf5fcbb3be32338b7b831a929ae6776c98f671c30beae6717b11e47dff92791264201123b0_1280.jpg");
+        setIsLoading(false);
     })
+
   }, [])
 
 
@@ -38,7 +44,7 @@ const CtaSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <div className="text-center sm:text-left">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-            We Make Your Comfort
+            Find You Comfort Today!
           </h2>
           <p className="mt-4 text-lg text-gray-300">
             Stay updated with the latest fashion trends, tips, and exclusive offers.
@@ -71,14 +77,15 @@ const CtaSection = () => {
             </a>
           </p>
         </div>
-        <div className="sm:w-1/2">
+        <div className="sm:w-1/2 h-full hidden md:block">
             { Source && 
           <Image
-            src={"https://images.unsplash.com/photo-1542009708210-df3fb1850c51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg2NDk0MDR8&ixlib=rb-4.0.3&q=80&w=1080" || Source}
             alt="Fashion Image"
-            className="w-full h-auto bg-blend-color-burn"
+            className="w-full h-auto bg-blend-color-burn object-cover object-center rounded-lg shadow-2xl"
             height={500}
             width={500}
+            src={ heroImage || Source}
+            style={{ visibility: isLoading ? 'hidden' : 'visible' }}
           />}
         </div>
       </div>
