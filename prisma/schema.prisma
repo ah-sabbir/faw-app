@@ -20,14 +20,14 @@ model User {
   avatar    String?
   country   String?
   city      String?
-  password  String?
-  role      String   @default("seller")
-  status    String   @default("active")
+  password  String
+  role      String?   @default("seller")
+  status    String?   @default("active")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   
   shops     Shop?    @relation("_users_shop")
-  blogPosts BlogPost[]
+  blogPosts blogPost[]
   UserComment UserComment[]
 
   @@map(name: "users")
@@ -85,11 +85,11 @@ model Order {
   @@index([productId])
 }
 
-model BlogPost {
-  id        Int        @id @default(autoincrement())
+model blogPost {
+  id        String        @id @default(cuid())
   title     String
   content   String
-  published Boolean
+  published Boolean?   @default(false)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   userId    String
@@ -97,8 +97,9 @@ model BlogPost {
   categories Category[]
   tags       Tag[]
   comments   UserComment[]
-  analytics  Analytics?
-  metadata   Metadata[]
+  analytics  Analytics? 
+  metadata   Metadata?
+  slug       String?   @unique
 
   @@map(name: "blog_posts")
   @@index([userId])
@@ -109,7 +110,7 @@ model Category {
   name      String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  blogPosts BlogPost[]
+  blogPosts blogPost[]
 }
 
 model Tag {
@@ -117,7 +118,7 @@ model Tag {
   name      String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  blogPosts BlogPost[]
+  blogPosts blogPost[]
 }
 
 model UserComment {
@@ -128,8 +129,8 @@ model UserComment {
   userId    String
   user      User       @relation(fields: [userId], references: [id])
 
-  blogPostId Int
-  blogPost  BlogPost   @relation(fields: [blogPostId], references: [id])
+  blogPostId String
+  blogPost  blogPost   @relation(fields: [blogPostId], references: [id])
 
   @@map(name: "user_comments")
   @@index([userId])
@@ -142,8 +143,8 @@ model Analytics {
   likes     Int
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  blogPostId Int @unique
-  blogPost  BlogPost   @relation(fields: [blogPostId], references: [id])
+  blogPostId String    @unique
+  blogPost  blogPost   @relation(fields: [blogPostId], references: [id])
 }
 
 model Metadata {
@@ -152,8 +153,8 @@ model Metadata {
   value     String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  blogPostId Int
-  blogPost  BlogPost   @relation(fields: [blogPostId], references: [id])
+  blogPostId String    @unique
+  blogPost  blogPost   @relation(fields: [blogPostId], references: [id])
 
   @@map(name: "metadata")
   @@index([blogPostId])

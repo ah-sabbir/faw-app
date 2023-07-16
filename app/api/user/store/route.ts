@@ -12,7 +12,7 @@ export async function POST(request:NextRequest) {
     console.log(data)
     return NextResponse.json({
       ok: false,
-      // data: data,
+      fieldsmissing: true,
       message: "Please provide all the required fields",
     });
   }
@@ -25,7 +25,6 @@ export async function POST(request:NextRequest) {
       },
     });
 
-    
     if (userExists) {
       return NextResponse.json({ ok: false, message: "User already exists" });
     }else{
@@ -35,7 +34,6 @@ export async function POST(request:NextRequest) {
 
           
       const hashedPassword = await bcryptP.hash(data.password, salt);
-
       // creating user
       const User = await prisma.user.create({
         data: {
@@ -43,11 +41,6 @@ export async function POST(request:NextRequest) {
           lastname: data.lastname,
           email : data.email,
           password: hashedPassword,
-          phone: data.phone,
-          avatar: data.avatar?data.avatar:"",
-          country: data.country?data.country:"",
-          city: data.city?data.city:"",
-          role: "seller"
         },
       });
 
@@ -56,7 +49,7 @@ export async function POST(request:NextRequest) {
     }
 
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ ok: false, message: "Something want wrong." });
   }
-
 }
