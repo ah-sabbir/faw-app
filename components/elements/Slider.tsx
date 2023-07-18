@@ -24,12 +24,12 @@ const Slider = () => {
     <div className="relative">
       <Image src={currentImage.src} alt={currentImage.heading} height={500} width={500} className="w-full h-auto bg-blend-soft-light" />
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:p-8 md:bg-black md:rounded-3xl">
-        <h2 className=" text-xl md:text-4xl font-bold text-white">{currentImage.heading}</h2>
-        <p className="mt-4 mb-4 text-lg text-white md:p-2 md:m-2">{currentImage.subheader}</p>
+      <div className=" bg-opacity-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center md:p-8 md:bg-black md:rounded-3xl md:bg-opacity-50">
+        <h2 className=" text-sm md:text-2xl font-bold text-white">{currentImage.heading}</h2>
+        <p className="mt-4 mb-4 text-sm text-white md:p-2 md:m-2 md:text-lg">{currentImage.subheader}</p>
         <a
           href={currentImage.link}
-          className="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-lg shadow-lg"
+          className="mt-4 px-2 py-2 bg-indigo-500 text-white rounded-lg shadow-lg md:mt-4 md:px-6 md:py-2"
         >
           Shop Now
         </a>
