@@ -2,6 +2,7 @@
 
 // import type { ReactElement } from 'react';
 
+
 const SignUpPage = () => {
 
   console.log("SignUp page");

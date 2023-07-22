@@ -50,7 +50,7 @@ model Shop {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
+  id          String @id @default(cuid())
   name        String
   description String
   price       Float
@@ -77,7 +77,7 @@ model Order {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  productId Int
+  productId String
   product   Product @relation("_products_orders", fields: [productId], references: [id])
 
   @@index([productId])
@@ -139,7 +139,7 @@ model Tag {
 }
 
 model UserComment {
-  id        Int      @id @default(autoincrement())
+  id          String @id @default(cuid())
   content   String   @db.MediumText
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

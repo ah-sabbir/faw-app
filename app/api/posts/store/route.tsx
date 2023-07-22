@@ -1,4 +1,6 @@
 import prisma from '@/lib/prisma';
+import { GenerateUnique } from '@/lib/slugify';
+
 // create post
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -16,7 +18,6 @@ export async function POST(request:NextRequest) {
   const data:Post = await request.json()
 
   try{
-
     const user = await prisma.user.findUnique({
       where: {
         email: "demo@gmail.com"
@@ -29,7 +30,7 @@ export async function POST(request:NextRequest) {
         content: data.content,
         tagId: data.tagId,
         userId: user?.id,
-        slug: "string"
+        slug: GenerateUnique(data.title)
       },
     })
 
