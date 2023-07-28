@@ -1,17 +1,17 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 
-const Icon = () => {
-  return (
-    <Image
-      src="/icon"
-      width={100}
-      height={100}
-      alt="App icon"
-    />
-  );
-};
+// const Icon = () => {
+//   return (
+//     <Image
+//       src="/icon"
+//       width={100}
+//       height={100}
+//       alt="App icon"
+//     />
+//   );
+// };
 
-export default Icon;
+// export default Icon;
 
 
 
