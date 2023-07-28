@@ -2,6 +2,10 @@
 import ArticleCard from '@/components/blogCard/BlogCard';
 import Slider from '@/components/elements/Slider';
 import { useState } from 'react';
+
+
+const secret = process.env.JWT_SECRET
+
 // import handler from './api/auth/hello';
 // import { useRouter } from 'next/router';
 
@@ -144,8 +148,15 @@ const posts = [
 
 
 export default async function Home() {
-  // const { data: session, status } = useSession();
   // const router = useRouter();
+  // const [session, loading] = useSession();
+  // const [blogPosts, setBlogPosts] = useState<any>([]);
+  // const [user, setUser] = useState<any>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<string>('');
+  // const [token, setToken] = useState<string>('');
+  //
+  
   const [ImgURL, setImgURL] = useState<string>('');
   const loginHandler = () => {
     // router.push('/login');

@@ -1,31 +1,40 @@
 import prisma from '@/lib/prisma';
+import { GenerateUnique } from '@/lib/slugify';
+
 // create post
 import { NextRequest, NextResponse } from 'next/server';
 
 // write a interface for blog post
 interface Post {
-  title: string;
-  content: string;
-  published: boolean;
-  authorEmail: string;
-  categories: [];
-  tags: [];
+  title: string
+  content: string
+  published?: boolean
+  tagId: string
+  userId: string
+  slug?: string
 }
 
 export async function POST(request:NextRequest) {
   const data:Post = await request.json()
 
   try{
+    const user = await prisma.user.findUnique({
+      where: {
+        email: "demo@gmail.com"
+      }
+    })
+
     const blogPost  = await prisma.blogPost.create({
       data: {
         title: data.title,
-        categories: data.categories,
-        tags: data.tags,
         content: data.content,
+        tagId: data.tagId,
+        userId: user?.id,
+        slug: GenerateUnique(data.title)
       },
     })
 
-    return NextResponse.json({ ok:200, msg:"post created successfully" });
+    return NextResponse.json({ ok:true, msg:"post created successfully" });
   }catch(err){
     console.log(err);
     return NextResponse.json({ ok:400, msg:"post created failed" });
