@@ -6,6 +6,10 @@ import { NextResponse } from 'next/server';
 
 import bcrypt from "bcryptjs";
 
+type Data = {
+  name: string
+}
+
 interface UserRequest {
   email: string;
   password: string;

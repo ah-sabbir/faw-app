@@ -13,8 +13,8 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
-  firstName String   @map("first_name")
-  lastName  String?  @map("last_name")
+  firstname String   @map("first_name")
+  lastname  String?  @map("last_name")
   email     String   @unique
   phone     String?  @unique
   avatar    String?
@@ -23,8 +23,8 @@ model User {
   password  String
   role      String?  @default("seller")
   status    String?  @default("active")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   shops       Shop?         @relation("_users_shop")
   blogPosts   blogPost[]
@@ -38,19 +38,19 @@ model Shop {
   name        String
   description String
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   products Product[] @relation("_users_shop_products")
   user     User      @relation("_users_shop", fields: [userId], references: [id])
-  userId   String    @unique @map("user_id")
+  userId   String    @unique
 
   @@index([userId])
   @@map(name: "shops")
 }
 
 model Product {
-  id          String @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   name        String
   description String
   price       Float
@@ -60,12 +60,12 @@ model Product {
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
-  shopId String @map("shop_id")
+  shopId String
   shop   Shop   @relation("_users_shop_products", fields: [shopId], references: [id])
 
   orders Order[] @relation("_products_orders")
 
-  @@index([shopId, name])
+  @@index([shopId])
   @@map(name: "products")
 }
 
@@ -73,54 +73,22 @@ model Order {
   id        String   @id @default(cuid())
   quantity  Int
   price     Float
-  status    String   @default("pending")
+  status    String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  productId String
+  productId Int
   product   Product @relation("_products_orders", fields: [productId], references: [id])
 
   @@index([productId])
   @@map(name: "orders")
 }
 
-model blogPost {
-  id         String         @id @default(cuid())
-  title      String
-  content    String         @db.LongText
-  published  Boolean        @default(false)
-  createdAt  DateTime       @default(now()) @map(name: "created_at")
-  updatedAt  DateTime       @updatedAt @map(name: "updated_at")
-  tagId      String         @map("tag_id")
-  tag        Tag            @relation(fields: [tagId], references: [id])
-  userId     String         @map("user_id")
-  user       User           @relation(fields: [userId], references: [id])
-  categories postCategory[]
-  comments   UserComment[]
-  analytics  Analytics?
-  metadatas  Metadata[]
-  slug       String?        @unique
-
-  @@index([userId])
-  @@index([tagId])
-  @@map(name: "blog_posts")
-}
-
-model Category {
-  id        String         @id @default(cuid())
-  name      String
-  createdAt DateTime       @default(now()) @map("created_at")
-  updatedAt DateTime       @updatedAt @map("updated_at")
-  blogPosts postCategory[]
-
-  @@map(name: "categories")
-}
-
 model postCategory {
-  id         String   @id @default(cuid())
-  blogPostId String   @map("blog_post_id")
+  id         Int      @id @default(autoincrement())
+  blogPostId String
   blogPost   blogPost @relation(fields: [blogPostId], references: [id])
-  categoryId String   @map("category_id")
+  categoryId String
   category   Category @relation(fields: [categoryId], references: [id])
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -130,23 +98,54 @@ model postCategory {
   @@map(name: "post_categories")
 }
 
+model blogPost {
+  id        String         @id @default(cuid())
+  title     String
+  content   String
+  published Boolean?       @default(false)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  userId    String
+  user      User           @relation(fields: [userId], references: [id])
+  category  postCategory[]
+  // tags       Tag[]
+  comments  UserComment[]
+  analytics Analytics?
+  metadata  Metadata?
+  slug      String?        @unique
+
+  @@index([userId])
+  @@map(name: "blog_posts")
+}
+
+model Category {
+  id           String         @id @default(cuid())
+  name         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  postCategory postCategory[]
+  // blogPosts blogPost[]
+
+  @@map(name: "categories")
+}
+
 model Tag {
-  id        String     @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  blogPosts blogPost[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // blogPosts blogPost[]
 }
 
 model UserComment {
-  id          String @id @default(cuid())
-  content   String   @db.MediumText
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id])
 
-  blogPostId String   @map("blog_post_id")
+  blogPostId String
   blogPost   blogPost @relation(fields: [blogPostId], references: [id])
 
   @@index([userId])
@@ -155,20 +154,22 @@ model UserComment {
 }
 
 model Analytics {
-  id         String   @id @default(cuid())
+  id         Int      @id @default(autoincrement())
   views      Int
   likes      Int
-  blogPostId String  @unique  @map("blog_post_id")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  blogPostId String   @unique
   blogPost   blogPost @relation(fields: [blogPostId], references: [id])
 }
 
 model Metadata {
-  id         String   @id @default(cuid())
+  id         Int      @id @default(autoincrement())
   key        String
   value      String
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  blogPostId String   @unique @map("blog_post_id")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  blogPostId String   @unique
   blogPost   blogPost @relation(fields: [blogPostId], references: [id])
 
   @@index([blogPostId])
