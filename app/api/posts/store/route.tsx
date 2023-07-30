@@ -1,5 +1,5 @@
-import prisma from '@/lib/prisma';
 // create post
+import prisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
 // write a interface for blog post
@@ -7,25 +7,43 @@ interface Post {
   title: string;
   content: string;
   published: boolean;
-  authorEmail: string;
+  userId: string;
   categories: [];
-  tags: [];
+  tagId: any;
+  email: string;
+  slug: string;
 }
 
 export async function POST(request:NextRequest) {
-  const data:Post = await request.json()
+  const post:Post = await request.json()
 
   try{
+
+    // const slug = post.title.toLowerCase().split(' ').join('-');
+    // // find slug in the database and if it exist add a number to it
+    // const slugExist = await prisma.blogPost.findMany({
+    //   where: {
+    //     slug: slug
+    //   }
+    // });
+    // console.log(slugExist);
+
+    // if(slugExist){
+    //   return NextResponse.json({ ok:400, msg:"The title already exist please change it thanks" });
+    // }
+
+
     const blogPost  = await prisma.blogPost.create({
       data: {
-        title: data.title,
-        categories: data.categories,
-        tags: data.tags,
-        content: data.content,
+        title: post.title,
+        content: post.content,
+        categories: post.categories,
+        tagId: post.tagId,
+        userId: post.userId
       },
     })
 
-    return NextResponse.json({ ok:200, msg:"post created successfully" });
+    return NextResponse.json({ ok:200, msg:"post created successfully",  post: blogPost });
   }catch(err){
     console.log(err);
     return NextResponse.json({ ok:400, msg:"post created failed" });

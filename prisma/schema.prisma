@@ -59,6 +59,7 @@ model ProductCategory {
   Product       Product[]
 
   @@index([perentId])
+  @@map(name: "product_categories")
 }
 
 model Media {
@@ -67,6 +68,8 @@ model Media {
   url String
   createdAt DateTime @map("created_at")
   updatedAt DateTime @map("updated_at")
+
+  @@map(name: "media")
 }
 
 model Product {
@@ -124,7 +127,7 @@ model postCategory {
 model blogPost {
   id         String         @id @default(cuid())
   title      String
-  content    String
+  content    String         @db.LongText
   published  Boolean?       @default(false)
   createdAt  DateTime       @default(now())
   updatedAt  DateTime       @updatedAt
@@ -159,6 +162,8 @@ model Tag {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   blogPosts blogPost[]
+
+  @@map(name: "tags")
 }
 
 model UserComment {
@@ -185,6 +190,9 @@ model Analytics {
   updatedAt  DateTime @updatedAt
   blogPostId String   @unique @map("blog_post_id")
   blogPost   blogPost @relation(fields: [blogPostId], references: [id])
+
+  @@index([blogPostId])
+  @@map(name: "analytics")
 }
 
 model Metadata {
