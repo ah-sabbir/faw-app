@@ -20,7 +20,7 @@ export default function RootLayout({children}: IProps) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" />
+        {/* <link rel="icon" href="/favicon.png" /> */}
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content={metadata.description} />
