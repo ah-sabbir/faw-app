@@ -1,7 +1,9 @@
+import PageWrapper from '@/components/PageWrapper';
 import Navigation from '@/components/elements/navigation';
 import Provider from '@/providers/sessionProvider';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
+import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -33,10 +35,9 @@ export default function RootLayout({children}: IProps) {
       <body
       suppressHydrationWarning={true} 
       >
-        <Provider>
-          <Navigation />
-          {children}
-        </Provider>
+          <PageWrapper>
+            {children}
+          </PageWrapper>
         </body>
     </html>
   )
