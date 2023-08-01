@@ -5,7 +5,7 @@ const Slider = () => {
   const images = [
     {
       id: 1,
-      src: 'https://images.unsplash.com/photo-1465145782865-09532f760e6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg3MjI0NDR8&ixlib=rb-4.0.3&q=80&w=2080',
+      src: 'https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA4NjQ1ODJ8&ixlib=rb-4.0.3&q=80&w=2080',
       heading: 'Find Your Comfort Today!',
       subheader: 'Stay updated with the latest fashion trends, tips, and exclusive offers.',
         link: '/shop',

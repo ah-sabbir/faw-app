@@ -1,19 +1,29 @@
 import { CreditCardIcon, HomeIcon, UserIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { forwardRef } from "react";
 
+import logo from "@/assets/app_icon.png";
+import Image from "next/image";
+
 const SideBar = forwardRef(({ showNav }: any, ref) => {
-  const router = useRouter();
+  // const router = useRouter();
+  const router = usePathname();
+  const pathname = usePathname();
+  // console.log(router.pathname);
+
 
   return (
     <div ref={ref} className="fixed w-56 h-full bg-white shadow-sm">
       <div className="flex justify-center mt-6 mb-14">
         <picture>
-          <img
+          <Image
             className="w-32 h-auto"
-            src="/ferox-transparent.png"
-            alt="company logo"
+            src={logo}
+            height={1024}
+            width={1024}
+            alt="Fashion Anywhere Logo"
           />
         </picture>
       </div>
@@ -22,7 +32,7 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
         <Link href="/">
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-              router.pathname == "/dashboard"
+              pathname == "/dashboard"
                 ? "bg-orange-100 text-orange-500"
                 : "text-gray-400 hover:bg-orange-100 hover:text-orange-500"
             }`}
@@ -38,7 +48,7 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
         <Link href="/account">
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-              router.pathname == "/account"
+              pathname == "/account"
                 ? "bg-orange-100 text-orange-500"
                 : "text-gray-400 hover:bg-orange-100 hover:text-orange-500"
             }`}
@@ -54,7 +64,7 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
         <Link href="/billing">
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-              router.pathname == "/billing"
+              pathname == "/billing"
                 ? "bg-orange-100 text-orange-500"
                 : "text-gray-400 hover:bg-orange-100 hover:text-orange-500"
             }`}
