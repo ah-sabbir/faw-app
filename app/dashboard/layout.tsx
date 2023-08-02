@@ -6,7 +6,7 @@ import { Transition } from "@headlessui/react";
 
 import { Fragment, useEffect, useState } from "react";
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children }:any) {
   const [showNav, setShowNav] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
