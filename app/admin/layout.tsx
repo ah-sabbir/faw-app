@@ -1,10 +1,11 @@
 "use client";
 
-import SideBar from "@/components/dashboard/site-bar";
-import TopBar from "@/components/dashboard/top-bar";
+import SideBar from "@/components/admin/side-bar";
+import TopBar from "@/components/admin/top-bar";
 import { Transition } from "@headlessui/react";
 
 import { Fragment, useEffect, useState } from "react";
+
 
 export default function DashboardLayout({ children }:any) {
   const [showNav, setShowNav] = useState(true);
@@ -46,7 +47,7 @@ export default function DashboardLayout({ children }:any) {
         <SideBar showNav={showNav} />
       </Transition>
       <main
-        className={`pt-16 transition-all duration-[400ms] ${
+        className={`bg-black pt-16 transition-all duration-[400ms] ${
           showNav && !isMobile ? "pl-56" : ""
         }`}
       >

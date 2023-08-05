@@ -1,7 +1,8 @@
 "use client";
-import ArticleCard from '@/components/blogCard/BlogCard';
+// import ArticleCard from '@/components/blogCard/BlogCard';
 import Slider from '@/components/elements/Slider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 // import handler from './api/auth/hello';
 // import { useRouter } from 'next/router';
 
@@ -144,6 +145,9 @@ const posts = [
 
 
 export default async function Home() {
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  // const [session, loading] = useSession();
+
   // const { data: session, status } = useSession();
   // const router = useRouter();
   const [ImgURL, setImgURL] = useState<string>('');
@@ -157,12 +161,15 @@ export default async function Home() {
   //   return data.urls.regular;
   //   }
 
-  // useEffect(() => {
-  //   const res = getImg();
-  //   res.then((data) => {
-  //       setImgURL(data);
-  //   })
-  // }, [])
+  useEffect(() => {
+    const res = fetch("/api/posts");
+    res.then((res) => res.json())
+    .then((data) => {
+      // console.log(typeof data);
+      // console.log(data);
+      setBlogPosts(data);
+    })
+  }, [])
 
   
   
@@ -173,9 +180,10 @@ export default async function Home() {
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {posts.map((post) => (
+          {/* {typeof blogPosts} */}
+          {/* {blogPosts.map((post) => (
             <ArticleCard key={post.id} post={post} imageUrl={"https://images.unsplash.com/photo-1626386699888-b8865823b279?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg2NTA0NTV8&ixlib=rb-4.0.3&q=80&w=1080"} />
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

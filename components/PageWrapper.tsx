@@ -1,16 +1,22 @@
 "use client"
 
 import { usePathname } from 'next/navigation'
-import React from 'react'
 import Navigation from './elements/navigation'
 
 const PageWrapper = ({children}:any) => {
     const path = usePathname()
-    const isDashboard = path.split('/').includes('dashboard')
+    const isAdmin = path.split('/').includes('admin')
+    const isLogin = path.split('/').includes('login')
+    const isRegister = path.split('/').includes('register')
+    const isForgotPassword = path.split('/').includes('forgot-password')
+    const isResetPassword = path.split('/').includes('reset-password')
+    const isVerifyEmail = path.split('/').includes('verify-email')
+    const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
+    
   return (
     <>
-        {
-        isDashboard ? 
+      {
+        isAdmin ? 
         <>
             { children }
         </>
@@ -18,7 +24,7 @@ const PageWrapper = ({children}:any) => {
             <Navigation />
             { children }
         </>
-    } 
+      }
     </>
   )
 }

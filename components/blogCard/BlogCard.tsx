@@ -1,11 +1,16 @@
-import Image from "next/image";
+// import Image from "next/image";
 
 const ArticleCard = ({post}: any) => {
     const aspectRatio = 16 / 9; // Adjust the aspect ratio based on your preference
+    const width = 500;
+    const height = width / aspectRatio;
+
+    console.log(post);
 
     return (
-            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
-              <div className="group relative">
+            <article className="flex max-w-xl flex-col items-start justify-between">
+              <h1 className="text-3xl font-bold text-gray-900">{post.title}</h1>
+              {/* <div className="group relative">
               <Image
                 src={"https://images.unsplash.com/photo-1542009708210-df3fb1850c51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg2NDk0MDR8&ixlib=rb-4.0.3&q=80&w=1080" || post.imageUrl}
                 alt="Fashion Image"
@@ -14,13 +19,13 @@ const ArticleCard = ({post}: any) => {
                 width={500}
               />
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <a href={post.href}>
+                  <a href={"/"+ post.id}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </a>
                   <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.datetime} className="text-gray-500">
-                  {post.date}
+                <time dateTime={post.updatedAt} className="text-gray-500">
+                  {post.updatedAt}
                 </time>
                 <a
                   href={post.category.href}
@@ -30,7 +35,7 @@ const ArticleCard = ({post}: any) => {
                 </a>
               </div>
                 </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
+                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.content}</p>
               </div>
               <div className="relative mt-8 flex items-center gap-x-4">
                 <Image src={post.author.imageUrl} alt="" height={100} width={100} className="h-10 w-10 rounded-full bg-gray-50 " />
@@ -38,12 +43,12 @@ const ArticleCard = ({post}: any) => {
                   <p className="font-semibold text-gray-900">
                     <a href={post.author.href}>
                       <span className="absolute inset-0" />
-                      {post.author.name}
+                      {post.userId}
                     </a>
                   </p>
                   <p className="text-gray-600">{post.author.role}</p>
                 </div>
-              </div>
+              </div> */}
             </article>
     );
   };
