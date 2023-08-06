@@ -30,8 +30,8 @@ export async function POST(request:Request) {
 
       if(user && (await bcrypt.compare(body.password,user.password)) ){
         const { password, ...rest } = user;
-        const token = await getToken( {req:Request} )
-        console.log(token);
+        // const token = await getToken( {req:Request} )
+        // console.log(token);
         return NextResponse.json({ ok: true, user: rest });
       }else{
         return NextResponse.json({ ok: false, msg: "Invalid credentials" });
