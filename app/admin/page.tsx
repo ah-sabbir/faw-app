@@ -1,5 +1,12 @@
 
-const Dashboard = () => {
+import { NextApiRequest } from 'next';
+import { getToken } from 'next-auth/jwt';
+
+const Dashboard = async () => {
+  
+  const token:any = await getToken({ NextApiRequest, secret: process.env.NEXTAUTH_SECRET })
+
+  console.log(token)
   return (
     <>
     <p className="text-gray-700 text-3xl mb-16 font-bold">Dashboard</p>

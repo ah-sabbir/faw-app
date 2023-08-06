@@ -2,9 +2,13 @@
 
 // import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma';
+import { getToken } from "next-auth/jwt";
 import { NextResponse } from 'next/server';
 
+
 import bcrypt from "bcryptjs";
+
+const secret = process.env.NEXTAUTH_SECRET
 
 type Data = {
   name: string
@@ -26,6 +30,8 @@ export async function POST(request:Request) {
 
       if(user && (await bcrypt.compare(body.password,user.password)) ){
         const { password, ...rest } = user;
+        const token = await getToken( {req:Request} )
+        console.log(token);
         return NextResponse.json({ ok: true, user: rest });
       }else{
         return NextResponse.json({ ok: false, msg: "Invalid credentials" });

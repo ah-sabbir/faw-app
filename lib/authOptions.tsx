@@ -8,6 +8,8 @@ const NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
 export const Options:NextAuthOptions = {
     session: {
         jwt: true,
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+        
       },
       providers: [
         CredentialsProvider({
@@ -56,10 +58,11 @@ export const Options:NextAuthOptions = {
         // error: "/auth/error", // Error code passed in query string as ?error=
         // verifyRequest: "/auth/verify-request", // (used for check email message)
       },
-      // callbacks: {
-      //   async jwt({ token, user }: { token: any; user: any }) {
-      //     return { ...token, ...user };
-      //   },
+      callbacks: {
+        async jwt({ token, user }: { token: any; user: any }) {
+          return { ...token, ...user };
+        }
+      }
       //   async session({ session, token, user }: { session: any; token: any; user: any }) {
       //     session.user = token;
       //     return session;

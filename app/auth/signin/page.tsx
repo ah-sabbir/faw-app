@@ -36,7 +36,7 @@ const LoginPage = () => {
           email: email.current,
           password: pass.current,
           redirect: true,
-          callbackUrl: "/",
+          callbackUrl: "/admin",
         });
       
         // Handle the result or perform any necessary actions
