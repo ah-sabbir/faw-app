@@ -2,7 +2,7 @@
 
 import SideBar from "@/components/admin/side-bar";
 import TopBar from "@/components/admin/top-bar";
-import { Transition } from "@headlessui/react";
+import Provider from "@/providers/sessionProvider";
 
 import { Fragment, useEffect, useState } from "react";
 
@@ -33,19 +33,9 @@ export default function DashboardLayout({ children }:any) {
 
   return (
     <>
+    <Provider>
       <TopBar showNav={showNav} setShowNav={setShowNav} />
-      <Transition
-        as={Fragment}
-        show={showNav}
-        enter="transform transition duration-[400ms]"
-        enterFrom="-translate-x-full"
-        enterTo="translate-x-0"
-        leave="transform duration-[400ms] transition ease-in-out"
-        leaveFrom="translate-x-0"
-        leaveTo="-translate-x-full"
-      >
-        <SideBar showNav={showNav} />
-      </Transition>
+      <SideBar showNav={showNav} />
       <main
         className={`bg-black pt-16 transition-all duration-[400ms] ${
           showNav && !isMobile ? "pl-56" : ""
@@ -53,6 +43,7 @@ export default function DashboardLayout({ children }:any) {
       >
         <div className="px-4 md:px-16">{children}</div>
       </main>
+      </Provider>
     </>
   );
 }

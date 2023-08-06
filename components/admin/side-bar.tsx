@@ -2,10 +2,10 @@ import { CreditCardIcon, DocumentIcon, DocumentPlusIcon, UserIcon } from "@heroi
 import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { forwardRef } from "react";
+import { Fragment, forwardRef } from "react";
 
 import logo from "@/assets/app_icon.png";
-import { Menu } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 
 const SideBar = forwardRef(({ showNav }: any, ref) => {
@@ -15,6 +15,16 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
   // console.log(router.pathname);
 
   return (
+    <Transition
+    as={Fragment}
+    show={showNav}
+    enter="transform transition duration-[400ms]"
+    enterFrom="-translate-x-full"
+    enterTo="translate-x-0"
+    leave="transform duration-[400ms] transition ease-in-out"
+    leaveFrom="translate-x-0"
+    leaveTo="-translate-x-full"
+  >
     <div ref={ref} className="fixed w-56 h-full bg-white shadow-sm">
       <div className="flex justify-center mt-6 mb-14">
         <picture>
@@ -85,10 +95,6 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
             </div>
           </Menu.Item>
         </Link>
-        
-
-
-
 
         <Menu.Item
           as="span"
@@ -148,6 +154,7 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
         </Link>
       </Menu>
     </div>
+  </Transition>
   );
 });
 

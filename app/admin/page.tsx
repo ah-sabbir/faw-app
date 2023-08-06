@@ -1,12 +1,19 @@
+'use client'
 
-import { NextApiRequest } from 'next';
-import { getToken } from 'next-auth/jwt';
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
 
 const Dashboard = async () => {
-  
-  const token:any = await getToken({ NextApiRequest, secret: process.env.NEXTAUTH_SECRET })
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect('/auth/signin?callbackUrl=/protected/client')
+    }
+  })
 
-  console.log(token)
+  console.log(session);
+
   return (
     <>
     <p className="text-gray-700 text-3xl mb-16 font-bold">Dashboard</p>
