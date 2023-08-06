@@ -48,4 +48,6 @@ const Button = forwardRef(({variant, color, className, href, ...props}:any, ref)
 
 })
 
+Button.displayName = "Button";
+
 export default Button
