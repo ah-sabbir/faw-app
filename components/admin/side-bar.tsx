@@ -2,13 +2,14 @@ import { CreditCardIcon, DocumentIcon, DocumentPlusIcon, UserIcon } from "@heroi
 import Link from "next/link";
 // import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { Fragment, forwardRef } from "react";
+import { Fragment, forwardRef, useRef } from "react";
 
 import logo from "@/assets/app_icon.png";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 
 const SideBar = forwardRef(({ showNav }: any, ref) => {
+  const ComponentRef = useRef(null);
   // const router = useRouter();
   const router = usePathname();
   const pathname = usePathname();
@@ -16,6 +17,7 @@ const SideBar = forwardRef(({ showNav }: any, ref) => {
 
   return (
     <Transition
+    ref={ComponentRef}
     as={Fragment}
     show={showNav}
     enter="transform transition duration-[400ms]"
