@@ -1,7 +1,8 @@
 "use client";
+import StickyNavbar from '@/components/StickyNav';
 // import ArticleCard from '@/components/blogCard/BlogCard';
 import Slider from '@/components/elements/Slider';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 // import handler from './api/auth/hello';
 // import { useRouter } from 'next/router';
@@ -145,12 +146,12 @@ const posts = [
 
 
 export default async function Home() {
-  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  // const [blogPosts, setBlogPosts] = useState<any[]>([]);
   // const [session, loading] = useSession();
 
   // const { data: session, status } = useSession();
   // const router = useRouter();
-  const [ImgURL, setImgURL] = useState<string>('');
+  // const [ImgURL, setImgURL] = useState<string>('');
   const loginHandler = () => {
     // router.push('/login');
   }
@@ -161,20 +162,20 @@ export default async function Home() {
   //   return data.urls.regular;
   //   }
 
-  useEffect(() => {
-    const res = fetch("/api/posts");
-    res.then((res) => res.json())
-    .then((data) => {
-      // console.log(typeof data);
-      // console.log(data);
-      setBlogPosts(data);
-    })
-  }, [])
+  // useEffect(() => {
+  //   const res = fetch("/api/posts");
+  //   res.then((res) => res.json())
+  //   .then((data) => {
+  //     // console.log(typeof data);
+  //     // console.log(data);
+  //     setBlogPosts(data);
+  //   })
+  // }, [])
 
   
   
   return (
-    <main>
+    <main className='w-full h-screen'>
       {/* <CtaSection /> */}
       <Slider />
     <div className="bg-white">
@@ -190,18 +191,3 @@ export default async function Home() {
     </main>
   )
 }
-
-
-        // {/* <Button className="text-green-600">
-        //     <Link href={"/auth/signin"}>Sign In</Link> 
-        //   </Button> */}
-
-        //   {/* <Button className="text-green-600" onClick={() => getSession}>
-        //     Get session
-        //   </Button> */}
-
-        // {/* {blogPosts.map((post, index) => (
-        //   <Card key={index} title={post.title} image={post.image} content={post.content} />
-        // ))}
-        //    */}
-

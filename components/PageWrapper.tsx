@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from 'next/navigation'
-import Navigation from './elements/navigation'
+import Navigation from './Nav/navigation'
 
 const PageWrapper = ({children}:any) => {
     const path = usePathname()
