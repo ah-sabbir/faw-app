@@ -15,9 +15,9 @@ const StickyNavbar = () => {
   const path = usePathname();
   const isHome = path.split('/')[1] === '';
   console.log(isHome);
-  if (isHome===false) return <div className='none'></div>;
+  if (isHome===false) return <div className='hidden'></div>;
   return isHome && (
-    <div className="w-full h-8 bg-purple-500 fixed top-0 left-0 z-10">
+    <div className="hidden w-full h-8 bg-purple-500 fixed top-0 left-0 z-10 md:hidden lg:flex ">
       <div className="w-full h-full pr-5 pl-5 m-auto flex items-center justify-between">
       <div className="w-40 h-3.5 flex gap-2 justify-center">
         <PhoneIcon className="fa-solid fa-phone text-white"/>

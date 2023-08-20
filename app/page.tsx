@@ -1,7 +1,6 @@
 "use client";
 import StickyNavbar from '@/components/StickyNav';
 // import ArticleCard from '@/components/blogCard/BlogCard';
-import Slider from '@/components/elements/Slider';
 // import { useEffect, useState } from 'react';
 
 // import handler from './api/auth/hello';
@@ -175,19 +174,20 @@ export default async function Home() {
   
   
   return (
-    <main className='w-full h-screen'>
-      {/* <CtaSection /> */}
-      <Slider />
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {/* {typeof blogPosts} */}
-          {/* {blogPosts.map((post) => (
-            <ArticleCard key={post.id} post={post} imageUrl={"https://images.unsplash.com/photo-1626386699888-b8865823b279?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wyOTAzNTR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODg2NTA0NTV8&ixlib=rb-4.0.3&q=80&w=1080"} />
-          ))} */}
-        </div>
+  <main className='w-full h-screen'>
+    <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14'>
+      <div className="flex flex-row justify-center items-center"> {/* left container */}
+          <div className="flex flex-col items-center gap-10 p-6 m-6 w-full rounded-lg bg-[#FAFAFA]"> {/* slogan card */}
+            <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize">Find Your Comfort Today!</h1>
+            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize">Stay update with the latest fashion trnds,tips and exclusive offers.</p>
+            <button className="text-[21px] flex items-center justify-center w-200 h-10 p-5 mr-2 text-white rounded-md bg-[#404040] focus:outline-none font-bold">
+              Shop Now
+            </button>
+          </div>
       </div>
-    </div>
-    </main>
+      <div className="w-full h-screen flex justify-center items-center">
+      </div>
+    </section>
+  </main>
   )
 }
