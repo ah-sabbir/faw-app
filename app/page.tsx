@@ -1,6 +1,12 @@
 "use client";
 import StickyNavbar from '@/components/StickyNav';
 import Image from 'next/image';
+import { ArrowDownRightIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+
+import womanTrendImg from '@/assets/trends/woman-tends.jpeg';
+import manTrendImg from '@/assets/trends/man-trends.jpeg';
+import heroImage from  '@/assets/hero-image.png';
+
 // import ArticleCard from '@/components/blogCard/BlogCard';
 // import { useEffect, useState } from 'react';
 
@@ -176,29 +182,29 @@ export default async function Home() {
   
   return (
   <main className='w-full h-screen'>
-    <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14'>
-      <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start"> {/* left container */}
-          <div className="flex flex-col items-center gap-10 p-5 w-full rounded-lg bg-[#FAFAFA] md:w-1/2"> {/* slogan card */}
+    <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14 flex flex-col-reverse md:flex md:flex-row'>
+      <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start md:w-1/2"> {/* left container */}
+          <div className="flex flex-col items-center gap-5 p-5 w-full rounded-lg bg-[#FAFAFA] md:gap-10"> {/* slogan card */}
             <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize lg:text-7xl">Find Your Comfort Today!</h1>
             <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-5xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
             <button className="text-[21px] flex items-center justify-center w-200 h-10 p-5 mr-2 text-white rounded-md bg-[#404040] focus:outline-none font-bold">
               Shop Now
             </button>
           </div>
-          <div className="flex flex-col items-center gap-5 w-full md:flex-row md:w-1/2"> {/* header bottom image container */}
+          <div className="flex flex-col items-center gap-5 w-full md:flex-row"> {/* header bottom image container */}
           <div id="img-card" className='w-full rounded-lg relative'>
             <h3 className=' absolute bottom-2 left-2'>#TRENDING WOMAN</h3>
             <Image 
-              src={"https://s3-alpha-sig.figma.com/img/f9f7/edb1/9fd8982021b67bfbf36408a97cdcb764?Expires=1693180800&Signature=HAdduAZa6iSNiR7351GqXl8LVYGdc6T5rP2kOEWc573GmzpYFC3TGogha5nBgVGVumW3AGIABsQWHJ3Lx0NZTIgtjDFxy4riQ6TqZN1GPjcCY3spi40Mq5jCSQVcmXL29lxyU5K5gZeHeNKhxPWrgEZIyWmnHQT1HstkEjJQ0s0SLHnE9GmOAi8BHA-W~tHaLvhb7DvpsfsTbQGcMFGRYYQznDifi8j0WnUHi5q3hQ~bhDcP2kRM-rkb2cxcSsN81DjzdmaoUIz2Nu9xIAZI1mgAZJZRBG7wxvP7rncHihKWtqPF1YJVpXrwqlSqZAar9YKw6N53ZH0gEwY33yr1cQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"} 
+              src={womanTrendImg} 
               alt="" className="w-full h-full object-cover rounded-lg"
-              width={100}
-              height={100}
+              width={120}
+              height={120}
               />
           </div>
           <div id="img-card" className='w-full rounded-lg relative'>
             <h3 className=' absolute bottom-2 left-2'>#TRENDING MAN</h3>
             <Image 
-              src={"https://s3-alpha-sig.figma.com/img/ad14/2a70/549394188aeaf2ee38ee6aeec1b1c64a?Expires=1693180800&Signature=K9lgc70Vq2AtfbjQAUDYwHCpr2H5k6EgWx6w~yxWjo9v-tfZLat-rk6mgsqDYE014B5vvaHcNmk1FgHteF8If4cVRt~~DolHOPtbNEv8mVJIXpAwKPajVWOfbfaCdi6S9GwSs57Bjv--XTSRLM4PNUTE9YJEVQLsO2yucbjm90a0xB1-mEOFZwUWAh-9KEPJyzW3AALB282IH~ZtVY6-j3K-ziRVMxw6x79sd3GJrqCF6EyQxOcDjzV8A-SCJSEkvk8stctcjVlz0JN3JfBDS5SMLrSCKv9DC5g7K9TbKeWAL~Kn-gFn7q8uvvMbqVLlFUw5T3DHCziAwWj-rtcqgw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"} 
+              src={manTrendImg} 
               alt="" className="w-full h-full object-cover rounded-lg"
               width={100}
               height={100}
@@ -206,7 +212,27 @@ export default async function Home() {
           </div>
           </div>
       </div>
-      <div className="w-full h-screen flex justify-center items-center">
+      <div className="flex justify-center items-center p-5 gap-10"> {/* right container */}
+        <Image 
+          src={heroImage} 
+          alt="" className="w-full h-full rounded-lg"
+          width={100}
+          height={100}
+          />
+      </div>
+    </section>
+    <section id="articles" className='flex flex-col p-5 m-5 bg-white w-full h-28'>
+      <div id="qoute" className='flex justify-center items-center p-5 m-5 md:p-10 md:m-10'> {/* qoute container */}
+        <h1 className='text-[26px] text-[#282828] font-laila text-center md:text-[68px]'>
+        Since 2000, Style has been founded and loved. Continues to create a new fashion trend for the world. And trends to be the finest products.
+        </h1>
+      </div> {/* qoute container end */}
+      <div className='w-full flex justify-between items-center'>
+        <h3 className='text-[26px] text-[#282828] font-laila md:text-[68px]'>Latest Articles</h3>
+        <div className='flex gap-1 items-center w-[200px]'>
+          <h4>View All</h4>
+          <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
+        </div>
       </div>
     </section>
   </main>
