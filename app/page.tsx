@@ -182,7 +182,7 @@ export default async function Home() {
   
   return (
   <main className='w-full h-screen'>
-    <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14 flex flex-col-reverse md:flex md:flex-row'>
+    <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14 flex flex-col-reverse overflow-hidden md:flex md:flex-row'>
       <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start md:w-1/2"> {/* left container */}
           <div className="flex flex-col items-center gap-5 p-5 w-full rounded-lg bg-[#FAFAFA] md:gap-10"> {/* slogan card */}
             <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize lg:text-7xl">Find Your Comfort Today!</h1>
@@ -221,16 +221,16 @@ export default async function Home() {
           />
       </div>
     </section>
-    <section id="articles" className='flex flex-col p-5 m-5 bg-white w-full h-28'>
-      <div id="qoute" className='flex justify-center items-center p-5 m-5 md:p-10 md:m-10'> {/* qoute container */}
+    <section id="articles" className='flex flex-col p-5 m-5 bg-white h-full'>
+      <div id="qoute" className='flex justify-center items-center p-5 m-5'> {/* qoute container */}
         <h1 className='text-[26px] text-[#282828] font-laila text-center md:text-[68px]'>
         Since 2000, Style has been founded and loved. Continues to create a new fashion trend for the world. And trends to be the finest products.
         </h1>
       </div> {/* qoute container end */}
       <div className='w-full flex justify-between items-center'>
         <h3 className='text-[26px] text-[#282828] font-laila md:text-[68px]'>Latest Articles</h3>
-        <div className='flex gap-1 items-center w-[200px]'>
-          <h4>View All</h4>
+        <div className='flex gap-1 justify-end items-center'>
+          <h4 className='bold'>View All</h4>
           <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
         </div>
       </div>
