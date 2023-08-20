@@ -1,5 +1,6 @@
 "use client";
 import StickyNavbar from '@/components/StickyNav';
+import Image from 'next/image';
 // import ArticleCard from '@/components/blogCard/BlogCard';
 // import { useEffect, useState } from 'react';
 
@@ -176,13 +177,33 @@ export default async function Home() {
   return (
   <main className='w-full h-screen'>
     <section id="header" className='bg-[#F9EFFF] w-full pt-14 pb-14'>
-      <div className="flex flex-row justify-center items-center"> {/* left container */}
-          <div className="flex flex-col items-center gap-10 p-6 m-6 w-full rounded-lg bg-[#FAFAFA]"> {/* slogan card */}
-            <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize">Find Your Comfort Today!</h1>
-            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize">Stay update with the latest fashion trnds,tips and exclusive offers.</p>
+      <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start"> {/* left container */}
+          <div className="flex flex-col items-center gap-10 p-5 w-full rounded-lg bg-[#FAFAFA] md:w-1/2"> {/* slogan card */}
+            <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize lg:text-7xl">Find Your Comfort Today!</h1>
+            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-5xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
             <button className="text-[21px] flex items-center justify-center w-200 h-10 p-5 mr-2 text-white rounded-md bg-[#404040] focus:outline-none font-bold">
               Shop Now
             </button>
+          </div>
+          <div className="flex flex-col items-center gap-5 w-full md:flex-row md:w-1/2"> {/* header bottom image container */}
+          <div id="img-card" className='w-full rounded-lg relative'>
+            <h3 className=' absolute bottom-2 left-2'>#TRENDING WOMAN</h3>
+            <Image 
+              src={"https://s3-alpha-sig.figma.com/img/f9f7/edb1/9fd8982021b67bfbf36408a97cdcb764?Expires=1693180800&Signature=HAdduAZa6iSNiR7351GqXl8LVYGdc6T5rP2kOEWc573GmzpYFC3TGogha5nBgVGVumW3AGIABsQWHJ3Lx0NZTIgtjDFxy4riQ6TqZN1GPjcCY3spi40Mq5jCSQVcmXL29lxyU5K5gZeHeNKhxPWrgEZIyWmnHQT1HstkEjJQ0s0SLHnE9GmOAi8BHA-W~tHaLvhb7DvpsfsTbQGcMFGRYYQznDifi8j0WnUHi5q3hQ~bhDcP2kRM-rkb2cxcSsN81DjzdmaoUIz2Nu9xIAZI1mgAZJZRBG7wxvP7rncHihKWtqPF1YJVpXrwqlSqZAar9YKw6N53ZH0gEwY33yr1cQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"} 
+              alt="" className="w-full h-full object-cover rounded-lg"
+              width={100}
+              height={100}
+              />
+          </div>
+          <div id="img-card" className='w-full rounded-lg relative'>
+            <h3 className=' absolute bottom-2 left-2'>#TRENDING MAN</h3>
+            <Image 
+              src={"https://s3-alpha-sig.figma.com/img/ad14/2a70/549394188aeaf2ee38ee6aeec1b1c64a?Expires=1693180800&Signature=K9lgc70Vq2AtfbjQAUDYwHCpr2H5k6EgWx6w~yxWjo9v-tfZLat-rk6mgsqDYE014B5vvaHcNmk1FgHteF8If4cVRt~~DolHOPtbNEv8mVJIXpAwKPajVWOfbfaCdi6S9GwSs57Bjv--XTSRLM4PNUTE9YJEVQLsO2yucbjm90a0xB1-mEOFZwUWAh-9KEPJyzW3AALB282IH~ZtVY6-j3K-ziRVMxw6x79sd3GJrqCF6EyQxOcDjzV8A-SCJSEkvk8stctcjVlz0JN3JfBDS5SMLrSCKv9DC5g7K9TbKeWAL~Kn-gFn7q8uvvMbqVLlFUw5T3DHCziAwWj-rtcqgw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"} 
+              alt="" className="w-full h-full object-cover rounded-lg"
+              width={100}
+              height={100}
+              />
+          </div>
           </div>
       </div>
       <div className="w-full h-screen flex justify-center items-center">

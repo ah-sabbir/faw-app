@@ -57,7 +57,7 @@ const Navigation = () => {
           <button className=" w-8 h-8 flex justify-center items-center rounded-[50%] bg-white">
             <MagnifyingGlassIcon className="w-6 h-6 text-gray" />
           </button>
-          <Link href='/login'>
+          <Link href='/auth/signin'>
             <button className="text-[21px] flex items-center justify-center w-50 p-2 mr-2 focus:outline-none font-bold text-[#282828]">
               Log in
             </button>
