@@ -3,13 +3,12 @@ import StickyNavbar from '@/components/StickyNav';
 import Image from 'next/image';
 import { ArrowDownRightIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
-import womanTrendImg from '@/assets/trends/woman-trends.jpeg';
+import womanTrendImg from '@/assets/trends/woman-tends.jpeg';
 import manTrendImg from '@/assets/trends/man-trends.jpeg';
 import heroImage from  '@/assets/hero-image.png';
 
-import articleImg from '@/assets/article/article1-asset.jpeg';
-import articleImg2 from '@/assets/article/article2-asset.jpeg';
-import articleImg3 from '@/assets/article/article3-asset.jpeg';
+
+import articleImg from '@/assets/articles/article-1.jpeg';
 
 // import ArticleCard from '@/components/blogCard/BlogCard';
 // import { useEffect, useState } from 'react';
@@ -190,7 +189,7 @@ export default async function Home() {
       <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start md:w-1/2"> {/* left container */}
           <div className="flex flex-col items-center gap-5 p-5 w-full rounded-lg bg-[#FAFAFA] md:gap-10"> {/* slogan card */}
             <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize lg:text-7xl">Find Your Comfort Today!</h1>
-            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
+            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-5xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
             <button className="text-[21px] flex items-center justify-center w-200 h-10 p-5 mr-2 text-white rounded-md bg-[#404040] focus:outline-none font-bold">
               Shop Now
             </button>
@@ -219,7 +218,7 @@ export default async function Home() {
       <div className="flex justify-center items-center p-5 gap-10"> {/* right container */}
         <Image 
           src={heroImage} 
-          alt="" className="w-full rounded-lg"
+          alt="" className="w-full h-full rounded-lg"
           width={100}
           height={100}
           />
@@ -227,18 +226,37 @@ export default async function Home() {
     </section>
     <section id="articles" className='flex flex-col p-5 m-5 bg-white h-full'>
       <div id="qoute" className='flex justify-center items-center p-5 m-5'> {/* qoute container */}
-        <h1 className='text-[26px] text-[#282828] font-laila text-center md:text-[68px]'>
+        <h1 className='text-[26px] text-[#282828] font-laila text-center md:text-5xl xl:text-6xl'>
         Since 2000, Style has been founded and loved. Continues to create a new fashion trend for the world. And trends to be the finest products.
         </h1>
       </div> {/* qoute container end */}
-      <div className='w-full flex justify-between items-center'>
-        <h3 className='text-[26px] text-[#282828] font-laila md:text-[68px]'>Latest Articles</h3>
-        <div className='flex gap-1 justify-end items-center'>
-          <h4 className='bold'>View All</h4>
-          <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
+      <div>
+        <div className='w-full flex justify-between items-center'>
+          <h3 className=' text-2xl text-[#282828] font-laila md:text-3xl xl:text-5xl'>Latest Articles</h3>
+          <div className='flex gap-1 justify-end items-center'>
+            <h4 className='bold'>View All</h4>
+            <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
+          </div>
         </div>
-      </div>
-      <div className='flex flex-col gap-5 md:flex-row md:gap-10'> {/* articles container */}
+        <div className='flex flex-col gap-5 md:flex-row md:gap-10'> {/* articles container */}
+        <div className="img-cotainer">
+          <Image
+            src={articleImg}
+            alt=""
+            className="w-full h-full object-cover rounded-lg"
+            width={100}
+            height={100}
+          />
+        </div>
+        <div className="img-cotainer">
+          <Image
+            src={articleImg}
+            alt=""
+            className="w-full h-full object-cover rounded-lg"
+            width={100}
+            height={100}
+          />
+        </div>
         <div className="img-cotainer">
           <Image
             src={articleImg}
@@ -249,6 +267,8 @@ export default async function Home() {
           />
         </div>
       </div> {/* articles container end */}
+      </div>
+
     </section>
   </main>
   )
