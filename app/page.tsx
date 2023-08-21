@@ -3,9 +3,13 @@ import StickyNavbar from '@/components/StickyNav';
 import Image from 'next/image';
 import { ArrowDownRightIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
-import womanTrendImg from '@/assets/trends/woman-tends.jpeg';
+import womanTrendImg from '@/assets/trends/woman-trends.jpeg';
 import manTrendImg from '@/assets/trends/man-trends.jpeg';
 import heroImage from  '@/assets/hero-image.png';
+
+import articleImg from '@/assets/article/article1-asset.jpeg';
+import articleImg2 from '@/assets/article/article2-asset.jpeg';
+import articleImg3 from '@/assets/article/article3-asset.jpeg';
 
 // import ArticleCard from '@/components/blogCard/BlogCard';
 // import { useEffect, useState } from 'react';
@@ -234,6 +238,17 @@ export default async function Home() {
           <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
         </div>
       </div>
+      <div className='flex flex-col gap-5 md:flex-row md:gap-10'> {/* articles container */}
+        <div className="img-cotainer">
+          <Image
+            src={articleImg}
+            alt=""
+            className="w-full h-full object-cover rounded-lg"
+            width={100}
+            height={100}
+          />
+        </div>
+      </div> {/* articles container end */}
     </section>
   </main>
   )
