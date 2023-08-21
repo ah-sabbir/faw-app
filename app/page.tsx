@@ -186,7 +186,7 @@ export default async function Home() {
       <div className="flex flex-col justify-start p-5 m-5 gap-10 items-center md:items-start md:w-1/2"> {/* left container */}
           <div className="flex flex-col items-center gap-5 p-5 w-full rounded-lg bg-[#FAFAFA] md:gap-10"> {/* slogan card */}
             <h1 className="text-gray-800 font-[Laila] text-4xl font-semibold leading-tight capitalize lg:text-7xl">Find Your Comfort Today!</h1>
-            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-5xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
+            <p className="text-gray-600 font-[Laila] text-xl font-normal leading-tight capitalize lg:text-xl">Stay update with the latest fashion trends,tips and exclusive offers.</p>
             <button className="text-[21px] flex items-center justify-center w-200 h-10 p-5 mr-2 text-white rounded-md bg-[#404040] focus:outline-none font-bold">
               Shop Now
             </button>
@@ -215,7 +215,7 @@ export default async function Home() {
       <div className="flex justify-center items-center p-5 gap-10"> {/* right container */}
         <Image 
           src={heroImage} 
-          alt="" className="w-full h-full rounded-lg"
+          alt="" className="w-full rounded-lg"
           width={100}
           height={100}
           />
