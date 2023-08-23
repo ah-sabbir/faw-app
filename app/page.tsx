@@ -256,7 +256,7 @@ export default async function Home() {
             </div>
             <div className="text-content">
               <h3 className="text-gray-800 text-lg font-semibold leading-tight capitalize hover:text-[#BC66EC] p-1 m-1 cursor-pointer">World&apos;s Most Trendy Fashion for 2023</h3>
-              <p className="text-gray-600 text-sm p-1 m-1 font-normal leading-tight capitalize">Are you ready to update your wardrobe with the latest fashion trends for 2023? Whether you're looking for a new dress, a chic accessory, or a statement piece, we've got you covered with the hottest styles and colors of the season. Here are some of the world's most trendy fashion for 2023 that you should be shopping this season.</p>
+              <p className="text-gray-600 text-sm p-1 m-1 font-normal leading-tight capitalize">Are you ready to update your wardrobe with the latest fashion trends for 2023? Whether you&apos;re looking for a new dress, a chic accessory, or a statement piece, we&apos;ve got you covered with the hottest styles and colors of the season. Here are some of the world&apos;s most trendy fashion for 2023 that you should be shopping this season.</p>
             </div>
             <div id="more-btn w-full flex flex-start">
               <button className="text-[18px] flex items-center hover:text-[#BC66EC] justify-center w-100 h-8 p-2 m-1 text-black bg-[#F4F4F4] rounded-md hover:bg-[#404040] focus:outline-none font-bold">
