@@ -231,15 +231,43 @@ export default async function Home() {
         </h1>
       </div> {/* qoute container end */}
       <div>
-        <div className='w-full flex justify-between items-center'>
-          <h3 className=' text-2xl text-[#282828] font-laila md:text-3xl xl:text-5xl'>Latest Articles</h3>
-          <div className='flex gap-1 justify-end items-center'>
-            <h4 className='bold'>View All</h4>
-            <ArrowRightIcon className="fa-solid fa-arrow text-black w-[20px] h-[20px]"/>
+        <div className='w-full flex justify-between pt-5 pb-5 mt-5 mb-5 items-center'>
+          <h3 className=' text-2xl text-[#282828] font-laila md:text-3xl bold xl:text-5xl'>Latest Articles</h3>
+          <div className='flex gap-1 justify-end items-center w-1/2'>
+            <h4 className=' text-2xl text-[#282828] font-laila md:text-3xl bold xl:text-5xl'>View All</h4>
+            <ArrowRightIcon className="fa-solid fa-arrow w-20"/>
           </div>
         </div>
-        <div className='flex flex-col gap-5 md:flex-row md:gap-10'> {/* articles container */}
-        <div className="img-cotainer">
+        <div className='w-full h-auto flex flex-col xl:flex-row'> {/* articles container main */}
+        {
+          [...Array(3)].map((_, i) => (
+            <div className="article-container p-3 m-3" 
+            key={i}>
+            <Image
+              src={articleImg}
+              alt=""
+              className="w-full h-full object-cover rounded-lg"
+              width={100}
+              height={100}
+            />
+            <div className="date-views w-full flex flex-1 flex-row justify-between items-center">
+              <p className="text-gray-500 text-xs p-1 m-1 md:text-xl xl:text-xl">Mar 16, 2020</p>
+              <p className="text-gray-500 text-xs p-1 m-1 md:text-xl xl:text-xl">Views 1.4k</p>
+            </div>
+            <div className="text-content">
+              <h3 className="text-gray-800 text-lg font-semibold leading-tight capitalize hover:text-[#BC66EC] p-1 m-1 cursor-pointer">World&apos;s Most Trendy Fashion for 2023</h3>
+              <p className="text-gray-600 text-sm p-1 m-1 font-normal leading-tight capitalize">Are you ready to update your wardrobe with the latest fashion trends for 2023? Whether you're looking for a new dress, a chic accessory, or a statement piece, we've got you covered with the hottest styles and colors of the season. Here are some of the world's most trendy fashion for 2023 that you should be shopping this season.</p>
+            </div>
+            <div id="more-btn w-full flex flex-start">
+              <button className="text-[18px] flex items-center hover:text-[#BC66EC] justify-center w-100 h-8 p-2 m-1 text-black bg-[#F4F4F4] rounded-md hover:bg-[#404040] focus:outline-none font-bold">
+                Read More
+              </button>
+            </div>
+          </div>
+          ))
+
+        }
+        {/* <div className="article-container">
           <Image
             src={articleImg}
             alt=""
@@ -247,26 +275,20 @@ export default async function Home() {
             width={100}
             height={100}
           />
-        </div>
-        <div className="img-cotainer">
-          <Image
-            src={articleImg}
-            alt=""
-            className="w-full h-full object-cover rounded-lg"
-            width={100}
-            height={100}
-          />
-        </div>
-        <div className="img-cotainer">
-          <Image
-            src={articleImg}
-            alt=""
-            className="w-full h-full object-cover rounded-lg"
-            width={100}
-            height={100}
-          />
-        </div>
+          <div className="date-views w-full flex flex-1 flex-row justify-between items-center">
+            <p className="text-gray-500 text-xs p-1 m-1 md:text-xl xl:text-xl">Mar 16, 2020</p>
+            <p className="text-gray-500 text-xs p-1 m-1 md:text-xl xl:text-xl">Views 1.4k</p>
+          </div>
+          <div className="text-content">
+            <h3 className="text-gray-800 text-lg font-semibold leading-tight capitalize hover:text-[#BC66EC] p-1 m-1 cursor-pointer">World&apos;s Most Trendy Fashion for 2023</h3>
+            <p className="text-gray-600 text-sm font-normal leading-tight capitalize">Are you ready to update your wardrobe with the latest fashion trends for 2023? Whether you're looking for a new dress, a chic accessory, or a statement piece, we've got you covered with the hottest styles and colors of the season. Here are some of the world's most trendy fashion for 2023 that you should be shopping this season.</p>
+          </div>
+        </div> */}
       </div> {/* articles container end */}
+
+      <div className='w-full h-96 bg-[#F9EFFF] mt-12'> {/* news letter container */}
+
+      </div>
       </div>
 
     </section>

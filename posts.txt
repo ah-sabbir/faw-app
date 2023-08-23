@@ -77,3 +77,97 @@ or a glamorous look,
 you can find something that suits your style and personality. Happy shopping! blush
 
 Sources https://bing.com/search?q=worlds+most+trendy+fashion+2023: https://www.forbes.com/sites/katiechang/2021/09/28/the-9-fashion-trends-youre-about-to-see-everywhere-in-2022/?sh=6c7f4f0e5d8c https://www.vogue.com/article/dress-trends-2023: https://www.vogue.com/article/dress-trends-2023 https://www.womanandhome.com/fashion/fashion-trends-2023/: https://www.womanandhome.com/fashion/fashion-trends-2023/ https://www.harpersbazaar.com/fashion/trends/a44322405/summer-2023-fashion-trends/: https://www.harpersbazaar.com/fashion/trends/a44322405/summer-2023-fashion-trends/
+
+
+
+
+
+
+
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "brand": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "string"
+      },
+      "price_sign": {
+        "type": "string"
+      },
+      "currency": {
+        "type": "string",
+        "format": "color"
+      },
+      "image_link": {
+        "type": "string",
+        "format": "uri"
+      },
+      "product_link": {
+        "type": "string",
+        "format": "uri"
+      },
+      "website_link": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "null"
+      },
+      "category": {
+        "type": "string"
+      },
+      "product_type": {
+        "type": "string"
+      },
+      "tag_list": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "product_api_url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "api_featured_image": {
+        "type": "string"
+      },
+      "product_colors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "hex_value": {
+              "type": "string",
+              "format": "color"
+            },
+            "colour_name": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
