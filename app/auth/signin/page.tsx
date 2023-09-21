@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/components/EmailSigninButton";
-import TextField from "@/components/TextField";
 // import Button from '@/components/elements/Button';
 import { signIn } from "next-auth/react";
 import Image from "next/image";
@@ -63,15 +62,14 @@ const LoginPage = () => {
             {/* -mx-4 mt-10 flex-auto bg-white px-4 py-10 shadow-2xl shadow-gray-900/10 */}
                 <form>
                     <div className='space-y-2'>
-                    <TextField
-                        id='email'
-                        name='email'
-                        type='email'
-                        label='Sign in with your email'
-                        placeholder='hello@me.com'
-                        autoComplete='email'
-                        required
-                    />
+                    <input
+                        type="text"
+                        className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        id="email"
+                        name="email"
+                        placeholder="hello@me.com" 
+                        autoComplete="email"
+                        required/>
                     </div>
                     <Button
                     type='submit'
