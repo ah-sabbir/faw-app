@@ -32,3 +32,5 @@ export async function GET(req: NextRequest, res: NextResponse) {
     
   return NextResponse.json({ ok:200, msg: `this is ${searchParams} post information where user can see, edit, update, delete their post by id` });
 }
+
+

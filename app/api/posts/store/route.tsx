@@ -19,18 +19,18 @@ export async function POST(request:NextRequest) {
 
   try{
 
-    // const slug = post.title.toLowerCase().split(' ').join('-');
-    // // find slug in the database and if it exist add a number to it
-    // const slugExist = await prisma.blogPost.findMany({
-    //   where: {
-    //     slug: slug
-    //   }
-    // });
-    // console.log(slugExist);
+    const slug = post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+    // find slug in the database and if it exist add a number to it
+    const slugExist = await prisma.blogPost.findFirst({
+      where: {
+        slug: slug
+      }
+    });
+    console.log(slugExist);
 
-    // if(slugExist){
-    //   return NextResponse.json({ ok:400, msg:"The title already exist please change it thanks" });
-    // }
+    if(slugExist){
+      return NextResponse.json({ ok:400, msg:"The title already exist please change it thanks" });
+    }
 
 
     const blogPost  = await prisma.blogPost.create({
@@ -39,14 +39,15 @@ export async function POST(request:NextRequest) {
         content: post.content,
         categories: post.categories,
         tagId: post.tagId,
-        userId: post.userId
+        userId: post.userId,
+        slug: post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
       },
     })
 
     return NextResponse.json({ ok:200, msg:"post created successfully",  post: blogPost });
   }catch(err){
     console.log(err);
-    return NextResponse.json({ ok:400, msg:"post created failed" });
+    return NextResponse.json({ ok:400, msg: err});
   }
 }
 // update post

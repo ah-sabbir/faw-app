@@ -1,17 +1,61 @@
-'use client'
-
 import { notFound, usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
 
 
-interface BlogPost {
-    title: string,
+interface BlogPageProps {
+    params: {
+        slug: string
+    }
 }
 
+export const revalidate = 86400;
 
-const BlogPage = ({ Params }:any) => {    const pathName = usePathname();
+// export async function generateStaticParams({params}:any) {
+//     const res = fetch("/api/posts");
+
+    
+    // const posts = await getPostsMeta() //deduped!
+
+    // if (!posts) return []
+
+    // return posts.map((post) => ({
+    //     postId: post.id
+    // }))
+//     return params;
+// }
+
+async function getStaticProps({ params }:BlogPageProps) {
+    console.log(params.slug)
+  
+    // Fetch the data for the blog post with slug
+    const response = await fetch(`/api/posts/${params}`);
+    const blogPostData = await response.json();
+  
+    // // Parse the blog post data
+    const BlogData = {
+      title: blogPostData.title,
+      content: blogPostData.content,
+      createdAt: blogPostData.createdAt,
+      updatedAt: blogPostData.updatedAt,
+      slug: blogPostData.slug
+    };
+  
+    // // Return the parsed blog post data
+    return {
+      props: {
+        blog: BlogData,
+      },
+    };
+  }
+  
+
+const BlogPage = (Props:any) => {    
+    
+    // const slug = Props.params.slug;
+
+    console.log(Props);
 
   return (
     <>
