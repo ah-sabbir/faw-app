@@ -26,7 +26,7 @@ export default function Home() {
 				{/* main blog container */}
 				<div className="flex flex-wrap mr-[-15px] items-center justify-center">
 					{
-						[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map((d,i)=>{
+						[1,2,3,4,5,6,7,8,9].map((d,i)=>{
 							return (
 								<div key={i} className="w-full px-4 md:w-2/4 lg:w-1/3">
 									<article className="block mb-5 p-2 rounded ">

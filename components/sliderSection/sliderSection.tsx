@@ -1,28 +1,16 @@
-'use client'
-
 // import * as $ from 'jquery';
 import Image from 'next/image';
-
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import Link from 'next/link';
 
 import './sliderSection.module.css';
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 
 
-import slider1 from '@/images/slider/slider1.jpg'
-import slider2 from '@/images/slider/slider2.jpg'
-import slider3 from '@/images/slider/slider3.jpg'
-import Link from 'next/link';
+
+import img1 from '@/images/slider/slide1.jpg'
+import img2 from '@/images/slider/slide2.jpg'
+import img3 from '@/images/slider/slide3.jpg'
 
 
 const options = {
@@ -70,39 +58,24 @@ const ImageSlider = ()=>{
 
     return (
         <>
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={false}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-        >
-            {
-                data.map((d,i)=>{
-                    return (
-                        <SwiperSlide key={i} className="item">
-                            <div className=" max-w-full lg:max-h-min relative">
-                                    <Image src={d.image} alt="" width={100} height={100} className="object-fill w-full"/>
-                            </div>
-    
-                            <div className="md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:bg-opacity-[0.70] flex bg-black bg-transparent rounded flex-col p-3 m-auto">
-                                <span className="cat-name text-color font-sm font-extra text-uppercase letter-spacing">{d.category}</span>
-                                <h2 className="my-2  md:text-white"><Link href={d.URL}>{d.title}</Link></h2>
-                                <p className='my-2  md:text-white'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione, voluptas est! Officia suscipit odit porro unde optio magnam perferendis minus velit corporis, odio, similique, quidem dolor pariatur reiciendis quasi. Velit.</p>
-                                <span className=" uppercase">{d.date}</span>
-                            </div>
-                    </SwiperSlide>
-                    )
-                })
-            }
-            </Swiper>
+          <div className='w-full  relative '>
+            <div className='w-full flex flex-nowrap flex-col md:flex-row gap-2 px-[15px] mx-auto md:max-w-3xl lg:max-w-7xl'> {/* flex-col md:flex-row gap-1 */}
+                <div className='w-full md:w-4/12 lg:w-4/12'>
+                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...'/>
+                </div>
+                <div className='w-full md:w-4/12 lg:w-4/12'>
+                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...'/>
+                </div>
+                <div className='w-full md:w-4/12 lg:w-4/12'>
+                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...'/>
+                </div>
+            </div>
+                <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
+                  <h3 className='text-[#D06718] p-1 font-thin'>Explore</h3>
+                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E]'>Your Style</h2>
+                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E]'>Anywhere Everywhere</h1>
+                </div>
+          </div>
         </>
       );
 }
