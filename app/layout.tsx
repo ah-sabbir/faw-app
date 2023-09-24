@@ -8,6 +8,7 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import RootHeader from '@/components/header/header'
 import { FooterSection } from '@/components/footer/footer'
+import GoogleAnalytics from '@/components/ga4/googleanalytics'
 
 export const metadata: Metadata = {
   title: 'Fashion Anywhere',
@@ -22,9 +23,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  // console.log(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
+        {
+          process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        }
         <RootHeader/>
         {children}
         <FooterSection/>
