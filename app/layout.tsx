@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import RootHeader from '@/components/header/header'
 import { FooterSection } from '@/components/footer/footer'
 import GoogleAnalytics from '@/components/ga4/googleanalytics'
+import GoogleTagManager from '@/components/gtm/googleTagManager'
 
 // export const metadata: Metadata = {
 //   title: 'Fashion Anywhere',
@@ -37,7 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true}>
         {
-          process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+          process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
         <RootHeader/>
         {children}
