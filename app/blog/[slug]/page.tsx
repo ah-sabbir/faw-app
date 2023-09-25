@@ -4,6 +4,30 @@ import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
 
 
+const generateMetadata = async ({params, }: { params: { slug: string; }; })=>{
+    try {
+        const res:Response = await fetch(`/api/posts/${params.slug}`);
+        const post = await res.json();
+        console.log(post);
+        if(!post)
+            return {
+             title: "Not Found",
+             description: "The page you are looking for does not exist."    
+            }
+        
+        return {
+            title: post.title,
+            description: post.description,
+            alternates: {
+              canonical: `/post/${post.slug}`,
+            },
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
+}
+
 interface BlogPageProps {
     params: {
         slug: string
@@ -27,7 +51,7 @@ export const revalidate = 86400;
 // }
 
 async function getStaticProps({ params }:BlogPageProps) {
-    console.log(params.slug)
+    // console.log(params.slug)
   
     // Fetch the data for the blog post with slug
     const response = await fetch(`/api/posts/${params}`);
@@ -55,7 +79,7 @@ const BlogPage = (Props:any) => {
     
     // const slug = Props.params.slug;
 
-    console.log(Props);
+    // console.log(Props);
 
   return (
     <>

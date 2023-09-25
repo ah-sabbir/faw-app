@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-
 import news1 from '@/images/news/f1.jpg'
 
 import ImageSlider from '@/components/sliderSection/sliderSection';
