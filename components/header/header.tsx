@@ -24,7 +24,7 @@ const RootHeader = () => {
                             <Link className="" href="#">Home</Link>
                         </li>                       
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">CULTURE</Link>
+                            <Link className="" href="/cultures">CULTURES</Link>
                         </li>
                         <li className='p-2 m-2 font-semibold uppercase'> 
                             <Link className="" href="#">TRENDS</Link>

@@ -1,4 +1,5 @@
 // import * as $ from 'jquery';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -46,7 +47,6 @@ const data = [
 ]
 
 
-
 const ImageSlider = ()=>{
     var settings = {
         dots: true,
@@ -61,19 +61,19 @@ const ImageSlider = ()=>{
           <div className='w-full  relative '>
             <div className='w-full flex flex-nowrap flex-col md:flex-row gap-2 px-[15px] mx-auto md:max-w-3xl lg:max-w-7xl'> {/* flex-col md:flex-row gap-1 */}
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...'/>
+                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...'/>
+                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...'/>
+                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
                 </div>
             </div>
                 <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
                   <h3 className='text-[#D06718] p-1 font-thin'>Explore</h3>
-                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E]'>Your Style</h2>
-                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E]'>Anywhere Everywhere</h1>
+                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[48px] md:text-[32px]'>Your Style</h2>
+                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[25px] md:text-[38px]'>Anywhere Everywhere</h1>
                 </div>
           </div>
         </>

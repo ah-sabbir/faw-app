@@ -7,8 +7,9 @@ import ImageSlider from '@/components/sliderSection/sliderSection';
 
 
 
-
 export default function Home() {
+
+
   return (
 <>
 
