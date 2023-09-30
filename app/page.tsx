@@ -38,7 +38,7 @@ export default async function Home({ posts}:any) {
 							{/* main blog container */}
 							<div className="flex flex-wrap mr-[-15px] items-center justify-center">
 								{
-									featuredPost.slice(1,2) && featuredPost.map((post:any,i:any)=>{
+									featuredPost && featuredPost.map((post:any,i:any)=>{
 										return post.id && 
 										(
 											<div key={i} className="w-full px-4 md:w-2/4 lg:w-1/3">
