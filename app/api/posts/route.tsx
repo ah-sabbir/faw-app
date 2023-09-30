@@ -8,7 +8,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request:NextRequest) { 
    const posts:any = await prisma.blogPost.findMany();
-
   
   //  for (const Spost of posts) {
   //   const newSlug = Spost.title.toLowerCase().replace(/\s+/g, '-');
@@ -38,7 +37,7 @@ export async function GET(request:NextRequest) {
     return NextResponse.json({
         ok: true,
         message: "updated",
-        ...posts
+        posts:[...posts]
       });
 }
 

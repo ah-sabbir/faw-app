@@ -2,9 +2,11 @@
 
 import 'leaflet/dist/leaflet.css';
 import './map.module.css';
+
+
 import { MapContainer, Marker, Popup, useMapEvents, TileLayer } from 'react-leaflet';
 import { Icon, LatLngExpression, LatLngTuple } from 'leaflet';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 
 
@@ -25,9 +27,8 @@ export const customMarkerIcon = new Icon({
 
 
 const Map = () => {
-  const [userLocation, setUserLocation] = useState<LatLngExpression>([23.76514292023678, 90.39550781250001]);
+  const [userLocation, setUserLocation] = useState<[lat:number,lng:number]>();
   const [markers, setMarkers] = useState<{ geocode: number[]; popUp: string }[]>([]);
-
 
   const LocationFinderDummy = () => {
     const map = useMapEvents({
@@ -52,7 +53,17 @@ const Map = () => {
     const data = localStorage.getItem('country');
     if (data) {
       const [lat, lng] = JSON.parse(data);
-      setUserLocation([parseFloat(lat), parseFloat(lng)]);
+      setUserLocation([lat, lng]);
+      
+      getLocation({lat,lng}).then((data) => {
+        setMarkers((prevMarkers) => [
+          ...prevMarkers,
+          {
+            geocode: [lat, lng],
+            popUp: data.results[2].formatted_address,
+          },
+        ]);
+      });
       } else {
         navigator.geolocation.getCurrentPosition((position) => {
           setUserLocation([position.coords.latitude, position.coords.longitude]);
@@ -62,9 +73,9 @@ const Map = () => {
   }, []);
 
 
-  return (
-          <div className="w-screen h-[50vh]">
-          <MapContainer className="w-full h-full" center={(userLocation)} zoom={13}>
+  return userLocation && (
+          <div className="w-full h-full">
+          <MapContainer className="w-full h-full" center={(userLocation)} zoom={10}>
             <LocationFinderDummy />
             {/* OPEN STREET MAP TILES */}
             <TileLayer attribution="&copy;" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

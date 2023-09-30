@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 
 import dynamic from "next/dynamic";
 
@@ -6,12 +7,12 @@ import dynamic from "next/dynamic";
 
 const DynamicMap = dynamic(() => import("../../components/worldMap/Map"), { ssr: false });
 
-import Map from "@/components/worldMap/Map.tsx";
-
 const CulturesPage = () => {
   return (
-    <div className='w-screen h-1/2'>
-      <DynamicMap/>
+    <div className='w-screen h-[50vh]'>
+      <Suspense fallback={<div className='w-screen h-[50vh]'>Loading...</div>}>
+        <DynamicMap />
+      </Suspense>
     </div>
   );
 };

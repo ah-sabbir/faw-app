@@ -8,7 +8,6 @@ const generateMetadata = async ({params, }: { params: { slug: string; }; })=>{
     try {
         const res:Response = await fetch(`/api/posts/${params.slug}`);
         const post = await res.json();
-        console.log(post);
         if(!post)
             return {
              title: "Not Found",
@@ -75,11 +74,11 @@ async function getStaticProps({ params }:BlogPageProps) {
   }
   
 
-const BlogPage = (Props:any) => {    
+const BlogPage = ({blog}:any) => {    
     
     // const slug = Props.params.slug;
 
-    // console.log(Props);
+    console.log(blog);
 
   return (
     <>

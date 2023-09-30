@@ -21,22 +21,22 @@ const RootHeader = () => {
                 <nav className="hidden md:hidden lg:flex lg:justify-center lg:items-center">
                     <ul className='flex gap-2'>
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">Home</Link>
+                            <Link className="" href="/">Home</Link>
                         </li>                       
                         <li className='p-2 m-2 font-semibold uppercase'> 
                             <Link className="" href="/cultures">CULTURES</Link>
                         </li>
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">TRENDS</Link>
+                            <Link className="" href="/trends">TRENDS</Link>
                         </li>
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">BEAUTY</Link>
+                            <Link className="" href="/beauty">BEAUTY</Link>
                         </li>
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">Outfits</Link>
+                            <Link className="" href="/outfits">Outfits</Link>
                         </li>
                         <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="#">About Us</Link>
+                            <Link className="" href="/aboutus">About Us</Link>
                         </li>
                     </ul>
                 </nav>

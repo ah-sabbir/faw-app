@@ -12,6 +12,7 @@ import './sliderSection.module.css';
 import img1 from '@/images/slider/slide1.jpg'
 import img2 from '@/images/slider/slide2.jpg'
 import img3 from '@/images/slider/slide3.jpg'
+import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 
 
 const options = {
@@ -47,7 +48,8 @@ const data = [
 ]
 
 
-const ImageSlider = ()=>{
+const ImageSlider = async()=>{
+  
     var settings = {
         dots: true,
         infinite: true,
@@ -61,13 +63,13 @@ const ImageSlider = ()=>{
           <div className='w-full  relative '>
             <div className='w-full flex flex-nowrap flex-col md:flex-row gap-2 px-[15px] mx-auto md:max-w-3xl lg:max-w-7xl'> {/* flex-col md:flex-row gap-1 */}
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
+                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur' />
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
+                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur' />
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
-                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur'/>
+                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...' loading='lazy' quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" placeholder='blur' />
                 </div>
             </div>
                 <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
