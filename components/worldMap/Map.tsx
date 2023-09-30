@@ -64,7 +64,7 @@ const Map = () => {
 
   return (
           <div className="w-screen h-[50vh]">
-          <MapContainer className="w-full h-full" center={([23.76514292023678, 90.39550781250001])} zoom={13}>
+          <MapContainer className="w-full h-full" center={(userLocation)} zoom={13}>
             <LocationFinderDummy />
             {/* OPEN STREET MAP TILES */}
             <TileLayer attribution="&copy;" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
