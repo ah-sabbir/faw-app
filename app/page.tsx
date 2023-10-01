@@ -32,7 +32,7 @@ export default async function Home() {
 											<div key={i} className="w-full px-4 md:w-2/4 lg:w-1/3">
 												<article className="block mb-5 p-2 rounded ">
 													<Link className="mb-4 block" href="#">
-														<Image src={post.coverImage || news1} alt="" width={100} height={100} className="block mb-4 w-full"/>
+														<Image src={post.coverImage || "https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg"} alt="" width={100} height={100} className="block mb-4 w-full"/>
 													</Link>
 													<span className="font-extra text-sm uppercase letter-spacing-1 text-[#ce8460]">Explore</span>
 													<h3 className="post-title mt-1"><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3>

@@ -74,8 +74,8 @@ const ImageSlider = async()=>{
             </div>
                 <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
                   <h3 className='text-[#D06718] p-1 font-thin'>Explore</h3>
-                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[48px] md:text-[32px]'>Your Style</h2>
-                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[25px] md:text-[38px]'>Anywhere Everywhere</h1>
+                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[38px] md:text-[32px] lg:text-[48px]'>Your Style</h2>
+                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[18px] md:text-[38px] lg:text-[25px]'>Anywhere Everywhere</h1>
                 </div>
           </div>
         </>
