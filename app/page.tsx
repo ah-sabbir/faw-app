@@ -1,28 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
-import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
-
 import news1 from '@/images/news/f1.jpg'
-
 import ImageSlider from '@/components/sliderSection/sliderSection';
+import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 
 export const revalidate = 0
 
+export default async function Home() {
+	const featuredPost = await GetPostByFeatured(true);
+	// console.log(featuredPost);
 
-const getStaticProps = async (context:any) => {
-	const res:any = await fetch(`/api/posts`);
-	const posts = await res.json();
-	return {
-		props: { posts },
-	};
-};
-
-
-
-export default async function Home({ posts}:any) {
-	const res = await GetPostByFeatured(true);
-	const featuredPost = res.posts
   return (
 			<>
 

@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // experimental: {
-    //     serverActions: true,
-    //   },
+    experimental: {
+        // serverActions: true,
+        // enableUndici: true,
+      },
     images: {
         domains: ["images.unsplash.com", "cdn.shopify.com", "fakestoreapi.com", "cdn.pixabay.com", "istockphoto.com","s3-alpha-sig.figma.com"],
         unoptimized: true,
