@@ -7,9 +7,11 @@ import news1 from '@/images/news/f1.jpg'
 
 import ImageSlider from '@/components/sliderSection/sliderSection';
 
+export const revalidate = 0
+
 
 const getStaticProps = async (context:any) => {
-	const res:any = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`);
+	const res:any = await fetch(`/api/posts`);
 	const posts = await res.json();
 	return {
 		props: { posts },
@@ -20,8 +22,7 @@ const getStaticProps = async (context:any) => {
 
 export default async function Home({ posts}:any) {
 	const res = await GetPostByFeatured(true);
-	const featuredPost = Object.entries(res).map((e) => ( e[1] ));
-	
+	const featuredPost = res.posts
   return (
 			<>
 
