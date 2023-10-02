@@ -49,36 +49,36 @@ export const revalidate = 86400;
 //     return params;
 // }
 
-async function getStaticProps({ params }:BlogPageProps) {
-    // console.log(params.slug)
+// async function getStaticProps({ params }:BlogPageProps) {
+//     // console.log(params.slug)
   
-    // Fetch the data for the blog post with slug
-    const response = await fetch(`/api/posts/${params}`);
-    const blogPostData = await response.json();
+//     // Fetch the data for the blog post with slug
+//     const response = await fetch(`/api/posts/${params}`);
+//     const blogPostData = await response.json();
   
-    // // Parse the blog post data
-    const BlogData = {
-      title: blogPostData.title,
-      content: blogPostData.content,
-      createdAt: blogPostData.createdAt,
-      updatedAt: blogPostData.updatedAt,
-      slug: blogPostData.slug
-    };
+//     // // Parse the blog post data
+//     const BlogData = {
+//       title: blogPostData.title,
+//       content: blogPostData.content,
+//       createdAt: blogPostData.createdAt,
+//       updatedAt: blogPostData.updatedAt,
+//       slug: blogPostData.slug
+//     };
   
-    // // Return the parsed blog post data
-    return {
-      props: {
-        blog: BlogData,
-      },
-    };
-  }
+//     // // Return the parsed blog post data
+//     return {
+//       props: {
+//         blog: BlogData,
+//       },
+//     };
+//   }
   
 
 const BlogPage = ({blog}:any) => {    
     
     // const slug = Props.params.slug;
 
-    console.log(blog);
+    // console.log(blog);
 
   return (
     <>
@@ -97,7 +97,7 @@ const BlogPage = ({blog}:any) => {
                                     <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src="https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg" className="w-full" width={100} height={100} alt="..."/>
+                                    <Image src="https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
                             <div className="py-[30px]"> {/* post body */}
@@ -111,10 +111,10 @@ const BlogPage = ({blog}:any) => {
                                 </blockquote>
                                 <div className="w-full flex flex-col mb-5 pb-5 items-center justify-center gap-1 md:flex-row">
                                     <div className=" w-full pl-2 md:w-1/2 ">
-                                        <Image src="https://themewagon.github.io/revolve/images/fashion/single-img1.png" className="w-full" width={100} height={100} alt="..."/>
+                                        <Image src="https://themewagon.github.io/revolve/images/fashion/single-img1.png" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  alt="..."/>
                                     </div>
                                     <div className="w-full pl-2 md:w-1/2 ">
-                                        <Image src="https://themewagon.github.io/revolve/images/fashion/single-img2.png" className="w-full" width={100} height={100} alt="..."/>
+                                        <Image src="https://themewagon.github.io/revolve/images/fashion/single-img2.png" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                     </div>
                                 </div>
                                 <h2 className="my-5">Enjoying the view of summer</h2>
@@ -148,7 +148,7 @@ const BlogPage = ({blog}:any) => {
                                         return (
                                             <div key={i} className=" w-full lg:w-4/12 p-5">
                                                     <Link className="" href="/blog-heading">
-                                                        <Image src="https://themewagon.github.io/revolve/images/fashion/img-1.jpg" alt="" width={100} height={100} className="w-full"/>
+                                                        <Image src="https://themewagon.github.io/revolve/images/fashion/img-1.jpg" alt="" width={100} height={100} quality="85" className="w-full"/>
                                                     </Link>
                                                     <h5 className=""><Link href="/The-best-place">The best place to explore to enjoy</Link></h5>
                                             </div>
