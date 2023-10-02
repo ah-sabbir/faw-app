@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const isProd = process.env.NODE_ENV === 'production'
+
 const nextConfig = {
     compress: false,
     experimental: {
@@ -16,6 +19,7 @@ const nextConfig = {
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     },
+    assetPrefix: isProd ? 'https://cdn.fashionanywhere.shop' : undefined,
 }
 
 module.exports = nextConfig

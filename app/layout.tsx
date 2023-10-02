@@ -8,6 +8,7 @@ import { FooterSection } from '@/components/footer/footer'
 import GoogleAnalytics from '@/components/ga4/googleanalytics'
 import GoogleTagManager from '@/components/gtm/googleTagManager'
 
+
 // export const metadata: Metadata = {
 //   title: 'Fashion Anywhere',
 //   description: 'Worlds\'s #1 Fashion and Beauty Magazine',

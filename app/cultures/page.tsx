@@ -1,5 +1,6 @@
 'use client'
 import { Suspense } from 'react'
+import NextNProgress from 'nextjs-progressbar';
 
 import dynamic from "next/dynamic";
 
@@ -10,6 +11,7 @@ const DynamicMap = dynamic(() => import("../../components/worldMap/Map"), { ssr:
 const CulturesPage = () => {
   return (
     <div className='w-screen h-[50vh]'>
+	<NextNProgress color="#618264" height={3} />
       <Suspense fallback={<div className='w-screen h-[50vh]'>Loading...</div>}>
         <DynamicMap />
       </Suspense>
