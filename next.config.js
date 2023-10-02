@@ -19,7 +19,7 @@ const nextConfig = {
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     },
-    assetPrefix: isProd ? 'https://cdn.fashionanywhere.shop' : undefined,
+    // assetPrefix: isProd ? 'https://cdn.fashionanywhere.shop' : undefined,
 }
 
 module.exports = nextConfig
