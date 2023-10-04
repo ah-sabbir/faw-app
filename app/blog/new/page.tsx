@@ -3,6 +3,7 @@
 import PostEditor from "@/components/editor/PostEditor";
 import { useState } from "react";
 import Image from "next/image";
+import Editor from "@/components/SlateEditor/Editor";
 
 
 
@@ -44,7 +45,8 @@ const NewBlogPage = () => {
     <>
         <div className="w-screen h-screen">
             <div className="w-full p-16">
-                <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Please Write Your Post Title Bellow and Press Enter to Check the slug</label>
+                <Editor/>
+                {/* <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Please Write Your Post Title Bellow and Press Enter to Check the slug</label>
                 <input type="text" id="title" 
                        onChange={handleOnTitleChange} 
                        onKeyDown={handleKeyPress}
@@ -80,7 +82,7 @@ const NewBlogPage = () => {
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
                 >
                     Publish
-                </button>
+                </button> */}
             </div>
         </div>
     </>

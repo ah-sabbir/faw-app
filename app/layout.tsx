@@ -15,6 +15,9 @@ import GoogleTagManager from '@/components/gtm/googleTagManager'
 // }
 
 export const metadata:Metadata = {
+  icons: {
+    icon: '/app/favicons/icon_16x16.ico',
+  },
   metadataBase: new URL("https://fashionanywhere.shop"),
   title: {
     default: "Fashion Anywhere",

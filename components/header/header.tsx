@@ -8,7 +8,7 @@ const RootHeader = () => {
   return (
         <header className="bg-[#f8efea] w-full h-[92px] relative justify-center">
             <div className="w-full h-full flex flex-wrap items-center justify-between px-[30px]"> 
-                <div className='w-[100px] h-[60px]'>
+                <div className='w-[96px] h-[96px] rounded-[50%]'>
                     <Link href="#">
                         <Image src={logo} alt="" width={100} height={100} className='w-full h-full'/>
                     </Link>
