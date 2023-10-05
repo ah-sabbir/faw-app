@@ -4,6 +4,7 @@ import { useFocused, useSelected, useSlateStatic } from 'slate-react'
 import {removeLink} from '../../utils/link.js'
 import unlink from '../../Toolbar/toolbarIcons/unlink.svg'
 import './styles.css'
+import Image from 'next/image.js';
 const Link = ({ attributes, element, children}) => {
     const editor = useSlateStatic();
     const selected = useSelected();
@@ -14,7 +15,7 @@ const Link = ({ attributes, element, children}) => {
             {selected && focused && (
                 <div className='link-popup' contentEditable='false'>
                     <a href={element.href}>{element.href}</a>
-                    <button onClick={()=>removeLink(editor)}><img src={unlink} alt="" /></button>
+                    <button onClick={()=>removeLink(editor)}><Image src={unlink} alt="" width={100} height={100} /></button>
                 </div>
             )}
         </div>

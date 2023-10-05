@@ -1,5 +1,4 @@
-import './themify/css/themify-icons.css'
-import './globals.css'
+import '../styles/globals.css';
 
 
 import type { Metadata } from 'next'
@@ -13,6 +12,9 @@ import GoogleTagManager from '@/components/gtm/googleTagManager'
 //   title: 'Fashion Anywhere',
 //   description: 'Worlds\'s #1 Fashion and Beauty Magazine',
 // }
+
+
+
 
 export const metadata:Metadata = {
   icons: {

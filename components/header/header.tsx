@@ -4,6 +4,8 @@ import React from 'react'
 // import logo from '@/images/logo.png';
 import logo from '@/app/brand-logo.png'
 
+import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter} from 'react-icons/fa';
+
 const RootHeader = () => {
   return (
         <header className="bg-[#f8efea] w-full h-[92px] relative justify-center">
@@ -15,7 +17,7 @@ const RootHeader = () => {
                 </div>
 
                 <button className="lg:hidden" type="button">
-                    <span className="ti-menu font-semibold text-4xl"></span>
+                    <i className='fa-solid fa-bars'></i><FaBars/>
                 </button>
             
                 <nav className="hidden md:hidden lg:flex lg:justify-center lg:items-center">
@@ -44,10 +46,10 @@ const RootHeader = () => {
                 <div className="hidden lg:block lg:max-w-full lg:relative lg:min-h-[1px] lg:px-4">
                     <div className=" text-start">
                         <ul className="flex pl-0 list-none">
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><i className="ti-facebook text-base"></i></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><i className="ti-twitter text-base"></i></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><i className="ti-linkedin text-base"></i></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><i className="ti-pinterest text-base"></i></Link></li>
+                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaFacebookF width={35} height={35}/></Link></li>
+                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaTwitter/></Link></li>
+                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaLinkedinIn/></Link></li>
+                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaPinterest/></Link></li>
                         </ul>
                     </div>
                 </div>

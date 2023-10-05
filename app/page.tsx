@@ -4,6 +4,7 @@ import news1 from '@/images/news/f1.jpg'
 import ImageSlider from '@/components/sliderSection/sliderSection';
 import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
+import { FaArrowRight } from 'react-icons/fa';
 
 export const revalidate = 0
 
@@ -52,7 +53,7 @@ export default async function Home() {
 										<li className="list-inline-item active:bg-[#ce8460] active:text-[#fff] active:border-[#ce8460]"><a href="#" className="active">1</a></li>
 										<li className="list-inline-item"><a href="#">2</a></li>
 										<li className="list-inline-item"><a href="#">3</a></li>
-										<li className="list-inline-item"><a href="#" className="prev-posts"><i className="ti-arrow-right"></i></a></li>
+										<li className="list-inline-item"><a href="#" className="prev-posts"><FaArrowRight className='w-full h-full'/></a></li>
 									</ul>
 								</div>
 							</div>
