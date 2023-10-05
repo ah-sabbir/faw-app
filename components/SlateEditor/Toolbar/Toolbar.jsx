@@ -18,6 +18,9 @@ import LinkButton from "../Elements/Link/LinkButton";
 import Embed from "../Elements/Embed/Embed";
 import Table from "../Elements/Table/Table";
 import InTable from "../Elements/Table/InTable";
+import UpdateButton from "../Elements/Updatebtn/UpdateButton";
+
+
 const Toolbar = () => {
   const editor = useSlate();
   const isTable = useTable(editor);
@@ -130,6 +133,7 @@ const Toolbar = () => {
           })}
         </span>
       ))}
+      <UpdateButton editor={editor} />
     </div>
   );
 };

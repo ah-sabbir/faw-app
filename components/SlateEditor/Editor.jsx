@@ -11,6 +11,7 @@ import './Editor.css'
 import LinkElement from'./Elements/Link/Link'
 import ImageElement from './Elements/Image/Image'
 import VideoElement from './Elements/Video/Video'
+// import UpdateButton from './Elements/Updatebtn/UpdateButton';
 
 
 
@@ -62,6 +63,8 @@ const Element = (props) =>{
             return <ImageElement {...props}/>
         case 'video':
             return <VideoElement {...props}/>
+        // case 'updateButton':
+        //     return <UpdateButton {...props}/>
         default :
             return <p {...attributes}>{children}</p>
     }

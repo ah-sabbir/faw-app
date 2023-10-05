@@ -3,12 +3,12 @@
 background: #ffffff;
 box-shadow:  -8px 8px 13px #ededed,
              8px -8px 13px #ffffff;
-    margin:5% 0;
+    margin:10px 0;
     display:flex;
     flex-wrap:wrap;
     align-items:center;
-    padding: 15px 10px;
-    row-gap: 15px;
+    padding: 5px 5px;
+    row-gap: 5px;
 }
 .toolbar-grp>*{
     margin-right: 10px;
