@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import Toolbar from "@/components/Editor/Toolbar/Toolbar";
+//import Toolbar from "@/components/Editor/Toolbar/Toolbar";
 
 
 
