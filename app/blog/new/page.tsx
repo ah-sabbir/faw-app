@@ -1,6 +1,5 @@
 'use client'
 
-import PostEditor from "@/components/Editor/PostEditor";
 import { useState } from "react";
 import Image from "next/image";
 
