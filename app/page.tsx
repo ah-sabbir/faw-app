@@ -53,7 +53,7 @@ export default async function Home() {
 										<li className="list-inline-item active:bg-[#ce8460] active:text-[#fff] active:border-[#ce8460]"><a href="#" className="active">1</a></li>
 										<li className="list-inline-item"><a href="#">2</a></li>
 										<li className="list-inline-item"><a href="#">3</a></li>
-										<li className="list-inline-item"><a href="#" className="prev-posts"><FaArrowRight className='w-full h-full'/></a></li>
+										<li className="list-inline-item"><a href="#" className="prev-posts flex items-center justify-center leading-5"><FaArrowRight className='inline-block'/></a></li>
 									</ul>
 								</div>
 							</div>

@@ -1,16 +1,16 @@
 import prisma from '@/lib/prisma';
 
-const GetPostBySlug = async (slug: string) => {
-    const res = await prisma.blogPost.findUnique({
+const GetTagsById = async (id: number) => {
+    const res = await prisma.Tag.findUnique({
         where: {
-            slug: slug
+            id: id
         }
     });
 
     return res;
 };
 
-export default GetPostBySlug;
+export default GetTagsById;
 
 // Compare this snippet from lib/blogPost/getPostAll.tsx:
 // const GetAllPosts = async () => {

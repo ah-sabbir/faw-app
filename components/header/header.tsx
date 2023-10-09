@@ -46,10 +46,10 @@ const RootHeader = () => {
                 <div className="hidden lg:block lg:max-w-full lg:relative lg:min-h-[1px] lg:px-4">
                     <div className=" text-start">
                         <ul className="flex pl-0 list-none">
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaFacebookF width={35} height={35}/></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaTwitter/></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaLinkedinIn/></Link></li>
-                            <li className='block mr-[0.5px]'><Link href="#" className='px-1 mx-1'><FaPinterest/></Link></li>
+                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaFacebookF width={35} height={35}/></Link></li>
+                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaTwitter width={35} height={35}/></Link></li>
+                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaLinkedinIn width={35} height={35}/></Link></li>
+                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaPinterest width={35} height={35}/></Link></li>
                         </ul>
                     </div>
                 </div>

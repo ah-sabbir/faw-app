@@ -3,6 +3,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
+    basePath: '',
     compress: false,
     experimental: {
         // serverActions: true,
@@ -23,3 +24,17 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+
+
+// basePath: '/myapp',
+// async redirects() {
+//   return ([
+//     {
+//       source: '/',
+//       destination: '/myapp',
+//       permanent: true,
+//       basePath: false,
+//     },
+//   ]);
+// }
