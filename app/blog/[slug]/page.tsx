@@ -41,7 +41,7 @@ const BlogPage = async ({params}:any) => {
                             <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> {/* post body */}
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
-                                <Link className="pl-2 text-xl" href="#"> #Game</Link>
+                                <Link className="pl-2 text-xl" href="#">#Game</Link>
                                 <Link className="pl-2 text-xl" href="#">#Tour</Link>
                             </div>
                         </div>

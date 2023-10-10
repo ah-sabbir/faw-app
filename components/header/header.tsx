@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -7,16 +8,21 @@ import logo from '@/app/brand-logo.png'
 import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter} from 'react-icons/fa';
 
 const RootHeader = () => {
+
+    const menuHandler = (e:any) =>{
+        alert('menu clicked');
+    }
+
   return (
         <header className="bg-[#f8efea] w-full h-[92px] relative justify-center">
             <div className="w-full h-full flex flex-wrap items-center justify-between px-[30px]"> 
-                <div className='w-[96px] h-[96px] rounded-[50%]'>
-                    <Link href="#">
-                        <Image src={logo} alt="" width={100} height={100} className='w-full h-full'/>
+                <div className='w-[64px] h-[64px] rounded-[50%]'>
+                    <Link href="#" className='w-full h-auto'>
+                        <Image src={logo} alt="Fashion anywhere" width={100} height={100} className=' object-cover' />
                     </Link>
                 </div>
 
-                <button className="lg:hidden" type="button">
+                <button className="lg:hidden" type="button" onClick={menuHandler}>
                     <i className='fa-solid fa-bars'></i><FaBars/>
                 </button>
             
