@@ -4,6 +4,23 @@ import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
 import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
+import localFont from '@next/font/local'
+import GetUserById from "@/lib/userInfo/getUserById";
+
+
+const AvantGarde = localFont({
+    src: [
+      {
+        path: '../../fonts/AVGARDN_2.woff',
+        weight: '400'
+      },
+      {
+        path: '../../fonts/AVGARDD_2.woff',
+        weight: '700'
+      }
+    ],
+    variable: '--font-AvantGarde'
+  })
 
 
 const generateMetadata = async ({params, }: { params: { slug: string; }; })=>{
@@ -15,12 +32,12 @@ const BlogPage = async ({params}:any) => {
     
     const res = await GetPostBySlug(params.slug);
     const tagRes = await GetTagsById(res.tagId );
-
-    // console.log(tagRes);
+    const user = await GetUserById(res.userId);
+    console.log(user);
 
   return (
     <>
-        <section className="w-full relative pt-[70px]">
+        <section className={`w-full relative pt-[70px]`}>
             <div className=" md:max-w-3xl lg:max-w-6xl px-[15px] mx-auto"> {/* container */}
                 <div className="flex flex-col lg:flex-row flex-wrap mx-[-15px]"> {/* row */}
                     <div className="w-full px-8 py-7 lg:w-8/12"> {/*  left side */}
@@ -29,7 +46,7 @@ const BlogPage = async ({params}:any) => {
                                 <div className="meta-cat">
                                 <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link>
                                 </div>
-                                <h1 className="my-2 text-center">{res.title}</h1>
+                                <h1 className="my-2 text-center font-AvantGarde">{res.title}</h1>
                                 <div className="post-meta ">
                                     <span className="uppercase text-xs letter-spacing-1 mr-3">by Liam</span>
                                     <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>

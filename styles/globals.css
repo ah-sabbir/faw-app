@@ -16,18 +16,19 @@ body {
  box-sizing: border-box;
  transition: all 500ms ease;
  background: #fff;
- color: var(--font-color);
- font-family: "Unna", serif!important;
+ /* color: var(--font-color); */
+ font-family: var(--font-AvantGarde), serif !important;
 }
 
 body,
 p {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
   line-height: 26px;
   font-size: 16px;
   text-rendering: optimizeLegibility;
   color: #666;
   font-weight: 400;
+  font-family: var(--font-AvantGarde), serif !important;
 }
 
 html {
@@ -49,14 +50,16 @@ h5,
 h6,
 .h6 {
   color: #1c1c1c;
-  font-weight: 700;
-  font-family: "Unna", serif !important;
+  /* font-weight: 500;
+  font-family: var(--font-AvantGarde), serif !important; */
 }
 
 h1,
 .h1 {
-  font-size: 38px;
-  line-height: 48px;
+  font-size: 42px;
+  line-height: 50px;
+  font-weight: 600;
+  font-family: var(--font-AvantGarde), serif !important;
 }
 
 h2,
@@ -69,7 +72,7 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 h4,
