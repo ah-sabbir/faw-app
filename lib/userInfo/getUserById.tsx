@@ -1,8 +1,8 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 
 const GetUserById = async (id: string) => {
     
-    const res = await prisma.User.findUnique({
+    const res = await clientPrisma.User.findUnique({
         where: {
             id: id
         }
