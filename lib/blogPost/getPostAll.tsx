@@ -5,10 +5,10 @@
 // };
 
 // export default GetAllPosts;
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 
 const GetAllPosts = async () => {
-    const posts:any = await prisma.blogPost.findMany();
+    const posts:any = await clientPrisma.blogPost.findMany();
 
     return posts;
 };

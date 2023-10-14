@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
 // import { PrismaClient as prisma } from "@prisma/client";
@@ -18,11 +18,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
       post: slug,
     });
   }
-
-
-
-
-   const posts:any = await prisma.blogPost.findMany();
+  
+   const posts:any = await clientPrisma.blogPost.findMany();
   
   //  for (const Spost of posts) {
   //   const newSlug = Spost.title.toLowerCase().replace(/\s+/g, '-');
@@ -54,6 +51,32 @@ export async function GET(req: NextRequest, res: NextResponse) {
         message: "updated",
         posts:[...posts],
       });
+}
+
+
+export async function DELETE(req: Request, res: NextResponse) {
+  const {slug} = await req.json();
+
+  try {
+    if(slug){
+      const rest = await clientPrisma.blogPost.delete({
+          where: {
+              slug: slug,
+          },
+          });
+    }
+
+  return NextResponse.json({
+    ok: true,
+    message: "Deleted"
+  });
+  } catch (error) {
+    return NextResponse.json({
+      ok: false,
+      message: error
+    });
+  }
+
 }
 
 

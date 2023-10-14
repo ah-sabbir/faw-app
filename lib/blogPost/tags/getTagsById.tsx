@@ -1,7 +1,7 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 
 const GetTagsById = async (id: number) => {
-    const res = await prisma.Tag.findUnique({
+    const res = await clientPrisma.Tag.findUnique({
         where: {
             id: id
         }

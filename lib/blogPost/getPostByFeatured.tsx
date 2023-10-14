@@ -7,7 +7,7 @@
 // export default GetPostByFeatured;
 
 
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 
 // const GetAllPosts = async () => {
 //     const posts:any = await prisma.blogPost.findMany();
@@ -16,7 +16,7 @@ import prisma from '@/lib/prisma';
 // };
 
 const GetPostByFeatured = async (featured: boolean) => {
-    const posts:any = await prisma.blogPost.findMany();
+    const posts:any = await clientPrisma.blogPost.findMany();
     return posts;
 };
 

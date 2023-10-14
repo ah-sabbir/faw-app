@@ -1,7 +1,10 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 
 const GetPostBySlug = async (slug: string) => {
-    const res = await prisma.blogPost.findUnique({
+    if (slug == null) {
+        return null;
+    }
+    const res = await clientPrisma.blogPost.findUnique({
         where: {
             slug: slug
         }

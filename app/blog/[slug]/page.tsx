@@ -5,29 +5,23 @@ import CommenstSection from "@/components/commentSection/comments";
 import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 import GetUserById from "@/lib/userInfo/getUserById";
+import GetAllPosts from "@/lib/blogPost/getPostAll";
 
-export const getStaticPaths = async () => {
-    const res = await fetch("/api/posts");
-    const posts = await res.json();
-    const paths = posts.map((post:any) => ({
-      params: { slug: post.slug },
+export const generateStaticParams = async () => {
+
+    const posts = await GetAllPosts();
+   
+    return posts.map((post:any) => ({
+      slug: post.slug,
     }))
-    return { paths, fallback: false }
   }
-
-const generateMetadata = async ({params, }: { params: { slug: string; }; })=>{
-    return {props: {params}}
-}
   
 
-const BlogPage = async ({params, paths}:any) => {  
-    
-    console.log(paths)
-    
+const BlogPage = async ({params}:any) => {  
+
     const res = await GetPostBySlug(params.slug);
     const tagRes = await GetTagsById(res.tagId );
     const user = await GetUserById(res.userId);
-    console.log(user);
 
   return (
     <>
@@ -49,7 +43,7 @@ const BlogPage = async ({params, paths}:any) => {
                                     <Image src="https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
-                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> {/* post body */}
+                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> post body
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>
