@@ -6,7 +6,22 @@ import { NextRequest, NextResponse } from 'next/server';
 // a.toLowerCase().replace(/ /g, '-')
 //         .replace(/[^\w-]+/g, '');
 
-export async function GET(request:NextRequest) { 
+export async function GET(req: NextRequest, res: NextResponse) { 
+
+  const { searchParams } = new URL(req.nextUrl);
+  const slug: any = searchParams.get("slug")
+
+  if(slug){
+    return NextResponse.json({
+      ok: true,
+      message: "updated",
+      post: slug,
+    });
+  }
+
+
+
+
    const posts:any = await prisma.blogPost.findMany();
   
   //  for (const Spost of posts) {
@@ -37,7 +52,7 @@ export async function GET(request:NextRequest) {
     return NextResponse.json({
         ok: true,
         message: "updated",
-        posts:[...posts]
+        posts:[...posts],
       });
 }
 

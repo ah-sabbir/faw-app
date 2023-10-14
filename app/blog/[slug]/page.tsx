@@ -4,31 +4,25 @@ import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
 import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
-import localFont from '@next/font/local'
 import GetUserById from "@/lib/userInfo/getUserById";
 
-
-const AvantGarde = localFont({
-    src: [
-      {
-        path: '../../fonts/AVGARDN_2.woff',
-        weight: '400'
-      },
-      {
-        path: '../../fonts/AVGARDD_2.woff',
-        weight: '700'
-      }
-    ],
-    variable: '--font-AvantGarde'
-  })
-
+export const getStaticPaths = async () => {
+    const res = await fetch("/api/posts");
+    const posts = await res.json();
+    const paths = posts.map((post:any) => ({
+      params: { slug: post.slug },
+    }))
+    return { paths, fallback: false }
+  }
 
 const generateMetadata = async ({params, }: { params: { slug: string; }; })=>{
     return {props: {params}}
 }
   
 
-const BlogPage = async ({params}:any) => {    
+const BlogPage = async ({params, paths}:any) => {  
+    
+    console.log(paths)
     
     const res = await GetPostBySlug(params.slug);
     const tagRes = await GetTagsById(res.tagId );

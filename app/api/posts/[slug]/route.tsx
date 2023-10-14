@@ -26,9 +26,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     const { searchParams } = new URL(req.nextUrl);
 
-    const postId: any = searchParams.get("postId")
+    const postId: any = searchParams.get("slug")
 
-    console.log(req.nextUrl);
+    console.log(req);
     
   return NextResponse.json({ ok:200, msg: `this is ${searchParams} post information where user can see, edit, update, delete their post by id` });
 }
