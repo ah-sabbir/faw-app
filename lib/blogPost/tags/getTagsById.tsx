@@ -1,6 +1,7 @@
 import clientPrisma from '@/lib/prisma';
 
 const GetTagsById = async (id: number) => {
+    if (!id) return null;
     const res = await clientPrisma.Tag.findUnique({
         where: {
             id: id

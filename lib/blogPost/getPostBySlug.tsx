@@ -1,7 +1,7 @@
 import clientPrisma from '@/lib/prisma';
 
 const GetPostBySlug = async (slug: string) => {
-    if (slug == null) {
+    if (slug === null) {
         return null;
     }
     const res = await clientPrisma.blogPost.findUnique({

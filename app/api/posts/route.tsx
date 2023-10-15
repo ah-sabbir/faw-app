@@ -1,25 +1,41 @@
 import clientPrisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-// import { PrismaClient as prisma } from "@prisma/client";
-
 // a.toLowerCase().replace(/ /g, '-')
 //         .replace(/[^\w-]+/g, '');
 
 export async function GET(req: NextRequest, res: NextResponse) { 
 
   const { searchParams } = new URL(req.nextUrl);
-  const slug: any = searchParams.get("slug")
+  
+  const slug: any = searchParams.get("slug") || null;
 
-  if(slug){
+
+   if(slug){
+      const posts:any = await clientPrisma.blogPost.findUnique ({
+        where: {
+          slug: slug,
+        }});
+        if(posts){
+            return NextResponse.json({
+              ok: true,
+              message: "updated",
+              posts:[...posts],
+            });
+        }else{
+            return NextResponse.json({
+              ok: false,
+              message: "not found",
+            });
+        }
+   }else{
+    const posts:any = await clientPrisma.blogPost.findMany();
     return NextResponse.json({
       ok: true,
-      message: "updated",
-      post: slug,
+      message: "updated-all",
+      posts:[...posts],
     });
-  }
-  
-   const posts:any = await clientPrisma.blogPost.findMany();
+   }
   
   //  for (const Spost of posts) {
   //   const newSlug = Spost.title.toLowerCase().replace(/\s+/g, '-');
@@ -46,11 +62,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
   // }
 
-    return NextResponse.json({
-        ok: true,
-        message: "updated",
-        posts:[...posts],
-      });
+
 }
 
 

@@ -6,22 +6,30 @@ import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 import GetUserById from "@/lib/userInfo/getUserById";
 import GetAllPosts from "@/lib/blogPost/getPostAll";
+import { checkEnvironment } from "@/lib/fetcher/fetcher";
 
 export const generateStaticParams = async () => {
+    const res = await fetch(checkEnvironment().concat("/api/posts"),
+    {
+        next: {revalidate: 60}
+    }).then((res) => res.json());
 
-    const posts = await GetAllPosts();
-   
-    return posts.map((post:any) => ({
-      slug: post.slug,
-    }))
+    return {
+      paths: res.posts.map((post:any) => ({
+        params: {
+          slug: post?.slug,
+        },
+      })),
+      fallback: true,
+    };
   }
   
 
 const BlogPage = async ({params}:any) => {  
-
-    const res = await GetPostBySlug(params.slug);
-    const tagRes = await GetTagsById(res.tagId );
-    const user = await GetUserById(res.userId);
+    console.log(params)
+    const res = await GetPostBySlug(params?.slug) || "";
+    const tagRes = await GetTagsById(res?.tagId ) || "";
+    const user = await GetUserById(res?.userId) || "";
 
   return (
     <>
