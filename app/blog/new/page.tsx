@@ -3,23 +3,31 @@
 // import PostEditor from "@/components/Editor/PostEditor";
 import { useState } from "react";
 import Image from "next/image";
-
+import BlogEditor from "@/components/Editor/Editor";
+import parse from 'html-react-parser';
 // import Toolbar from "@/components/Editor/Toolbar/Toolbar";
 
 
 
 const NewBlogPage = () => {
+
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
     const [slug, setSlug] = useState('');
     const [SlugExist, setSlugExist] = useState(false);
     const [postBody, setPostBody] = useState('');
     const [coverImg, setCoverImg] = useState('');
 
+    const handleContentChange = (newPost:any) => {
+        // console.log(e.target.value)
+        setPostBody(newPost);
+    };
+  
+    const handleSubmit = (e:any) => {
+      e.preventDefault();
+      // Handle form submission with the content
+      console.log(postBody);
+    };
 
-    const handleContentChange =(e:any):void=>{
-        setPostBody(e.target.value);
-    }
 
     const handleOnTitleChange = (e:any):void =>{
         e.onkeydown
@@ -41,10 +49,6 @@ const NewBlogPage = () => {
           else{setSlugExist(false)}
     }
 
-    const dropHandle = (e:any) =>{
-        console.log(e);
-    }
-
     const imageHandler = async(e:any) =>{
         const formData = new FormData();
         formData.append('file', e.target.files[0]);
@@ -64,7 +68,7 @@ const NewBlogPage = () => {
   return (
     <>
         <div className="w-screen h-screen">
-            <div className="w-full p-16" onDrop={dropHandle}>
+            <div className="w-full p-16">
                 <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Please Write Your Post Title Bellow and Press Enter to Check the slug</label>
                 <input type="text" id="title" 
                        onChange={handleOnTitleChange} 
@@ -87,40 +91,19 @@ const NewBlogPage = () => {
                         onChange={imageHandler}
                         type="file" />
                 </div>
-
-
-
                 <label htmlFor="content" className="block text-gray-700 font-medium mb-2">
                     Content
                 </label>
-                <textarea
-                    id="content"
-                    name="content"
-                    onChange={handleContentChange}
-                    className="w-full px-3 py-2 border rounded-lg border-gray-300 h-40 focus:outline-none focus:ring focus:ring-blue-200"
-                    required
-                >
-
-                </textarea>
-                <div className="h-64 w-96 relative"> 
-                { coverImg &&   <Image
-                        draggable
-                        src={"/images/IMG_20231009_114201.jpg"}
-                        alt="Picture of the author"
-                        layout="fill" // required
-                        objectFit="cover" // change to suit your needs
-                        className="" // just an example
-                    />}
-                </div>
-                <button
-                    type="submit"
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
-                >
-                    Publish
-                </button>
+                <form onSubmit={handleSubmit} className="w-full h-auto mx-auto mt-8 p-4 border rounded-lg shadow-lg">
+                    <BlogEditor value={postBody} onChange={handleContentChange} />
+                    <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Publish
+                    </button>
+                </form>
             </div>
-            <div className="product-des" dangerouslySetInnerHTML={{ __html: postBody }}/>
-            {/* <Toolbar/> */}
+            {
+                // parse(content)
+            }
         </div>
     </>
   )

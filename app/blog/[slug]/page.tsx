@@ -8,24 +8,43 @@ import GetUserById from "@/lib/userInfo/getUserById";
 import GetAllPosts from "@/lib/blogPost/getPostAll";
 import { checkEnvironment } from "@/lib/fetcher/fetcher";
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = async (): Promise<any[]> => {
     const res = await fetch(checkEnvironment().concat("/api/posts"),
     {
         next: {revalidate: 60}
     }).then((res) => res.json());
 
-    return {
-      paths: res.posts.map((post:any) => ({
-        params: {
-          slug: post?.slug,
-        },
-      })),
-      fallback: true,
-    };
+    if(res.posts.length === 0) return [];
+
+    return [
+        {
+            paths:res.posts.map((post:any) => ({
+                params: {
+                    slug: post?.slug,
+                },
+            })),
+            fallback: true,
+        }
+    ]
+    
+    // {
+    //   paths: res?.posts.map((post:any) => ({
+    //     params: {
+    //       slug: post?.slug,
+    //     },
+    //   })) || [],
+    //   fallback: true,
+    // };
   }
+
+interface PageProps {
+    params: {
+        slug: string
+    }
+}
   
 
-const BlogPage = async ({params}:any) => {  
+const BlogPage = async ({params}:PageProps) => {  
     console.log(params)
     const res = await GetPostBySlug(params?.slug) || "";
     const tagRes = await GetTagsById(res?.tagId ) || "";
@@ -40,9 +59,9 @@ const BlogPage = async ({params}:any) => {
                         <div className="single-post">
                             <div className="flex flex-col items-center justify-center mb-5"> {/* post header */}
                                 <div className="meta-cat">
-                                <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link>
+                                {/* <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link> */}
                                 </div>
-                                <h1 className="my-2 text-center font-AvantGarde">{res.title}</h1>
+                                {/* <h1 className="my-2 text-center font-AvantGarde">{res.title}</h1> */}
                                 <div className="post-meta ">
                                     <span className="uppercase text-xs letter-spacing-1 mr-3">by Liam</span>
                                     <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>
@@ -51,7 +70,7 @@ const BlogPage = async ({params}:any) => {
                                     <Image src="https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
-                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> post body
+                            {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> post body */}
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>
