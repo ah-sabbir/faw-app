@@ -63,13 +63,19 @@ const ImageSlider = async()=>{
           <div className='w-full  relative '>
             <div className='w-full flex flex-nowrap flex-col md:flex-row gap-2 px-[15px] mx-auto md:max-w-3xl lg:max-w-7xl'> {/* flex-col md:flex-row gap-1 */}
                 <div className='w-full md:w-4/12 lg:w-4/12'>
+                  <Link href='https://www.amazon.com/b?_encoding=UTF8&tag=voguex-20&linkCode=ur2&linkId=47e92f9b5f077d64aa8caf8852acf6ed&camp=1789&creative=9325&node=1036592'>
                     <Image src={img3} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
+                  </Link>
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
+                  <Link href='https://www.amazon.com/gp/search?ie=UTF8&tag=voguex-20&linkCode=ur2&linkId=c429210db684c11705f55ea5928775ae&camp=1789&creative=9325&index=beauty&keywords=winter fashion for women 2023 trendy'>
                     <Image src={img2} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
+                  </Link>
                 </div>
                 <div className='w-full md:w-4/12 lg:w-4/12'>
+                  <Link href='https://www.amazon.com/b?_encoding=UTF8&tag=voguex-20&linkCode=ur2&linkId=74e4458b5a25c3bae61f588b90964d98&camp=1789&creative=9325&node=3760911'>
                     <Image src={img1} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
+                  </Link>
                 </div>
             </div>
                 <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
@@ -81,7 +87,6 @@ const ImageSlider = async()=>{
         </>
       );
 }
-
 
 
 export default ImageSlider;
