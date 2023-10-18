@@ -3,7 +3,7 @@
 // import PostEditor from "@/components/Editor/PostEditor";
 import { useState } from "react";
 import Image from "next/image";
-import BlogEditor from "../../../components/Editor/Editor";
+import BlogEditor from "@/components/editor/Editor";
 import parse from 'html-react-parser';
 // import Toolbar from "@/components/Editor/Toolbar/Toolbar";
 
