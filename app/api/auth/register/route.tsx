@@ -18,12 +18,22 @@ interface CreateUserRequest {
 }
 
 export async function POST(request:Request) {
-      const body:CreateUserRequest = await request.json();
+      const {first_name, last_name, email, password} = await request.json();
+      const body:CreateUserRequest = {
+        firstname:first_name,
+        lastname:last_name,
+        email:email,
+        phone:"",
+        avatar:"",
+        country:"",
+        city:"",
+        password:password
+      }
 
       try{
         const IsUserExist = await prisma.user.findUnique({
             where: {
-              email: body.email,
+              email: email,
             },
           });
           if (IsUserExist) {
@@ -31,8 +41,8 @@ export async function POST(request:Request) {
           }else{
             const user:any = await prisma.user.create({
                 data: {
-                    firstname:body.firstname,
-                    lastname:body.lastname,
+                    firstName:body.firstname,
+                    lastName:body.lastname,
                     email:body.email,
                     phone:body.phone,
                     avatar:body.avatar,
@@ -47,6 +57,7 @@ export async function POST(request:Request) {
                 return NextResponse.json({ ok:200, msg:"user created successfully", user:userWithoutPassword });
           }
         }catch(err){
+          console.log(err)
             return NextResponse.json({ ok:400, msg:"something went wrong" });
         }
 }
