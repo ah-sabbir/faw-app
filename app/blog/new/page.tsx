@@ -7,7 +7,7 @@ import BlogEditor from "@/components/editor/Editor";
 import parse from 'html-react-parser';
 // import Toolbar from "@/components/Editor/Toolbar/Toolbar";
 
-
+// import type { ReactElement } from 'react';
 
 const NewBlogPage = () => {
 

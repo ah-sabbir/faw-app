@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/EmailSigninButton";
 // import Button from '@/components/elements/Button';
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -13,7 +13,6 @@ const getImg = async () => {
 
 
 const LoginPage = () => {
-  
   const email = useRef("");
   const pass = useRef("");
 
@@ -33,46 +32,44 @@ const LoginPage = () => {
 
   }, [])
 
-  const onSubmit = async () => {
-    try {
-        console.log("login button clicked");
-        const result = await signIn("credentials", {
-          email: email.current,
-          password: pass.current,
-          redirect: true,
-          callbackUrl: "/admin",
-        });
-      
-        // Handle the result or perform any necessary actions
-        console.log("Sign-in successful:", result);
-      } catch (error) {
-        console.error("Sign-in error:", error);
-      }
-      
+  const submitHandler = async (e:any) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const res = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+    });
+    console.log(res);
+    getSession().then((session)=>{ console.log(session)});
+    // const res = await fetch("/api/auth/login", {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //       // Add any other headers you need, e.g., authorization headers
+    //     },
+    //     body: JSON.stringify({email:email, password:password})
+    //   })
+    //   const data = await res.json();
+    //   console.log(data);
   };
   return (
 
         <section className=" bg-gray-50 min-h-screen flex items-center justify-center">
         <div className=" bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
             <div className="md:w-1/2 px-8">
-            {/* <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
-            <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p> */}
+            {/* <h2 className="font-bold text-2xl text-[#002D74]">Login</h2> */}
+            <p className="text-xs mt-4 text-[#002D74] text-center">If you are already a member, easily log in</p>
 
-            {/* <div className='sm:rounded-5xl sm:mx-0 sm:flex-none sm:p-24 md:flex-auto md:rounded-5xl  md:-mx-4 md:mt-10 bg-white px-4 py-10 shadow-2xl shadow-gray-900/10'> */}
-            {/* -mx-4 mt-10 flex-auto bg-white px-4 py-10 shadow-2xl shadow-gray-900/10 */}
-                <form>
-                    <div className='space-y-2'>
-                    <input
-                        type="text"
-                        className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                        id="email"
-                        name="email"
-                        placeholder="hello@me.com" 
-                        autoComplete="email"
-                        required/>
+                <form method="post" onSubmit={submitHandler} className="mt-5">
+                    <div className="mb-6">
+                        <input type="email" name="email" id="email" className="bg-gray-50 border focus:border-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required/>
+                    </div>
+                    <div className="mb-6">
+                        <input type="password" name="password" id="password" className="bg-gray-50 border focus:border-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*******" required/>
                     </div>
                     <Button
-                    type='submit'
                     variant='outline'
                     color='gray'
                     className='mt-3 w-full'

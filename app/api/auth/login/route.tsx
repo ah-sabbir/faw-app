@@ -1,12 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 // import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '@/lib/prisma';
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from 'next/server';
 
 
 import bcrypt from "bcryptjs";
+import clientPrisma from '@/lib/prisma';
 
 const secret = process.env.NEXTAUTH_SECRET
 
@@ -22,7 +22,7 @@ interface UserRequest {
 export async function POST(request:Request) {
       const body:UserRequest = await request.json();
 
-      const user:any = await prisma.user.findFirst({
+      const user:any = await clientPrisma.user.findFirst({
         where: {
           email: body.email,
         },

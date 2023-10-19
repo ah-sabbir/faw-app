@@ -1,10 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 // import type { NextApiRequest, NextApiResponse } from 'next';
-import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 
 import bcrypt from "bcryptjs";
+import clientPrisma from '@/lib/prisma';
 
 interface CreateUserRequest {
     firstname:string,
@@ -23,7 +23,7 @@ export async function POST(request:Request) {
         firstname:first_name,
         lastname:last_name,
         email:email,
-        phone:"",
+        phone: "Phone" + Math.random().toString(16).slice(2),
         avatar:"",
         country:"",
         city:"",
@@ -31,15 +31,15 @@ export async function POST(request:Request) {
       }
 
       try{
-        const IsUserExist = await prisma.user.findUnique({
+        const IsUserExist = await clientPrisma.user.findUnique({
             where: {
               email: email,
             },
           });
           if (IsUserExist) {
-            return NextResponse.json({ ok:400, msg:"user already exist" });
+            return NextResponse.json({ ok:false, msg:"user already exist" });
           }else{
-            const user:any = await prisma.user.create({
+            const user:any = await clientPrisma.user.create({
                 data: {
                     firstName:body.firstname,
                     lastName:body.lastname,
@@ -54,11 +54,11 @@ export async function POST(request:Request) {
         
                 const { password, ...userWithoutPassword } = user;
         
-                return NextResponse.json({ ok:200, msg:"user created successfully", user:userWithoutPassword });
+                return NextResponse.json({ ok:true, msg:"user created successfully", user:userWithoutPassword });
           }
         }catch(err){
           console.log(err)
-            return NextResponse.json({ ok:400, msg:"something went wrong" });
+            return NextResponse.json({ ok:false, msg:"Something went wrong. Please check into the API Backend" });
         }
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // import type { ReactElement } from 'react';
@@ -7,7 +8,7 @@ import { useState } from "react";
 const SignUpPage = () => {
     const [pass, setPass] = useState('');
     const [isMatch, setIsMatch] = useState(false);
-
+    const redirectRouter = useRouter();
 
   const submitHandler = async (e:any) => {
     e.preventDefault();
@@ -18,7 +19,11 @@ const SignUpPage = () => {
         body: JSON.stringify(formObject)
       })
       const data = await res.json();
-      console.log(data);
+      if(data.ok){
+        redirectRouter.push("/auth/signin");
+        }else{
+            alert(data.msg)
+        }
   }
 
   const passConfirmation = (e:any) =>{
