@@ -18,8 +18,8 @@ const NewBlogPage = () => {
     const [coverImg, setCoverImg] = useState('');
 
     const handleContentChange = (newPost:any) => {
-        // console.log(e.target.value)
-        setPostBody(newPost);
+        console.log(newPost)
+        // setPostBody(newPost);
     };
   
     const handleSubmit = (e:any) => {
