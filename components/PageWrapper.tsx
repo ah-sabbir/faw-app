@@ -11,10 +11,14 @@ const PageWrapper = ({children}:any) => {
     const isResetPassword = path.split('/').includes('reset-password')
     const isVerifyEmail = path.split('/').includes('verify-email')
     const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
+    const isBuilder = path.split('/').includes('builder')
+
+    // if(isBuilder) return (<>{children}</>)
     
   return (
     <>
       {
+        isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || 
         isLogin? 
         <>
         { children }

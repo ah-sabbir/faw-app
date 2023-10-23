@@ -6,8 +6,21 @@ import React from 'react';
 import logo from '@/app/brand-logo.png'
 
 import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter} from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
 
 const RootHeader = () => {
+    const path = usePathname()
+    const isAdmin = path.split('/').includes('admin')
+    const isLogin = path.split('/').includes('signin')
+    const isRegister = path.split('/').includes('register')
+    const isForgotPassword = path.split('/').includes('forgot-password')
+    const isResetPassword = path.split('/').includes('reset-password')
+    const isVerifyEmail = path.split('/').includes('verify-email')
+    const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
+    const isBuilder = path.split('/').includes('builder')
+
+    if(isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || 
+        isLogin) return (<></>)
 
     const menuHandler = (e:any) =>{
         alert('menu clicked');
@@ -23,8 +36,15 @@ const RootHeader = () => {
                 </div>
 
                 <button className="lg:hidden" type="button" onClick={menuHandler}>
-                    <i className='fa-solid fa-bars'></i><FaBars/>
+                <span className="sr-only">Open sidebar</span>
+                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                </svg>
                 </button>
+
+
+
+
             
                 <nav className="hidden md:hidden lg:flex lg:justify-center lg:items-center">
                     <ul className='flex gap-2'>
