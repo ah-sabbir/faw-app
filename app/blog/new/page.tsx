@@ -3,7 +3,7 @@
 // import PostEditor from "@/components/Editor/PostEditor";
 import { useState } from "react";
 import Image from "next/image";
-import BlogEditor from "@/components/editor/Editor";
+// import BlogEditor from "@/components/editor/Editor";
 import parse from 'html-react-parser';
 // import Toolbar from "@/components/Editor/Toolbar/Toolbar";
 
@@ -95,7 +95,7 @@ const NewBlogPage = () => {
                     Content
                 </label>
                 <form onSubmit={handleSubmit} className="w-full h-auto mx-auto mt-8 p-4 border rounded-lg shadow-lg">
-                    <BlogEditor value={postBody} onChange={handleContentChange} />
+                    {/* <BlogEditor value={postBody} onChange={handleContentChange} /> */}
                     <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Publish
                     </button>
