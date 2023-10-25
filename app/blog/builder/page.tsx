@@ -1,13 +1,21 @@
 'use client'
 
-import PageWrapper from '@/components/PageWrapper';
-import * as columns from '@/components/editor/plugins/builder/components/columns/columns';
+// import PageWrapper from '@/components/PageWrapper';
+// import * as columns from '@/components/editor/plugins/builder/components/columns/columns';
 
-const fns = Object.values(columns).filter((fn) => typeof fn === 'function');
+// const fns = Object.values(columns).filter((fn) => typeof fn === 'function');
+
+import Editor from '@/components/editor/Editor';
+import { useState } from 'react';
 
 const PageBuilder = () => {
-    const Testfunction = fns[0];
+    // const Testfunction = fns[0];
     // return <Testfunction><h1>hello</h1></Testfunction>
+    const [update, setUpdate] = useState(false);
+
+    const updateHandeler = () => {
+        setUpdate(true);
+    }
 
   return (
     <>
@@ -80,8 +88,12 @@ const PageBuilder = () => {
         </aside>
 
         <div className="h-screen p-4 sm:ml-64">
+            <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
+            <button className=' ' onClick={updateHandeler}>Update</button>
+            </div>
             <div className="h-full p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <Testfunction> </Testfunction>
+            <Editor updated={update}/>
             </div>
         </div>
 

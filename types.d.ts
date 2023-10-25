@@ -64,6 +64,164 @@ declare module 'bcrypt' {
   // Declare other functions and types used by bcrypt
 }
 
+declare module 'jsonwebtoken' {
+  export function sign(data: string, salt: number): string;
+  // Declare other functions and types used by bcrypt
+}
+
+
+// declare module '@editorjs/checklist' {
+//     export default class Checklist {
+//         constructor({data: {items}}: {data: {items: any[]}})
+//         render(): HTMLElement;
+//         save(): {items: any[]};
+//     }
+// }
+
+// declare module '@editorjs/code' {
+//     export default class Code {
+//         constructor({data: {code}}: {data: {code: string}})
+//         render(): HTMLElement;
+//         save(): {code: string};
+//     }
+// }
+
+// declare module '@editorjs/delimiter' {
+//     export default class Delimiter {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/embed' {
+//     export default class Embed {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/image' {
+//     export default class Image {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/inline-code' {
+//     export default class InlineCode {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/link' {
+//     export default class Link {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/list' {
+//     export default class List {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/quote' {
+//     export default class Quote {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/simple-image' {
+//     export default class SimpleImage {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/paragraph' {
+//     export default class Paragraph {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/header' {
+//     export default class Header {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/warning' {
+//     export default class Warning {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/marker' {
+//     export default class Marker {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/raw' {
+//     export default class Raw {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/table' {
+//     export default class Table {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/quote' {
+//     export default class Quote {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/underline' {
+//     export default class Underline {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
+// declare module '@editorjs/attaches' {
+//     export default class Attaches {
+//         constructor({data: {}})
+//         render(): HTMLElement;
+//         save(): {};
+//     }
+// }
+
 
 
 // "firstname": "sabbir",
