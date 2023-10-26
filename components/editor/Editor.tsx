@@ -17,7 +17,7 @@ const Editor = ({updated}:editorProps) => {
     const initializeEditor = async () => {
         const Editorjs = (await import("@editorjs/editorjs")).default;
         const Header = (await import("@editorjs/header")).default;
-        // const Image = (await import("@editorjs/image")).default;
+        const ImageTool = (await import("@editorjs/image")).default;
 
         if(!ref.current) {
             ref.current = new Editorjs({
@@ -25,6 +25,7 @@ const Editor = ({updated}:editorProps) => {
                 placeholder: "Let`s write an awesome story!",
                 tools: {
                     header: Header,
+                    Image: ImageTool,
                     // image: {
                     //     class: Image,
                     //     config: {

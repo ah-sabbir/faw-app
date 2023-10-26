@@ -5,7 +5,7 @@
 
 // const fns = Object.values(columns).filter((fn) => typeof fn === 'function');
 
-import Editor from '@/components/editor/Editor';
+import EditorElement from '@/components/editor/Editor';
 import { useState } from 'react';
 
 const PageBuilder = () => {
@@ -93,7 +93,7 @@ const PageBuilder = () => {
             <button className=' ' onClick={updateHandeler}>Update</button>
             </div>
             <div className="h-full p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <Editor updated={update}/>
+            <EditorElement updated={update}/>
             </div>
         </div>
 
