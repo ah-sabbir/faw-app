@@ -8,9 +8,14 @@
 import clientPrisma from '@/lib/prisma';
 
 const GetAllPosts = async () => {
-    const posts:any = await clientPrisma.blogPost.findMany();
+    try {
+        const posts:any = await clientPrisma.blogPost.findMany();
+        return posts;
 
-    return posts;
+    } catch (error) {
+        return false
+    }
+
 };
 
 export default GetAllPosts;

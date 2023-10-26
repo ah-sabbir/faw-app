@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
 // import { PrismaClient as prisma } from "@prisma/client";
@@ -6,10 +6,19 @@ import { NextRequest, NextResponse } from 'next/server';
 
 
 export async function GET(request:NextRequest) { 
-   const tags:any = await prisma.Tag.findMany();
+  try {
+    const tags:any = await clientPrisma.Tag.findMany();
     return NextResponse.json({
         ok: true,
         message: "Post are ready",
         ...tags
       });
+  } catch (error) {
+    return NextResponse.json({
+      ok: false,
+      message: "Post are ready",
+      error: error
+    });
+  }
+
 }

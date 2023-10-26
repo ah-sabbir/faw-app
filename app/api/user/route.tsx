@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma';
+import clientPrisma from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
 // import { PrismaClient as prisma } from "@prisma/client";
@@ -6,11 +6,20 @@ import { NextRequest, NextResponse } from 'next/server';
 
 
 export async function GET(request:NextRequest) { 
-   const user:any = await prisma.user.findMany();
-   console.log(user);
+  try {
+    const user:any = await clientPrisma.user.findMany();
+    // console.log(user);
+     return NextResponse.json({
+         ok: true,
+         user: user,
+         message: "Hello user",
+       });
+  } catch (error) {
     return NextResponse.json({
-        ok: true,
-        user: user,
-        message: "Hello user",
-      });
+      ok: false,
+      user: null,
+      message: "No user found",
+    });
+  }
+
 }

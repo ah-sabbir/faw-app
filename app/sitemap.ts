@@ -3,7 +3,10 @@ import GetAllPosts from "@/lib/blogPost/getPostAll";
 export default async function sitemap() {
   const baseUrl = "https://fashionanywhere.shop";
 
+
   const posts = await GetAllPosts();
+
+  if(!posts) return [];
 
   const routes = posts.map((d:any)=>{
     return {
@@ -11,6 +14,7 @@ export default async function sitemap() {
       lastModified: new Date().toISOString(),
     }
   }) ?? [];
+
 
   return [
     {

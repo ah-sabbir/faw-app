@@ -23,15 +23,18 @@ const Editor = ({updated}:editorProps) => {
             ref.current = new Editorjs({
                 holder: "builder",
                 placeholder: "Let`s write an awesome story!",
+                // onChange: (e) => {console.log("Changed: ", JSON.stringify(e))},
+                onReady() {
+                    console.log("Editor is ready to work!");
+                },
                 tools: {
                     header: Header,
                     Image: ImageTool,
                     // image: {
-                    //     class: Image,
                     //     config: {
                     //         endpoints: {
-                    //             byFile: "http://localhost:3000/api/uploadImage",
-                    //             byUrl: "http://localhost:3000/api/fetchImage",
+                    //             byFile: process.env.NEXT_PUBLIC_URL+ `/api/upload`,
+                    //             // byUrl: "http://localhost:3000/api/fetchImage",
                     //         },
                     //         additionalRequestHeaders: {
                     //             "Access-Control-Allow-Origin": "*",
@@ -66,7 +69,8 @@ const Editor = ({updated}:editorProps) => {
 
     const save = () =>{
         if(ref.current){
-            ref.current.save().then((outputData) => {
+           ref.current.save().then((outputData) => {
+            console.log("working save function");
                 console.log("Article data: ", outputData);
             }).catch((error) => {
                 console.log("Saving failed: ", error)
