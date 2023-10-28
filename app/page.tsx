@@ -6,7 +6,8 @@ import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
 import { FaArrowRight } from 'react-icons/fa';
 
-export const revalidate = 0
+export const revalidate = 60
+
 
 export default async function Home() {
 	const featuredPost = await GetPostByFeatured(true);

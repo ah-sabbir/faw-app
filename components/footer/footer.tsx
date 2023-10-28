@@ -1,7 +1,27 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
+
+
 export const FooterSection = () => {
+    const path = usePathname()
+    const isAdmin = path.split('/').includes('admin')
+    const isLogin = path.split('/').includes('signin')
+    const isRegister = path.split('/').includes('register')
+    const isForgotPassword = path.split('/').includes('forgot-password')
+    const isResetPassword = path.split('/').includes('reset-password')
+    const isVerifyEmail = path.split('/').includes('verify-email')
+    const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
+    const isBuilder = path.split('/').includes('builder')
+
+    if(isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || 
+        isLogin) return (<></>)
+
+
+        
   return (
     <>
         <section className="bg-[#f5f5f5]">

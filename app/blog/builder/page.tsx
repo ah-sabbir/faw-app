@@ -13,10 +13,10 @@ const PageBuilder = () => {
     // return <Testfunction><h1>hello</h1></Testfunction>
     const [update, setUpdate] = useState(false);
 
-    const updateHandeler = () => {
-        console.log("updated", update)
-        setUpdate(true);
-    }
+    // const updateHandeler = () => {
+    //     console.log("updated", update)
+    //     setUpdate(true);
+    // }
 
   return (
     <>
@@ -88,7 +88,7 @@ const PageBuilder = () => {
         </div>
         </aside> */}
 
-        <div className="h-screen p-4 sm:ml-64 sm:m-5">
+        <div className=" min-h-screen p-4 sm:ml-64 sm:m-5">
             <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
             <button className=' ' onMouseDown={()=>setUpdate(true)} onMouseUp={()=>setUpdate(false)}>Update</button>
