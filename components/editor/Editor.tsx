@@ -2,7 +2,7 @@
 
 import EditorJS from "@editorjs/editorjs";
 import { useEffect, useRef, useState } from "react";
-
+import Parser from  'editorjs-html';
 
 interface editorProps {
     updated: boolean;
@@ -29,10 +29,11 @@ const Editor = ({updated}:editorProps) => {
         const Header = (await import("@editorjs/header")).default;
         const ImageTool = (await import("@editorjs/image")).default;
         const Marker = (await import("@editorjs/marker")).default;
-        const simpleImage = (await import("@editorjs/simple-image")).default;
+        // const simpleImage = (await import("@editorjs/simple-image")).default;
         const FontSizeTool = (await import ("./utils/inline-font-size-tool/fontSizeTool")).default;
         // const fontFamilyTool = (await import ("./utils/inline-font-family-tool/fontFamilyTool"));
         const socialPost = (await import ('editorjs-social-post-plugin')).default;
+        const Embed = (await import('@editorjs/embed')).default;
         // import Embed from '@editorjs/embed';
 
         if(!ref.current) {
@@ -42,6 +43,7 @@ const Editor = ({updated}:editorProps) => {
                 onChange: async (api, event) => {
                     api.saver.save().then((outputData) => {
                         // console.log("Article data: ", outputData);
+                        console.log("changed & saved");
                     }).catch((error) => {
                         console.log("Saving failed: ", error)
                     });
@@ -52,7 +54,8 @@ const Editor = ({updated}:editorProps) => {
                 tools: {
                     fontSize: FontSizeTool as any,
                     socialPost: socialPost,
-                    simpleImage: simpleImage,
+                    // simpleImage: simpleImage,
+                    embed: Embed,
                     header: {
                         class: Header,
                         inlineToolbar: true,
@@ -76,20 +79,38 @@ const Editor = ({updated}:editorProps) => {
                                  * @param {File} file - file selected from the device or pasted by drag-n-drop
                                  * @return {Promise.<{success, file: {url}}>}
                                  */
-                                uploadByFile(file:File){
+                                async uploadByFile(file:File){
                                     const formData = new FormData();
                                     formData.append("image", file);
                                     return fetch(`${process.env.NEXT_PUBLIC_URL}/api/upload`, {
                                         method: "POST",
                                         body: formData,
-                                    }).then((response) => {
-                                        return response.json();
-                                    }).then((result) => {
+                                    }).then(d=> d.json()).then((result) => {
                                         console.log("result: ", result);
                                         return {
                                             success: 1,
                                             file: {
-                                                url: `${process.env.NEXT_PUBLIC_URL}/_next/image?url=/_next/`+result.url+'&w=640&q=75',
+                                                url: result.url,
+                                            },
+                                        };
+                                    });
+                                },
+                                onError(error:Error, next:Function){
+                                    console.log(error);
+                                },
+                                async uploadByUrl(url:string){
+                                    return fetch(`${process.env.NEXT_PUBLIC_URL}/api/upload`, {
+                                        method: "POST",
+                                        body: JSON.stringify({url}),
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                    }).then(d=> d.json()).then((result) => {
+                                        console.log("result: ", result);
+                                        return {
+                                            success: 1,
+                                            file: {
+                                                url: result.url,
                                             },
                                         };
                                     });
@@ -123,11 +144,16 @@ const Editor = ({updated}:editorProps) => {
 
     }, [isMounted])
 
-    const save = () =>{
-        if(ref.current){
-           ref.current.save().then((outputData) => {
-            console.log("working save function");
-                console.log("Article data: ", outputData);
+    const save = () => {
+        if (ref.current) {
+            ref.current.save().then((outputData) => {
+                console.log("working save function");
+                var div = "<div>"
+                const parser = Parser();
+                const html = parser.parse(outputData);
+                html.forEach((d,i)=>div+=d+"</br>");
+                div+="</div>";
+                console.log(div);
             }).catch((error) => {
                 console.log("Saving failed: ", error)
             });
