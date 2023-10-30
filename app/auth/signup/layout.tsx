@@ -6,7 +6,7 @@ interface IProps {
 
 
 
-export default function RootLayout({children}: IProps) {
+export default function SignUpLayout({children}: IProps) {
     return (
       <>
             {children}

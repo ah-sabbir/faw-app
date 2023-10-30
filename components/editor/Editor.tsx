@@ -3,6 +3,7 @@
 import EditorJS from "@editorjs/editorjs";
 import { useEffect, useRef, useState } from "react";
 import Parser from  'editorjs-html';
+import "@/components/editor/utils/inlineFontSizeTool/fontSizeTool.css";
 
 interface editorProps {
     updated: boolean;
@@ -18,8 +19,6 @@ const imageLoader = ({ src, width, quality }:LoaderProps) => {
     return `${process.env.NEXT_PUBLIC_URL}/${src}?w=${width}&q=${quality || 75}`
   }
 
-
-
 const Editor = ({updated}:editorProps) => {
     const [isMounted, setIsMounted] = useState(false);
     const ref = useRef<EditorJS>();
@@ -30,7 +29,7 @@ const Editor = ({updated}:editorProps) => {
         const ImageTool = (await import("@editorjs/image")).default;
         const Marker = (await import("@editorjs/marker")).default;
         // const simpleImage = (await import("@editorjs/simple-image")).default;
-        const FontSizeTool = (await import ("./utils/inline-font-size-tool/fontSizeTool")).default;
+        const FontSizeTool = (await import ("./utils/inlineFontSizeTool/fontSizeTool")).default;
         // const fontFamilyTool = (await import ("./utils/inline-font-family-tool/fontFamilyTool"));
         const socialPost = (await import ('editorjs-social-post-plugin')).default;
         const Embed = (await import('@editorjs/embed')).default;

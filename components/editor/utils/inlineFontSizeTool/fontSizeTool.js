@@ -1,6 +1,4 @@
 
-import "./fontSizeTool.css"
-
 class FontSizeTool {
   static title = 'Font Size';
   isDropDownOpen = false;

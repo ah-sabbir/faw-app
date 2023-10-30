@@ -28,9 +28,13 @@ export async function POST(request:Request) {
         },
       });
 
+      if(!user){
+        return NextResponse.json({ ok: false, msg: "Invalid email or user not register yet" });
+      }
+
       if(user && (await bcrypt.compare(body.password,user.password)) ){
         const { password, ...rest } = user;
-        // const token = await getToken( {req:Request} )
+        // const token = await getToken()
         // console.log(token);
         return NextResponse.json({ ok: true, user: rest });
       }else{

@@ -7,7 +7,7 @@ interface IProps {
 
 
 
-export default function BuilderLayout({children}: IProps) {
+export default function SignInLayout({children}: IProps) {
     return (
       <>
           <Provider>

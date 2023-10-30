@@ -6,6 +6,8 @@
 // const fns = Object.values(columns).filter((fn) => typeof fn === 'function');
 
 import EditorElement from '@/components/editor/Editor';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const PageBuilder = () => {
@@ -13,11 +15,17 @@ const PageBuilder = () => {
     // return <Testfunction><h1>hello</h1></Testfunction>
     const [update, setUpdate] = useState(false);
     const [editorData, setEditorData] = useState({});
-
+    const {status, data} = useSession();
+    const Router = useRouter();
     // const updateHandeler = () => {
     //     console.log("updated", update)
     //     setUpdate(true);
     // }
+    if (status === "unauthenticated"){
+        return Router.push("/auth/signin");
+    }else{
+
+    }
 
   return (
     <>

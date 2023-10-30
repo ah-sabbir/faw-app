@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/EmailSigninButton";
 // import Button from '@/components/elements/Button';
-import { getSession, signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -18,6 +18,11 @@ const LoginPage = () => {
 
   const [Source, setSource] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const { status, data } = useSession();
+
+    // console.log(status, data);
+  
   
   useEffect(() => {
     const res = getImg();
@@ -41,8 +46,8 @@ const LoginPage = () => {
         password: password,
         redirect: false,
     });
-    console.log(res);
-    getSession().then((session)=>{ console.log(session)});
+    // console.log(res);
+    // getSession().then((session)=>{ console.log(session)});
     // const res = await fetch("/api/auth/login", {
     //     method: 'POST',
     //     headers: {

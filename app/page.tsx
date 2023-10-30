@@ -9,6 +9,15 @@ import { FaArrowRight } from 'react-icons/fa';
 export const revalidate = 60
 
 
+// import { getServerSession } from 'next-auth';
+// import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+
+// export async function GET(request) {
+//     const session = await getServerSession(authOptions);
+//     console.log(session)
+// }
+
+
 export default async function Home() {
 	const featuredPost = await GetPostByFeatured(true);
 	// console.log(featuredPost);
