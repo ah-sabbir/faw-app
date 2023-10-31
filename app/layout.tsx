@@ -55,9 +55,11 @@ export default function RootLayout({
 
     // if(isBuilder) return (<>{children}</>)
 
+    // className={`${inter.variable}`}
+
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} > 
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }

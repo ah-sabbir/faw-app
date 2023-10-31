@@ -3,6 +3,7 @@ import Button from "@/components/EmailSigninButton";
 // import Button from '@/components/elements/Button';
 import { getSession, signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from "react";
 
 const getImg = async () => {
@@ -19,10 +20,19 @@ const LoginPage = () => {
   const [Source, setSource] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const { status, data } = useSession();
+  const router = useRouter();
 
     // console.log(status, data);
-  
+//   useEffect(() => {
+//     if (status === "unauthenticated") {
+//         console.log("No JWT");
+//         console.log(status);
+//       } else if (status === "authenticated") {
+//         void router.push("/");
+//       }
+//   }, [status])
   
   useEffect(() => {
     const res = getImg();
@@ -46,6 +56,8 @@ const LoginPage = () => {
         password: password,
         redirect: false,
     });
+    res?.error && setError(true);
+    getSession().then((session)=> session?.user && void router.push("/admin") );
     // console.log(res);
     // getSession().then((session)=>{ console.log(session)});
     // const res = await fetch("/api/auth/login", {
@@ -66,7 +78,8 @@ const LoginPage = () => {
             <div className="md:w-1/2 px-8">
             {/* <h2 className="font-bold text-2xl text-[#002D74]">Login</h2> */}
             <p className="text-xs mt-4 text-[#002D74] text-center">If you are already a member, easily log in</p>
-
+                {/* label for username or password error */}
+                {error && <label className="text-xs mt-4 text-red-800 bold w-full text-center">Username or password is incorrect</label>}
                 <form method="post" onSubmit={submitHandler} className="mt-5">
                     <div className="mb-6">
                         <input type="email" name="email" id="email" className="bg-gray-50 border focus:border-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required/>

@@ -6,28 +6,40 @@
 // const fns = Object.values(columns).filter((fn) => typeof fn === 'function');
 
 import EditorElement from '@/components/editor/Editor';
+import { getToken } from 'next-auth/jwt';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+
+// export const getServerSideProps = ({req, res}:any) => {
+//     const token = getToken(req);
+//     if (!token) return {
+//       redirect: {
+//         destination: '/auth/signin',
+//       }
+//     }
+//     // if auth'd
+//   }
+
 
 const PageBuilder = () => {
     // const Testfunction = fns[0];
     // return <Testfunction><h1>hello</h1></Testfunction>
     const [update, setUpdate] = useState(false);
     const [editorData, setEditorData] = useState({});
+    const [show, setShow] = useState(false);
     const {status, data} = useSession();
     const Router = useRouter();
     // const updateHandeler = () => {
     //     console.log("updated", update)
     //     setUpdate(true);
     // }
-    if (status === "unauthenticated"){
-        return Router.push("/auth/signin");
-    }else{
-
+    if (status === "authenticated"){
+        setShow(true);
     }
 
-  return (
+  return status === "unauthenticated"? void Router.push("/auth/signin") : (
     <>
         {/* <aside id="default-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -108,7 +120,7 @@ const PageBuilder = () => {
             <button className=' ' onMouseDown={()=>setUpdate(true)} onMouseUp={()=>setUpdate(false)}>Update</button>
             </div>
             <div className="h-full p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                <EditorElement updated={update}/>
+                <EditorElement updated={update} show={show}/>
             </div>
         </div>
 

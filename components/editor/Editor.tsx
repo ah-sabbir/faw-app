@@ -7,6 +7,7 @@ import "@/components/editor/utils/inlineFontSizeTool/fontSizeTool.css";
 
 interface editorProps {
     updated: boolean;
+    show: boolean;
 }
 
 interface LoaderProps {
@@ -19,7 +20,7 @@ const imageLoader = ({ src, width, quality }:LoaderProps) => {
     return `${process.env.NEXT_PUBLIC_URL}/${src}?w=${width}&q=${quality || 75}`
   }
 
-const Editor = ({updated}:editorProps) => {
+const Editor = ({updated, show}:editorProps) => {
     const [isMounted, setIsMounted] = useState(false);
     const ref = useRef<EditorJS>();
 
@@ -167,7 +168,7 @@ const Editor = ({updated}:editorProps) => {
 
 return (
     <>
-        <div id="builder"></div>
+        <div className={show?"block":"hidden"} id="builder"></div>
     </>
 )
 }

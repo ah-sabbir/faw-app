@@ -99,7 +99,7 @@ const NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
       ],
       callbacks: {
         async jwt({ user, token }){
-          console.log("jwt callback", user);
+          console.log("jwt callback", !!user);
           if (user) {
             token.accessToken = token.access_token
             token.id = user.id
@@ -108,11 +108,16 @@ const NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
         },
 
         async session({ session, token }) {
+          console.log("session callback", !!token);
           if (session?.user) {
             session.user = token;
           }
           return session;
         },
+        // async signIn ({user, account, profile, email, credentials}) {
+        //   console.log("signin callback", !!user);
+        //   return true
+        // }
       },
       // session: {
       //   // Choose how you want to save the user session.
