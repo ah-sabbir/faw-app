@@ -37,7 +37,7 @@ const RootHeader = () => {
     }
 
   
-    if(isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || 
+    if(isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || isAdmin ||
         isLogin) return (<></>)
 
   return (
