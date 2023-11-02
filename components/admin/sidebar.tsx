@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import blogIcon from '@/images/blog-writing.png';
 
 const Sidebar = () => {
   return (
@@ -10,6 +11,21 @@ const Sidebar = () => {
                 </div>
                 <div className="overflow-y-auto overflow-x-hidden flex-grow">
                 <ul className="flex flex-col py-4 space-y-1">
+                    <li>
+                    <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+                        <span className="inline-flex justify-center items-center ml-4">
+                        <svg className='w-5 h-5' fill='none' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241.000000 241.000000"
+                                preserveAspectRatio="xMidYMid meet">
+
+                                <g transform="translate(0.000000,241.000000) scale(0.100000,-0.100000)"
+                                fill="none" stroke="none">
+                                </g>
+                                </svg>
+                        </span>
+                        <span className="ml-2 text-sm tracking-wide truncate">Create Post</span>
+                    </a>
+                    </li>
+
                     <li className="px-5">
                     <div className="flex flex-row items-center h-8">
                         <div className="hidden group-hover:inline-block text-sm font-light tracking-wide text-gray-500">Menu</div>
