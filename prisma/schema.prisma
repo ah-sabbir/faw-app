@@ -7,193 +7,106 @@ datasource db {
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
-
 model User {
-  id          String        @id @default(cuid())
+  id         String        @id @default(cuid())
   firstName   String        @map("first_name")
   lastName    String?       @map("last_name")
   email       String        @unique
-  phone       String?       @unique
+  username    String?       @unique
+  bio         String?
   avatar      String?
-  country     String?
-  city        String?
-  password    String
-  role        String?       @default("user")
-  status      String?       @default("active")
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  shops       Shop?         @relation("_users_shop")
-  blogPosts   blogPost[]
-  UserComment UserComment[]
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  posts      Post[]      
+  comments   Comment[]    
 
   @@map("users")
 }
 
-model Shop {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String
-  userId      String    @unique @map("user_id")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  user        User      @relation("_users_shop", fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  products    Product[] @relation("_users_shop_products")
-
-  @@index([userId])
-  @@map("shops")
-}
-
-model ProductCategory {
-  id            Int               @id @default(autoincrement())
-  name          String
-  perentId      Int?              @map("perent_id")
-  perent        ProductCategory?  @relation("PerentCategoryToPerent", fields: [perentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  subCategories ProductCategory[] @relation("PerentCategoryToPerent")
-  Product       Product[]
-
-  @@index([perentId])
-  @@map("product_categories")
-}
-
-model Media {
-  id        Int      @id @default(autoincrement())
-  title     String
-  url       String
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
-
-  @@map("media")
-}
-
-model Product {
-  id          Int             @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  quantity    Int
-  image       String
-  createdAt   DateTime        @default(now()) @map("created_at")
-  updatedAt   DateTime        @updatedAt @map("updated_at")
-  categoryId  Int             @map("category_id")
-  shopId      Int
-  category    ProductCategory @relation(fields: [categoryId], references: [id])
-  shop        Shop            @relation("_users_shop_products", fields: [shopId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  orders      Order[]         @relation("_products_orders")
-
-  @@index([shopId])
-  @@index([categoryId])
-  @@map("products")
-}
-
-model Order {
-  id        String   @id @default(cuid())
-  quantity  Int
-  price     Float
-  status    String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  productId Int
-  product   Product  @relation("_products_orders", fields: [productId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@index([productId])
-  @@map("orders")
-}
-
-model postCategory {
-  id         Int      @id @default(autoincrement())
-  blogPostId String
-  categoryId String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  blogPost   blogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  category   Category @relation(fields: [categoryId], references: [id]  , onDelete: Cascade, onUpdate: NoAction)
-
-  @@index([blogPostId])
-  @@index([categoryId])
-  @@map("post_categories")
-}
-
-model blogPost {
-  id         String         @id @default(cuid())
+// Post model
+model Post {
+  id         String        @id @default(cuid())
   title      String
-  content    String         @db.LongText
+  content    String        @db.Text
   coverImage String?
-  published  Boolean?       @default(false)
-  createdAt  DateTime       @default(now())
-  updatedAt  DateTime       @updatedAt
-  userId     String         @map("user_id")
-  tagId      Int            @map("tag_id")
-  slug       String?        @unique
-  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  categories postCategory[]
-  tag        Tag            @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  comments   UserComment[]
-  analytics  Analytics?
-  metadata   Metadata?
+  published  Boolean?      @default(false)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  userId    String         @map("user_id")
+  slug       String?       @unique
+  author    User           @relation(fields: [userId], references: [id])
+  category  Category[]     @relation("PostToCategory", onDelete: SetNull, onUpdate: Cascade)      
+  tags       Tag[]         @relation("PostToTag", onDelete: Cascade, onUpdate: Cascade)
+  comments   Comment[]     @relation("PostToComment", onDelete: Cascade, onUpdate: NoAction)
+  analytics  PostAnalytics?
 
   @@index([slug])
   @@index([userId])
-  @@index([tagId])
-  @@map("blog_posts")
+  @@map("posts")
 }
 
+// Category model
 model Category {
-  id        String         @id @default(cuid())
+  id        String        @id @default(cuid())
   name      String
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  posts     postCategory[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  postsId   String?       @map("posts_id")
+  posts     Post[]      @relation(fields: [postsId], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("categories")
 }
 
+// Tag model
 model Tag {
-  id        Int        @id @default(autoincrement())
+  id        String        @id @default(cuid())
   name      String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  blogPosts blogPost[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  posts     Post[]      @relation("PostToTag", references: [id], onDelete: SetNull, onUpdate: Cascade)
 
   @@map("tags")
 }
 
-model UserComment {
-  id         Int      @id @default(autoincrement())
-  content    String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  userId     String
-  blogPostId String   @map("blog_post_id")
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  blogPost   blogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+// Comment model
+model Comment {
+  id         Int         @id @default(autoincrement())
+  content    String      @db.Text
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  userId    String       @map("user_id")
+  postId    String       @map("post_id")
+  user      User         @relation(fields: [userId], references: [id])
+  post      Post        @relation(fields: [postId], references: [id])
 
   @@index([userId])
-  @@index([blogPostId])
-  @@map("user_comments")
+  @@index([postId])
+  @@map("comments")
 }
 
-model Analytics {
-  id         Int      @id @default(autoincrement())
+// Like model (optional)
+model Like {
+  id         Int         @id @default(autoincrement())
+  userId    String       @map("user_id")
+  postId    String       @map("post_id")
+  user      User         @relation(fields: [userId], references: [id])
+  post      Post        @relation(fields: [postId], references: [id])
+
+  @@index([userId])
+  @@index([postId])
+  @@map("likes")
+}
+
+// Post Analytics model
+model PostAnalytics {
+  id         Int         @id @default(autoincrement())
   views      Int
   likes      Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  blogPostId String   @unique @map("blog_post_id")
-  blogPost   blogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  postId    String       @unique @map("post_id")
+  post      Post        @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@index([blogPostId])
-  @@map("analytics")
-}
-
-model Metadata {
-  id         Int      @id @default(autoincrement())
-  key        String
-  value      String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  blogPostId String   @unique @map("blog_post_id")
-  blogPost   blogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@index([blogPostId])
-  @@map("metadata")
+  @@index([postId])
+  @@map("post_analytics")
 }

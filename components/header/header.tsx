@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 // import logo from '@/images/logo.png';
 import logo from '@/app/brand-logo.png'
-import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter, FaUser} from 'react-icons/fa';
+import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter, FaUser, FaSearch} from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { getSession, signOut} from 'next-auth/react';
+import { poppins_lg, poppins_md } from '@/app/fonts/fonts';
 
 
 const RootHeader = () => {
@@ -41,86 +42,24 @@ const RootHeader = () => {
         isLogin) return (<></>)
 
   return (
-        <header className="bg-[#f8efea] w-full h-[92px] relative justify-center">
-            <div className="w-full h-full flex flex-wrap items-center justify-between px-[30px]"> 
-                <div className='w-[64px] h-[64px] rounded-[50%]'>
-                    <Link href="#" className='w-full h-auto'>
-                        <Image src={logo} alt="Fashion anywhere" width={100} height={100} className=' object-cover' />
-                    </Link>
-                </div>
-
-                <button className="lg:hidden" type="button" onClick={menuHandler}>
-                <span className="sr-only">Open sidebar</span>
-                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                </svg>
-                </button>
-
-
-                <nav className="hidden md:hidden lg:flex lg:justify-center lg:items-center">
-                    <ul className='flex gap-2'>
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/">Home</Link>
-                        </li>                       
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/cultures">CULTURES</Link>
-                        </li>
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/trends">TRENDS</Link>
-                        </li>
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/beauty">BEAUTY</Link>
-                        </li>
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/outfits">Outfits</Link>
-                        </li>
-                        <li className='p-2 m-2 font-semibold uppercase'> 
-                            <Link className="" href="/aboutus">About Us</Link>
-                        </li>
+        <section className=" max-w-[1920px] w-full h-auto flex justify-center z-[999] sticky">
+            {/* <!-- component --> */}
+            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-10 lg:px-10 lg:py-10 items-center ">
+                <Link href={"/"} className={`text-xl md:text-xl lg:5xl text-gray-900 font-bold px-5 uppercase hover:text-gray-900  ${poppins_lg.className}`}>Fashion</Link>
+                <div className="flex md:flex-auto items-center justify-between">
+                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] ${poppins_md.className}`}>
+                        <li className="font-semibold text-gray-700"><Link href={"#"}>Trends</Link></li>
+                        <li className="font-semibold text-gray-700"><Link href={"#"}>Beauty & Makeup</Link></li>
+                        <li className="font-semibold text-gray-700"><Link href={"#"}>Travel & Lifestyle</Link></li>
+                        <li className="font-semibold text-gray-700"><Link href={"#"}>Style Diary</Link></li>
                     </ul>
-                </nav>
-
-                <div className="hidden lg:block lg:max-w-full lg:relative lg:min-h-[1px] lg:px-4">
-                    <div className=" text-start">
-                        <ul className="flex pl-0 list-none">
-                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaFacebookF width={35} height={35}/></Link></li>
-                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaTwitter width={35} height={35}/></Link></li>
-                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaLinkedinIn width={35} height={35}/></Link></li>
-                            <li className='block mr-1 pr-1 pl-1'><Link href="#" className='px-1 mx-1'><FaPinterest width={35} height={35}/></Link></li>
-                            {
-                               isAuthenticated && <>
-                               
-                                            <li className='flex justify-center items-center  mr-1 pr-1 pl-1'><Link href="#" onClick={(e)=> setIsMenuOpen(!isMenuOpen)} className='w-[50px] h-[50px] flex justify-center items-center text-center px-1 mx-1 hover:bg-slate-700  rounded-[50%] border-2'><FaUser width={35} height={35}/></Link></li>
-
-                                            {/* <!-- Dropdown menu --> */}
-                                            <div id="dropdownInformation" className={`z-10 absolute top-[60px] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ${!isMenuOpen && "hidden"} `}>
-                                                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                <div>{userInfo?.firstName+" "+userInfo?.lastName}</div>
-                                                <div className="font-medium truncate">{userInfo?.email}</div>
-                                                </div>
-                                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
-                                                <li>
-                                                    <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
-                                                </li>
-                                                </ul>
-                                                <div className="py-2">
-                                                <Link href="#" onClick={(e)=> signOut()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</Link>
-                                                </div>
-                                            </div>
-
-                               </>
-                            }
-                        </ul>
+                    <div className={`flex items-center ${poppins_lg}`}>
+                        <FaSearch className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={()=>console.log("search icon")}/>
+                        <FaBars className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={menuHandler}/>
                     </div>
                 </div>
-            </div>
-    </header>
+            </nav>
+    </section>
 
   )
 }

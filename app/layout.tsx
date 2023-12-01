@@ -15,8 +15,6 @@ import { usePathname } from 'next/navigation';
 // }
 // import { headers } from 'next/headers';
 
-
-
 export const metadata:Metadata = {
   icons: {
     icon: '/app/favicons/icon_16x16.ico',
