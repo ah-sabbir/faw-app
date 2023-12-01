@@ -35,7 +35,7 @@ model Post {
   Tag       Tag[]
   category  Category[]
 
-  @@index([authorId])
+  @@index([authorId]) // if you want to add index to a column in mysql database you can use this syntax. and it will refer to on user to many posts
 }
 
 model Category {
