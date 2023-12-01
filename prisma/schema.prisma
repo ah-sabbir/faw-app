@@ -7,106 +7,52 @@ datasource db {
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
-model User {
-  id         String        @id @default(cuid())
-  firstName   String        @map("first_name")
-  lastName    String?       @map("last_name")
-  email       String        @unique
-  username    String?       @unique
-  bio         String?
-  avatar      String?
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  posts      Post[]      
-  comments   Comment[]    
 
-  @@map("users")
+model user {
+  id         String   @id @unique @default(cuid())
+  first_name String
+  last_name  String?
+  email      String   @unique
+  user_name  String?
+  bio        String?
+  avatar     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  posts      Post[]
 }
 
-// Post model
 model Post {
-  id         String        @id @default(cuid())
-  title      String
-  content    String        @db.Text
-  coverImage String?
-  published  Boolean?      @default(false)
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  userId    String         @map("user_id")
-  slug       String?       @unique
-  author    User           @relation(fields: [userId], references: [id])
-  category  Category[]     @relation("PostToCategory", onDelete: SetNull, onUpdate: Cascade)      
-  tags       Tag[]         @relation("PostToTag", onDelete: Cascade, onUpdate: Cascade)
-  comments   Comment[]     @relation("PostToComment", onDelete: Cascade, onUpdate: NoAction)
-  analytics  PostAnalytics?
+  id        String     @id @unique @default(cuid())
+  title     String
+  content   String
+  coverimg  String?
+  published Boolean?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now())
+  slug      String?    @unique
+  authorId  String
+  author    user       @relation(fields: [authorId], references: [id])
+  Tag       Tag[]
+  category  Category[]
 
-  @@index([slug])
-  @@index([userId])
-  @@map("posts")
+  @@index([authorId])
 }
 
-// Category model
 model Category {
-  id        String        @id @default(cuid())
+  id        String   @id @unique @default(cuid())
   name      String
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
-  postsId   String?       @map("posts_id")
-  posts     Post[]      @relation(fields: [postsId], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  postId    String
+  posts     Post     @relation(fields: [postId], references: [id])
 
-  @@map("categories")
+  @@index([postId])
 }
 
-// Tag model
 model Tag {
-  id        String        @id @default(cuid())
+  id        String   @id @unique @default(cuid())
   name      String
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
-  posts     Post[]      @relation("PostToTag", references: [id], onDelete: SetNull, onUpdate: Cascade)
-
-  @@map("tags")
-}
-
-// Comment model
-model Comment {
-  id         Int         @id @default(autoincrement())
-  content    String      @db.Text
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  userId    String       @map("user_id")
-  postId    String       @map("post_id")
-  user      User         @relation(fields: [userId], references: [id])
-  post      Post        @relation(fields: [postId], references: [id])
-
-  @@index([userId])
-  @@index([postId])
-  @@map("comments")
-}
-
-// Like model (optional)
-model Like {
-  id         Int         @id @default(autoincrement())
-  userId    String       @map("user_id")
-  postId    String       @map("post_id")
-  user      User         @relation(fields: [userId], references: [id])
-  post      Post        @relation(fields: [postId], references: [id])
-
-  @@index([userId])
-  @@index([postId])
-  @@map("likes")
-}
-
-// Post Analytics model
-model PostAnalytics {
-  id         Int         @id @default(autoincrement())
-  views      Int
-  likes      Int
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  postId    String       @unique @map("post_id")
-  post      Post        @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-
-  @@index([postId])
-  @@map("post_analytics")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  posts     Post[]
 }
