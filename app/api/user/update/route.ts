@@ -1,8 +1,6 @@
 import prisma from '@/lib/prisma';
-import bcrypt from "bcryptjs";
+import { genSaltSync, hash } from 'bcrypt';
 import { NextResponse } from 'next/server';
-
-const bcryptP:any = bcrypt;
 
 export async function PUT(request:Request) { 
    const {id, firstname, lastname, email, phone, password, role} = await request.json()
@@ -18,8 +16,8 @@ export async function PUT(request:Request) {
   try {
     let hashedPassword = undefined ;
     if (password){
-      const salt = bcryptP.genSaltSync(10);
-      hashedPassword = await bcryptP.hash(password, salt);
+      const salt = genSaltSync(12);
+      hashedPassword = await hash(password, salt);
     }
 
     await prisma.user.update({

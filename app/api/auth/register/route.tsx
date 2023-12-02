@@ -3,8 +3,8 @@
 // import type { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 
-import bcrypt from "bcryptjs";
 import clientPrisma from '@/lib/prisma';
+import { hash } from 'bcrypt';
 
 interface CreateUserRequest {
     firstname:string,
@@ -48,7 +48,7 @@ export async function POST(request:Request) {
                     avatar:body.avatar,
                     country:body.country,
                     city:body.city,
-                    password: await bcrypt.hash(body.password, 10)
+                    password: await hash(body.password, 12)
                 },
               });
         

@@ -6,20 +6,15 @@ import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
 import { FaArrowRight } from 'react-icons/fa';
 
-export const revalidate = 60
+import { Options  } from './api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
 
-
-// import { getServerSession } from 'next-auth';
-// import { authOptions } from "@/app/api/auth/[...nextauth]/route"
-
-// export async function GET(request) {
-//     const session = await getServerSession(authOptions);
-//     console.log(session)
-// }
+export const revalidate = 60;
 
 
 export default async function Home() {
 	const featuredPost = await GetPostByFeatured(true);
+	const session = await getServerSession(Options);
 	// console.log(featuredPost);
 
   return (
@@ -27,11 +22,15 @@ export default async function Home() {
 
 				<section className="slider mt-4">
 					<div className="p-2 m-auto w-full">
-						<ImageSlider/>
+						<ImageSlider 
+						img={"https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"}
+						title="The Hottest Fashion Trends to Expect in 2024: A Must-Read for Style Savvy Individuals"
+						slug=''
+						/>
 					</div>
 				</section>
 
-
+			{/* <pre>{JSON.stringify(session)}</pre> */}
 			{/* blog section */}
 				<section className=" pt-[70px] pb-[70px] relative">
 					<div className=" max-w-md md:max-w-screen-md lg:max-w-6xl px-[15px] mx-auto">

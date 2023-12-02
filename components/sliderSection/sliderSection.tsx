@@ -3,17 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import './sliderSection.module.css';
-
-
-
-
-
-import img1 from '@/images/slider/slide1.jpg'
-import img2 from '@/images/slider/slide2.jpg'
-import img3 from '@/images/slider/slide3.jpg'
-import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
-
 
 const options = {
   loop: true,
@@ -23,32 +12,14 @@ const options = {
 };
 
 
-const data = [
-    {
-        image: "https://images.unsplash.com/photo-1478118330274-ff72cf1161a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Lifestyle",
-        title: "Tips for Taking a Long-term Trip",
-        date: "January 2, 2019",
-        URL: "/1"
-    },
-    {
-        image: "https://images.unsplash.com/photo-1478118330274-ff72cf1161a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Lifestyle",
-        title: "Tips for Taking a Long-term Trip",
-        date: "January 2, 2019",
-        URL: "/1"
-    },
-    {
-        image: "https://images.unsplash.com/photo-1478118330274-ff72cf1161a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Lifestyle",
-        title: "Tips for Taking a Long-term Trip",
-        date: "January 2, 2019",
-        URL: "/1"
-    },
-]
+interface Props {
+    img: string;
+    title: string;
+    slug?: string;
+}
 
 
-const ImageSlider = async()=>{
+const ImageSlider = async({slug,img,title}:Props)=>{
   
     var settings = {
         dots: true,
@@ -60,29 +31,13 @@ const ImageSlider = async()=>{
 
     return (
         <>
-          <div className='w-full  relative '>
-            <div className='w-full flex flex-nowrap flex-col md:flex-row gap-2 px-[15px] mx-auto md:max-w-3xl lg:max-w-7xl'> {/* flex-col md:flex-row gap-1 */}
-                <div className='w-full md:w-4/12 lg:w-4/12'>
-                  <Link href='https://www.amazon.com/b?_encoding=UTF8&tag=voguex-20&linkCode=ur2&linkId=47e92f9b5f077d64aa8caf8852acf6ed&camp=1789&creative=9325&node=1036592'>
-                    <Image src={img3} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
-                  </Link>
-                </div>
-                <div className='w-full md:w-4/12 lg:w-4/12'>
-                  <Link href='https://www.amazon.com/gp/search?ie=UTF8&tag=voguex-20&linkCode=ur2&linkId=c429210db684c11705f55ea5928775ae&camp=1789&creative=9325&index=beauty&keywords=winter fashion for women 2023 trendy'>
-                    <Image src={img2} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
-                  </Link>
-                </div>
-                <div className='w-full md:w-4/12 lg:w-4/12'>
-                  <Link href='https://www.amazon.com/b?_encoding=UTF8&tag=voguex-20&linkCode=ur2&linkId=74e4458b5a25c3bae61f588b90964d98&camp=1789&creative=9325&node=3760911'>
-                    <Image src={img1} className='w-full h-full' width={100} height={100} alt='...' quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading="eager" />
-                  </Link>
-                </div>
+          <div className=' max-w-[1920px] w-full  relative bg-[#D5D2C5] py-3'>
+            <div className='max-w-[1260px] w-full flex items-center flex-nowrap flex-col md:flex-row gap-3 px-[15px] mx-auto'> {/* flex-col md:flex-row gap-1 */}
+            <Image src={img} alt={title} width={100} height={100} className="block mb-4 w-full h-full" quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+            <div className='w-full h-full flex items-center justify-center'>
+              <h1 className='lg:text-6xl lg:text-left lg:font-normal lg:leading-snug'><Link href="/">{title}</Link></h1>
             </div>
-                <div className=' p-1 mx-10 flex flex-col items-center justify-center bg-white  bottom-0 left-[35%]'>
-                  <h3 className='text-[#D06718] p-1 font-thin'>Explore</h3>
-                  <h2 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[38px] md:text-[32px] lg:text-[48px]'>Your Style</h2>
-                  <h1 className='pl-1 pr-5 py-2 text-[#3D3D4E] text-[18px] md:text-[38px] lg:text-[25px]'>Anywhere Everywhere</h1>
-                </div>
+            </div>
           </div>
         </>
       );

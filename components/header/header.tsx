@@ -44,7 +44,7 @@ const RootHeader = () => {
   return (
         <section className=" max-w-[1920px] w-full h-auto flex justify-center z-[999] sticky">
             {/* <!-- component --> */}
-            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-10 lg:px-10 lg:py-10 items-center ">
+            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-10 lg:px-3 lg:py-5 lg:mt-3 items-center ">
                 <Link href={"/"} className={`text-xl md:text-xl lg:5xl text-gray-900 font-bold px-5 uppercase hover:text-gray-900  ${poppins_lg.className}`}>Fashion</Link>
                 <div className="flex md:flex-auto items-center justify-between">
                     <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] ${poppins_md.className}`}>

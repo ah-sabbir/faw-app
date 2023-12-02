@@ -5,8 +5,8 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from 'next/server';
 
 
-import bcrypt from "bcryptjs";
-import clientPrisma from '@/lib/prisma';
+import database from "@/lib/prisma";
+import { compare } from "bcrypt";
 
 const secret = process.env.NEXTAUTH_SECRET
 
@@ -22,7 +22,7 @@ interface UserRequest {
 export async function POST(request:Request) {
       const body:UserRequest = await request.json();
 
-      const user:any = await clientPrisma.user.findFirst({
+      const user:any = await database.user.findFirst({
         where: {
           email: body.email,
         },
@@ -32,7 +32,7 @@ export async function POST(request:Request) {
         return NextResponse.json({ ok: false, msg: "Invalid email or user not register yet" });
       }
 
-      if(user && (await bcrypt.compare(body.password,user.password)) ){
+      if(user && (await compare(body.password,user.password)) ){
         const { password, ...rest } = user;
         // const token = await getToken()
         // console.log(token);

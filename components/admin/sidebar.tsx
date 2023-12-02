@@ -1,13 +1,16 @@
 'use client'
 import React from 'react'
 import blogIcon from '@/images/blog-writing.png';
+import { useSession } from 'next-auth/react';
 
 const Sidebar = () => {
+    const { data: session } = useSession();
+    const user = session?.user;
   return (
     <>
             <div className="group w-[54px] fixed flex flex-col top-0 left-0 hover:w-64 bg-white h-full border-r transition-all duration-700 ease-in-out">
                 <div className="flex items-center justify-center h-14 border-b">
-                <div className='invisible group-hover:visible'>fashion anywhere</div>
+                <div className='invisible group-hover:visible'>{user?.email}</div>
                 </div>
                 <div className="overflow-y-auto overflow-x-hidden flex-grow">
                 <ul className="flex flex-col py-4 space-y-1">

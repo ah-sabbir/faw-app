@@ -1,8 +1,6 @@
 import prisma from '@/lib/prisma';
-import bcrypt from "bcryptjs";
+import { genSaltSync, hash } from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
-
-const bcryptP:any = bcrypt;
 
 interface User{
   firstName:string,
@@ -40,10 +38,10 @@ export async function POST(request:NextRequest) {
     }else{
 
       // password converting normal to hash
-      const salt = bcryptP.genSaltSync(10);
+      const salt = genSaltSync(12);
 
           
-      const hashedPassword = await bcryptP.hash(data.password, salt);
+      const hashedPassword = await hash(data.password, salt);
       // creating user
       const User = await prisma.user.create({
         data: {

@@ -7,6 +7,7 @@ import { FooterSection } from '@/components/footer/footer'
 import GoogleAnalytics from '@/components/ga4/googleanalytics'
 import GoogleTagManager from '@/components/gtm/googleTagManager'
 import { usePathname } from 'next/navigation';
+// import Provider from '@/providers/sessionProvider';
 
 
 // export const metadata: Metadata = {
@@ -61,9 +62,9 @@ export default function RootLayout({
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
-        <RootHeader/>
-        {children}
-        <FooterSection/>
+          <RootHeader/>
+            {children}
+          <FooterSection/>
         </body>
     </html>
   )
