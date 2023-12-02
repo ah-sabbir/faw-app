@@ -58,6 +58,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+      <meta name="p:domain_verify" content="aa62db3cc92aa387d76d2ecd0c3b443e"/>
+      </head>
       <body suppressHydrationWarning={true} > 
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
