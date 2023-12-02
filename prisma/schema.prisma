@@ -8,33 +8,58 @@ datasource db {
   relationMode = "prisma"
 }
 
-model user {
-  id         String   @id @unique @default(cuid())
-  first_name String
-  last_name  String?
-  email      String   @unique
-  user_name  String?
-  bio        String?
-  avatar     String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now())
-  posts      Post[]
+model User {
+  id             String    @id @unique @default(cuid())
+  first_name     String
+  last_name      String?
+  email          String    @unique
+  hashedPassword String?
+  sessions       Session[]
+  user_name      String?
+  bio            String?
+  avatar         String?
+  role           String    @default("admin")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now())
+  posts          Post[]
+  comments       Comment[]
+  like           Like[]
+}
+
+model Session {
+  id                 String    @id @unique @default(cuid())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  expiresAt          DateTime?
+  handle             String    @unique
+  user               User?     @relation(fields: [userId], references: [id])
+  userId             String?
+  hashedSessionToken String?
+  antiCSRFToken      String?
+  publicData         String?
+  privateData        String?
+
+  @@index([userId])
 }
 
 model Post {
-  id        String     @id @unique @default(cuid())
-  title     String
-  content   String
-  coverimg  String?
-  published Boolean?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now())
-  slug      String?    @unique
-  authorId  String
-  author    user       @relation(fields: [authorId], references: [id])
-  Tag       Tag[]
-  category  Category[]
+  id           String    @id @unique @default(cuid())
+  title        String
+  content      String
+  coverimg     String?
+  published    Boolean?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
+  slug         String?   @unique
+  authorId     String
+  author       User      @relation(fields: [authorId], references: [id])
+  Tag          Tag[]
+  postCategory Category  @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  comments     Comment[]
+  likes        Like[]
 
+  @@index([categoryId])
   @@index([authorId]) // if you want to add index to a column in mysql database you can use this syntax. and it will refer to on user to many posts
 }
 
@@ -43,10 +68,7 @@ model Category {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  postId    String
-  posts     Post     @relation(fields: [postId], references: [id])
-
-  @@index([postId])
+  posts     Post[]
 }
 
 model Tag {
@@ -54,5 +76,32 @@ model Tag {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  posts     Post[]
+  tagPost   Post     @relation(fields: [postId], references: [id])
+  postId    String
+
+  @@index([postId])
+}
+
+model Comment {
+  id          String @id @unique @default(cuid())
+  content     String
+  userId      String
+  user        User   @relation(fields: [userId], references: [id])
+  postId      String
+  postComment Post   @relation(fields: [postId], references: [id])
+
+  @@index([userId])
+  @@index([postId])
+}
+
+model Like {
+  id         String  @id @unique @default(cuid())
+  isLike     Boolean
+  postLike   Post    @relation(fields: [postLikeId], references: [id])
+  postLikeId String
+  userLike   User    @relation(fields: [userLikeId], references: [id])
+  userLikeId String
+
+  @@index([userLikeId])
+  @@index([postLikeId])
 }
