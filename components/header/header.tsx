@@ -7,7 +7,7 @@ import logo from '@/app/brand-logo.png'
 import {FaBars, FaFacebookF, FaLinkedinIn, FaPinterest, FaTwitter, FaUser, FaSearch} from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 import { getSession, signOut} from 'next-auth/react';
-import { poppins_lg, poppins_md } from '@/app/fonts/fonts';
+import { poppins_lg, poppins_md } from '@/fonts/fonts';
 
 
 const RootHeader = () => {

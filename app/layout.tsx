@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
 
 import type { Metadata } from 'next'
@@ -7,8 +7,9 @@ import { FooterSection } from '@/components/footer/footer'
 import GoogleAnalytics from '@/components/ga4/googleanalytics'
 import GoogleTagManager from '@/components/gtm/googleTagManager'
 import { usePathname } from 'next/navigation';
+import Provider from '@/providers/sessionProvider';
 // import Provider from '@/providers/sessionProvider';
-
+// import { headers } from "next/dist/client/components/headers";
 
 // export const metadata: Metadata = {
 //   title: 'Fashion Anywhere',
@@ -56,6 +57,17 @@ export default function RootLayout({
 
     // className={`${inter.variable}`}
 
+    // const _headers = headers();
+    // const currentUrl = _headers.get("x-url");
+
+    // if (currentUrl?.split('/').includes('access')) return (<>
+    //       <Provider>
+    //           <RootHeader/>
+    //         {children}
+    //       <FooterSection/>
+    //       </Provider>
+    // </>)
+
   return (
     <html lang="en">
       <head>
@@ -65,9 +77,11 @@ export default function RootLayout({
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
+        <Provider>
           <RootHeader/>
             {children}
           <FooterSection/>
+          </Provider>
         </body>
     </html>
   )

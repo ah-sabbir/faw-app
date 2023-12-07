@@ -24,6 +24,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]", "components/test/editor.jsx", "components/editor/Editor.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]", "components/test/editor.jsx", "components/editor/Editor.tsx", "app/api/auth/[...nextuath].tsx.test"],
   "exclude": ["node_modules"]
 }

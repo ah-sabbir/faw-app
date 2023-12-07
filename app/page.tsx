@@ -6,7 +6,7 @@ import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
 import { FaArrowRight } from 'react-icons/fa';
 
-import { Options  } from './api/auth/[...nextauth]/route';
+import { Options } from '@/app/(auth)/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth';
 
 export const revalidate = 60;
