@@ -7,14 +7,14 @@ const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
     basePath: '',
     compress: false,
-    experimental: {
-	//enableStaticImages: true
-        // serverActions: true,
-        // enableUndici: true,
-        // images: {
-        //     allowFutureImage: true
-        // }
-      },
+    // experimental: {
+	// //enableStaticImages: true
+    //     // serverActions: true,
+    //     // enableUndici: true,
+    //     // images: {
+    //     //     allowFutureImage: true
+    //     // }
+    //   },
   //webp: {
   //  preset: "default",
   //  quality: 100,
