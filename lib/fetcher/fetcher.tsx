@@ -1,8 +1,5 @@
-export const checkEnvironment = () => {
-    let base_url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : "https://fashionanywhere.shop"; 
-  
-    return base_url;
-  };
+export async function Fetcher(url: string) {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}

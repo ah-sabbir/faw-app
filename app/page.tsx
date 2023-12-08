@@ -6,7 +6,7 @@ import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
 import { FaArrowRight } from 'react-icons/fa';
 
-import { Options } from '@/app/(auth)/api/auth/[...nextauth]/route'
+import { authConfig } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 
 export const revalidate = 60;
@@ -14,7 +14,7 @@ export const revalidate = 60;
 
 export default async function Home() {
 	const featuredPost = await GetPostByFeatured(true);
-	const session = await getServerSession(Options);
+	const session = await getServerSession(authConfig);
 	// console.log(featuredPost);
 
   return (

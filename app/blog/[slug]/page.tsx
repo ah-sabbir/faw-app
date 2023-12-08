@@ -6,36 +6,7 @@ import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 import GetUserById from "@/lib/userInfo/getUserById";
 import GetAllPosts from "@/lib/blogPost/getPostAll";
-import { checkEnvironment } from "@/lib/fetcher/fetcher";
 
-export const generateStaticParams = async (): Promise<any[]> => {
-    const res = await fetch(checkEnvironment().concat("/api/posts"),
-    {
-        next: {revalidate: 60}
-    }).then((res) => res.json());
-
-    if(res.posts.length === 0) return [];
-
-    return [
-        {
-            paths:res.posts.map((post:any) => ({
-                params: {
-                    slug: post?.slug,
-                },
-            })),
-            fallback: true,
-        }
-    ]
-    
-    // {
-    //   paths: res?.posts.map((post:any) => ({
-    //     params: {
-    //       slug: post?.slug,
-    //     },
-    //   })) || [],
-    //   fallback: true,
-    // };
-  }
 
 interface PageProps {
     params: {
