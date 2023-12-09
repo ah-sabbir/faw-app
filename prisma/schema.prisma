@@ -52,9 +52,9 @@ model Post {
   updatedAt    DateTime  @default(now())
   slug         String?   @unique
   authorId     String
-  author       User      @relation(fields: [authorId], references: [id])
+  author       User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   Tag          Tag[]
-  postCategory Category  @relation(fields: [categoryId], references: [id])
+  postCategory Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId   String
   comments     Comment[]
   likes        Like[]

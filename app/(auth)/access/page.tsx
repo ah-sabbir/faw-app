@@ -1,6 +1,7 @@
 
 'use client'
 import { getSession, signIn, useSession } from "next-auth/react";
+import {loginUser} from "@/actions/authActions";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,27 +11,42 @@ import {
 } from "react-social-login-buttons";
 import { revalidatePath } from "next/cache";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Button from "@/components/EmailSigninButton";
+import { useFormState } from "react-dom";
+
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 
 const AccessPage = () => {
     const session = useSession();
     const router = useRouter();
+    const [error, setError] = useState<string>();
     if (session?.status === "authenticated") {
         console.log("Authenticated");
         router.push("/");
+        // redirect("/");
     }
 
     const socialAction = (action: string) => {
       signIn('google')
     };
 
-    const CredentialAction = (e: any) => {
+    const CredentialAction = async (e: any) => {
       e.preventDefault();
       const formData = new FormData(e.target);
-      console.log(formData.get('email'), formData.get('password'));
-      // signIn('credentials', {email: formData.get('email') as string, password: formData.get('password') as string})
+      signIn('credentials', {email: formData.get('email') as string, password: formData.get('password') as string, redirect: false})
+      .then((res) => {
+        if(!res?.ok){
+          console.log(res?.error)
+          setError(res?.error || "")
+        }
+      });
+      
     }
 
   return (
@@ -61,6 +77,7 @@ const AccessPage = () => {
                 <div className="mb-6">
                     <input type="password" name="password" id="password" className="bg-gray-50 border focus:border-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*******" required/>
                 </div>
+                <p className="text-center bold text-red-500">{error}</p>
                 <Button
                 variant='outline'
                 color='gray'

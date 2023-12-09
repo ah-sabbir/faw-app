@@ -10,7 +10,11 @@ const GetPostBySlug = async (slug: string) => {
         }
     });
 
-    return res;
+    if (!res) {
+        return {ok: false, exist: false};
+    }
+
+    return {ok: true, exist: true };
 };
 
 export default GetPostBySlug;

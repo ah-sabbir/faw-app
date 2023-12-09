@@ -30,7 +30,7 @@ const RootHeader = () => {
 
     const menuHandler = (e:any) =>{
         alert('menu clicked');
-        // console.log(userInfo)
+        console.log(userInfo)
     }
 
   
@@ -56,8 +56,10 @@ const RootHeader = () => {
                                 <>
                                     <FaUser className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={()=> setIsUser(!isUser)}/>
                                     <div className={` min-w-[200px] flex flex-col gap-1 p-5 m-5 h-auto bg-white border-2 rounded-md z-[1000] absolute top-[40px] right-0 ${isUser? 'block':'hidden'}`}>
-                                        <span className=''>{userInfo.name}</span>
-                                        <span className=''>{userInfo.email}</span>
+                                        {/* <span className=''>{userInfo.first_name+' '+userInfo.last_name}</span>
+                                        <span className=''>{userInfo.email}</span> */}
+                                        <Link href={`/blog/builder`} className='text-[#ce8460]'>Create Post</Link>
+                                        <Link href={`/admin`} className='text-[#ce8460]'>Dashboard</Link>
                                         <button className='bg-[#ce8460] text-white p-2 rounded-md' onClick={()=>signOut()}>Logout</button>
                                     </div>
                                 </>

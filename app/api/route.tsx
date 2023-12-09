@@ -4,7 +4,8 @@ import { authConfig } from "@/lib/auth";
 
 
 export async function GET(request:Request){
-    const session = await getServerSession(authConfig);
-    console.log('GET API',session);
-    return NextResponse.json({authenticated: !!session})
+    // const session = await getServerSession(authConfig);
+    // console.log('GET API',session);
+    // return NextResponse.json({authenticated: !!session})
+    return NextResponse.json({ok:true})
 }

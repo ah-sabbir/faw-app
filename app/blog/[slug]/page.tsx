@@ -17,9 +17,9 @@ interface PageProps {
 
 const BlogPage = async ({params}:PageProps) => {  
     console.log(params)
-    const res = await GetPostBySlug(params?.slug) || "";
-    const tagRes = await GetTagsById(res?.tagId ) || "";
-    const user = await GetUserById(res?.userId) || "";
+    // const res = await GetPostBySlug(params?.slug) || "";
+    // const tagRes = await GetTagsById(res?.tagId ) || "";
+    // const user = await GetUserById(res?.userId) || "";
 
   return (
     <>
