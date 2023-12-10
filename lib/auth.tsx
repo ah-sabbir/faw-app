@@ -8,12 +8,12 @@ import FacebookProvider from "next-auth/providers/facebook";
 import TwitterProvider from "next-auth/providers/twitter";
 
 import database from "./prisma";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
 import getUserByEmail from "./userInfo/getUserByEmail";
 
 export const authConfig: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma),
+    // adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
