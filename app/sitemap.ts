@@ -1,6 +1,6 @@
 import GetAllPosts from "@/lib/blogPost/getPostAll";
 
-export default async function sitemap() {
+const sitemap = async () => {
   const baseUrl = "https://fashionanywhere.shop";
 
 
@@ -24,3 +24,6 @@ export default async function sitemap() {
     ...routes,
   ];
 }
+
+
+export default sitemap;
