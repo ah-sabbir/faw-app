@@ -45,15 +45,15 @@ model Session {
 model Post {
   id           String    @id @unique @default(cuid())
   title        String
-  content      String
+  content      String    @db.LongText
   coverimg     String?
-  published    Boolean?
+  published    Boolean   @default(false)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())
   slug         String?   @unique
   authorId     String
   author       User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  Tag          Tag[]
+  post_tags    post_tags[]     
   postCategory Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId   String
   comments     Comment[]
@@ -71,16 +71,27 @@ model Category {
   posts     Post[]
 }
 
-model Tag {
+model Tags {
   id        String   @id @unique @default(cuid())
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  tagPost   Post     @relation(fields: [postId], references: [id])
+  post_tags post_tags[]
+
+  @@index([name])
+}
+
+model post_tags{
+  id        String   @id @unique @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id])
   postId    String
+  tags      Tags     @relation(fields: [tagsId], references: [id])
+  tagsId    String
 
   @@index([postId])
+  @@index([tagsId])
 }
+
 
 model Comment {
   id          String @id @unique @default(cuid())
