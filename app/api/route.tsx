@@ -4,8 +4,15 @@ import { authConfig } from "@/lib/auth";
 
 
 export async function GET(request:Request){
-    // const session = await getServerSession(authConfig);
-    // console.log('GET API',session);
-    // return NextResponse.json({authenticated: !!session})
-    return NextResponse.json({ok:true})
+
+	try{
+    	    const session = await getServerSession(authConfig);
+	    if(session?.user?.id){
+		return NextResponse.json({authenticated: !!session})
+		}
+	}
+	catch(error){
+		console.log("authentication error on host/api",error);
+	}
+    //return NextResponse.json({ok:true})
 }
