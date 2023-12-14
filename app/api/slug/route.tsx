@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+//import { getServerSession } from "next-auth";
 import { NextResponse, NextRequest } from "next/server";
 import { authConfig } from "@/lib/auth";
 import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
