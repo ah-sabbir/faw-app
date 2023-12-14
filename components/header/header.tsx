@@ -37,24 +37,23 @@ const RootHeader = () => {
     if(isBuilder || isAdmin ) return (<></>)
 
   return (
-        <section className=" max-w-[1920px] w-full h-auto flex justify-center z-[999] sticky">
+        <section className=" max-w-[1920px] w-full h-auto flex justify-center z-[999] fixed top-0 left-0 bg-white py-3 mx-auto">
             {/* <!-- component --> */}
-            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-10 lg:px-3 lg:py-5 lg:mt-3 items-center ">
+            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-5 items-center ">
                 <Link href={"/"} className={`text-[32px] md:text-xl lg:5xl text-gray-900 px-5 uppercase hover:text-gray-900 font-extrabold`}>Fashion</Link>
                 <div className="flex md:flex-auto items-center justify-between">
-                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold`}>
+                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[12px]`}>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Trends</Link></li>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Beauty & Makeup</Link></li>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Travel & Lifestyle</Link></li>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Style Diary</Link></li>
                     </ul>
                     <div className={`flex items-center font-extrabold relative`}>
-                        <FaSearch className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={()=>console.log("search icon")}/>
-                        <FaBars className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={menuHandler}/>
+                        <FaBars className="h-5 w-5 text-black mx-2 cursor-pointer block  md:hidden lg:hidden" onClick={menuHandler}/>
                         {
                             isAuthenticated && (
                                 <>
-                                    <FaUser className="h-5 w-5 text-black mx-3 cursor-pointer" onClick={()=> setIsUser(!isUser)}/>
+                                    <FaUser className="h-4 w-4 text-black mx-1 cursor-pointer" onClick={()=> setIsUser(!isUser)}/>
                                     <div className={` min-w-[200px] flex flex-col gap-1 p-5 m-5 h-auto bg-white border-2 rounded-md z-[1000] absolute top-[40px] right-0 ${isUser? 'block':'hidden'}`}>
                                         {/* <span className=''>{userInfo.first_name+' '+userInfo.last_name}</span>
                                         <span className=''>{userInfo.email}</span> */}
@@ -65,6 +64,11 @@ const RootHeader = () => {
                                 </>
                             ) 
                         }
+			<FaSearch className="h-4 w-4 text-black mx-2 cursor-pointer text-red" onClick={()=>console.log("search icon")}/>
+			<FaFacebookF className="h-4 w-4 text-black mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
+			<FaTwitter className="h-4 w-4 text-black mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
+			<FaPinterest className="h-4 w-4 text-red-500 mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
+			
                         
                     </div>
                 </div>

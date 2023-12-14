@@ -20,7 +20,7 @@ export default async function Home() {
   return (
 			<>
 
-				<section className="slider mt-4">
+				<section className="slider mt-[15px] pt-[68px]">
 					<div className="p-2 m-auto w-full">
 						<ImageSlider 
 						img={"https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"}
