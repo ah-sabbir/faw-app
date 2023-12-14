@@ -7,7 +7,7 @@ export async function GET(request:Request){
 
 	try{
     	    const session = await getServerSession(authConfig);
-	    if(session?.user?.id){
+	    if(session){
 		return NextResponse.json({authenticated: !!session})
 		}
 	}
