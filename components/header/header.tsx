@@ -65,8 +65,8 @@ const RootHeader = () => {
                             ) 
                         }
 			<FaSearch className="h-4 w-4 text-black mx-2 cursor-pointer text-red" onClick={()=>console.log("search icon")}/>
-			<FaFacebookF className="h-4 w-4 text-black mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
-			<FaTwitter className="h-4 w-4 text-black mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
+			<FaFacebookF className="h-4 w-4 text-[#316FF6] mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
+			<Link href="#" className="py-1  hidden md:block lg:block"><Image src="/static/logos/twitter-x-logo.png" width={15} height={15} /></Link>
 			<FaPinterest className="h-4 w-4 text-red-500 mx-2 cursor-pointer hidden md:block lg:block" onClick={()=>console.log("search icon")}/>
 			
                         

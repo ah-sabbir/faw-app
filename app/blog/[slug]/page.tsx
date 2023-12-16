@@ -16,7 +16,8 @@ interface PageProps {
   
 
 const BlogPage = async ({params}:PageProps) => {  
-    console.log(params)
+    // console.log(params)
+    const post = await GetPostBySlug(params.slug);
     // const res = await GetPostBySlug(params?.slug) || "";
     // const tagRes = await GetTagsById(res?.tagId ) || "";
     // const user = await GetUserById(res?.userId) || "";
@@ -32,16 +33,16 @@ const BlogPage = async ({params}:PageProps) => {
                                 <div className="meta-cat">
                                 {/* <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link> */}
                                 </div>
-                                {/* <h1 className="my-2 text-center font-AvantGarde">{res.title}</h1> */}
+                                <h1 className="my-2 text-center font-AvantGarde">{post?.data?.title || ""}</h1>
                                 <div className="post-meta ">
                                     <span className="uppercase text-xs letter-spacing-1 mr-3">by Liam</span>
                                     <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src="https://themewagon.github.io/revolve/images/fashion/bg-banner.jpg" className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
+                                    <Image src={post?.data.coverimg} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
-                            {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: res?.content? res?.content:""}} /> post body */}
+                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: post?.data?.content || ""}} />
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>

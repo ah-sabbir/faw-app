@@ -43,12 +43,12 @@ export default async function Home() {
 											<div key={i} className="w-full px-4 md:w-2/4 lg:w-1/3">
 												<article className="block mb-5 p-2 rounded ">
 													<Link className="mb-4 block" href="#">
-														<Image src={post.coverImage || blogImg} alt="" width={100} height={100} className="block mb-4 w-full h-full" quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+														<Image src={post.coverimg} alt="..." width={100} height={100} className="block mb-4 w-full h-full" quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
 													</Link>
 													<span className="font-extra text-sm uppercase letter-spacing-1 text-[#ce8460]">Explore</span>
 													<h3 className="post-title mt-1"><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3>
-													<p className='pt-5 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio repudiandae aliquid voluptas laboriosam consequatur id numquam adipisci quo labore vel necessitatibus dicta, assumenda iusto voluptate aperiam impedit sed nam officiis!</p>
-													<span className="letter-spacing text-uppercase font-sm tracking-[3px]">June 15, 2019</span>
+													<p className='pt-5 pb-5 text-clip'>{post.content.substring(1,100)+"..."}</p>
+													<span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.updatedAt).toDateString()}</span>
 												</article>
 											</div>
 										)

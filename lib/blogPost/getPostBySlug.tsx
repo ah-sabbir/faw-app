@@ -14,7 +14,7 @@ const GetPostBySlug = async (slug: string) => {
         return {ok: false, exist: false};
     }
 
-    return {ok: true, exist: true };
+    return {ok: true, exist: true, data:res };
 };
 
 export default GetPostBySlug;
