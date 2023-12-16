@@ -22,6 +22,17 @@ interface EditorProps {
 }
 
 
+// export type BlockNoteEditorOptions = Partial<{
+//     editable: boolean;
+//     editorDOMAttributes: Record<string, string>;
+//     onEditorReady: (editor: BlockNoteEditor) => void;
+//     onEditorContentChange: (editor: BlockNoteEditor) => void;
+//     onTextCursorPositionChange: (editor: BlockNoteEditor) => void;
+//     defaultStyles: boolean;
+//     uploadFile: (file: File) => Promise<string>;
+//   }>;
+
+
 export const Editor = ({
     onChange,
     initialContent,
