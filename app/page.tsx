@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import ImageSlider from '@/components/sliderSection/sliderSection';
+import HeroSection from '@/components/sliderSection/sliderSection';
 import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
 import { FaArrowRight } from 'react-icons/fa';
 
@@ -21,7 +21,7 @@ export default async function Home() {
 
 				<section className="slider mt-[15px] pt-[68px]">
 					<div className="p-2 m-auto w-full">
-						<ImageSlider/>
+						<HeroSection/>
 					</div>
 				</section>
 

@@ -8,12 +8,13 @@ const GetLatestPost = async () =>{
             },
             take: 1,
         });
-        const {title, coverimg, slug} = latestPost[0];
+        const {title, coverimg, slug, updatedAt} = latestPost[0];
         return {
             ok: true,
             title,
             coverimg,
-            slug
+            slug,
+            updatedAt
         }
     } catch (error) {
         return {
