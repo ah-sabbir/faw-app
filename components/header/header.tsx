@@ -44,7 +44,7 @@ const RootHeader = () => {
                     <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} />
                 </Link>
                 <div className="flex md:flex-auto items-center justify-between">
-                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[12px]`}>
+                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[16px]`}>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Trends</Link></li>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Beauty & Makeup</Link></li>
                         <li className="font-semibold text-gray-700"><Link href={"#"}>Travel & Lifestyle</Link></li>
