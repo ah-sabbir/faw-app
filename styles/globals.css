@@ -13,6 +13,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 /* Set content font-families */
 .ql-font-Roboto {
   font-family: 'Roboto';
@@ -189,7 +192,3 @@ input .form-control {
   align-items: center!important;
   margin-bottom: 0!important;
 }
-
-/* .header-logo-image {
-  object-fit: cover;
-} */
