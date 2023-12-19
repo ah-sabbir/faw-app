@@ -39,7 +39,7 @@ const RootHeader = () => {
   return (
         <section className=" max-w-[1920px] w-full h-auto flex justify-center z-[999] fixed top-0 left-0 bg-white py-3 mx-auto">
             {/* <!-- component --> */}
-            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] py-5 items-center ">
+            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] items-center ">
                 <Link href={"/"} className={`text-[32px] md:text-xl lg:5xl text-gray-900 px-5 uppercase hover:text-gray-900 font-extrabold`}>
                     <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} />
                 </Link>
