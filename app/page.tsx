@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import news1 from '@/images/news/f1.jpg'
 import ImageSlider from '@/components/sliderSection/sliderSection';
 import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
-import blogImg from '@/images/blog-images/woman-fashion-blog-post.jpg'
 import { FaArrowRight } from 'react-icons/fa';
 
 import { authConfig } from '@/lib/auth';
@@ -15,18 +13,15 @@ export const revalidate = 60;
 export default async function Home() {
 	const featuredPost = await GetPostByFeatured(true);
 	const session = await getServerSession(authConfig);
-	// console.log(featuredPost);
+
+	// console.log(featuredPost[0])
 
   return (
 			<>
 
 				<section className="slider mt-[15px] pt-[68px]">
 					<div className="p-2 m-auto w-full">
-						<ImageSlider 
-						img={"https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"}
-						title="The Hottest Fashion Trends to Expect in 2024: A Must-Read for Style Savvy Individuals"
-						slug=''
-						/>
+						<ImageSlider/>
 					</div>
 				</section>
 

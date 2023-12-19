@@ -16,9 +16,10 @@ export const FooterSection = () => {
     const isVerifyEmail = path.split('/').includes('verify-email')
     const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
     const isBuilder = path.split('/').includes('builder')
+    const isAccess = path.split('/').includes('access')
 
     if(isBuilder || isForgotPassword || isResetPassword || isVerifyEmail || isVerifyEmailSuccess || isRegister || isAdmin ||
-        isLogin) return (<></>)
+        isLogin || isAccess) return (<></>)
 
 
         

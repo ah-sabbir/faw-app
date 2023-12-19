@@ -1,21 +1,17 @@
 import '@/styles/globals.css';
-
-
 import type { Metadata } from 'next'
 import RootHeader from '@/components/header/header'
 import { FooterSection } from '@/components/footer/footer'
-import GoogleAnalytics from '@/components/ga4/googleanalytics'
 import GoogleTagManager from '@/components/gtm/googleTagManager'
-import { usePathname } from 'next/navigation';
 import Provider from '@/providers/sessionProvider';
-// import Provider from '@/providers/sessionProvider';
-// import { headers } from "next/dist/client/components/headers";
+import { Poppins } from 'next/font/google';
 
-// export const metadata: Metadata = {
-//   title: 'Fashion Anywhere',
-//   description: 'Worlds\'s #1 Fashion and Beauty Magazine',
-// }
-// import { headers } from 'next/headers';
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+});
 
 export const metadata:Metadata = {
   icons: {
@@ -39,41 +35,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  // const headersList = headers();
-
-  // console.log("this is header list", headersList);
-
-//  const path:any = usePathname()
-//     const isAdmin = path.split('/').includes('admin')
-//     const isLogin = path.split('/').includes('signin')
-//     const isRegister = path.split('/').includes('register')
-//     const isForgotPassword = path.split('/').includes('forgot-password')
-//     const isResetPassword = path.split('/').includes('reset-password')
-//     const isVerifyEmail = path.split('/').includes('verify-email')
-//     const isVerifyEmailSuccess = path.split('/').includes('verify-email-success')
-//     const isBuilder = path.split('/').includes('builder')
-
-    // if(isBuilder) return (<>{children}</>)
-
-    // className={`${inter.variable}`}
-
-    // const _headers = headers();
-    // const currentUrl = _headers.get("x-url");
-
-    // if (currentUrl?.split('/').includes('access')) return (<>
-    //       <Provider>
-    //           <RootHeader/>
-    //         {children}
-    //       <FooterSection/>
-    //       </Provider>
-    // </>)
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.variable}`} >
       <head>
       <meta name="p:domain_verify" content="aa62db3cc92aa387d76d2ecd0c3b443e"/>
       </head>
-      <body suppressHydrationWarning={true} > 
+      <body> 
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
