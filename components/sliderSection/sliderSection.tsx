@@ -80,7 +80,7 @@ const HeroSection = async()=>{
                 </div>
                 <div className="w-full md:w-8/12 bg-white md:mx-6">
                   <div className='relative pb-[30px] mt-[30px]'>
-                  <Image src={post.coverimg} width={100} height={100} alt="" quality={100} className="w-full h-auto object-cover rounded-sm relative" />
+                  <Image src={post.coverimg} width={100} height={100} alt="" quality={100} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="w-full h-full" />
                   <div className="w-auto absolute bottom-0 z-10 left-0 right-0 px-[25px] md:relative">
                       <div className="post-content p-[30px] bg-white shadow-md  rounded-[10px]">
                           <div className="post-cat">
@@ -92,7 +92,7 @@ const HeroSection = async()=>{
                                   </a>
                               </div>
                           </div>
-                          <h4 className="title"><a href="post-details.html">{post.title}</a></h4>
+                          <h4 className="title"><Link href="post-details.html">{post.title}</Link></h4>
                         </div>
                     </div>
                   </div>
