@@ -19,7 +19,7 @@ import Provider from '@/providers/sessionProvider';
 
 export const metadata:Metadata = {
   icons: {
-    icon: '/app/favicons/icon_16x16.ico',
+    icon: '/static/logos/fashionanywhere-logo.webp',
   },
   metadataBase: new URL("https://fashionanywhere.shop"),
   title: {
