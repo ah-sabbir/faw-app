@@ -1,19 +1,13 @@
 'use client'
 import React, { ReactEventHandler, use, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-// import ReactQuill from "react-quill";
 import { usePathname, useRouter } from 'next/navigation'
-// import "react-quill/dist/quill.snow.css";
 import { redirect } from "next/navigation";
 import moment from "moment";
 import { useSession } from "next-auth/react";
 import { EditorModule } from "@/lib/builder/editor";
-// import { Editor } from "@/components/builder/editor";
 import slugify from "slugify";
 import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
-
-
-// const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const Editor = dynamic(()=> import("@/components/builder/editor").then(mod=>mod.Editor),{ssr:false})
 
@@ -30,21 +24,16 @@ const Write = () => {
   //     router.push("/");
   // }
 
-  // console.log(session?.data?.user?.id);
-
   // Define the state variables
   const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
   const [value, setValue] = useState("");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState("");
 
-  // Define the navigate function
-  // const navigate = useNavigate();
-
   // Define the upload function
   const upload = async () => {
     try {
-      // Create a new FormData object and append the file to it
       const formData = new FormData();
       formData.append("file", file as any);
       console.log(file);
@@ -58,7 +47,8 @@ const Write = () => {
     e.preventDefault();
     console.log("clicked save to draft");
     // Upload the image and get the filename
-    const imgUrl = await upload();
+    // const imgUrl = await upload();
+    console.log(value)
 
   };
 
@@ -67,37 +57,18 @@ const Write = () => {
   },[value]);
 
   useEffect(() => {
-     const slug = slugify(title, {
-       lower: true,
-       strict: true
-     });
-    //  async function fetchslug(){
-    //     const res = await GetPostBySlug(slug);
-    //     console.log(res)
-    //     if(res){
-    //       setError("Title already exists");
-    //     }
-    //  }
-    //  fetchslug();
-  }, [title])
-
-  const titleHandler = (e: any) => {
-    setTitle(e.target.value);
-  }
-
-  const handleSlugGenerator = async (e:any) => {
-    e.preventDefault();
-    const slug = slugify(title, {
+    const s = slugify(title, {
       lower: true,
       strict: true
     });
-    const res = await fetch("/api/slug", {
-      method: "POST",
-      body: JSON.stringify({slug: slug})
-    });
+    setSlug(s);
+  },[title])
 
-    console.log("slug api test",res.json());
-  }
+  // const handleSlugGenerator = async () => {
+    // const res = await fetch("/api/slug", {
+    //   method: "POST",
+    //   body: JSON.stringify({slug: slug})
+    // });
 
   return (
     <>
@@ -125,7 +96,7 @@ const Write = () => {
               </label>
           </div> 
           <div className="buttons flex flex-col">
-            <button className='bg-[#ce8460] text-white p-2 rounded-md m-2' onClick={handleSlugGenerator}>Slug Generator</button>
+            <button className='bg-[#ce8460] text-white p-2 rounded-md m-2' onClick={()=> console.log('check if slug is exist or not')}>Slug Generator</button>
             <button className='bg-[#ce8460] text-white p-2 rounded-md m-2' onClick={handleClick}>Publish</button>
           </div>
         </div>
@@ -137,7 +108,7 @@ const Write = () => {
           type="text"
           value={title}
           placeholder = "blog title"
-          onChange={(e) => titleHandler(e)}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <div className="editor-container">
           <Editor 

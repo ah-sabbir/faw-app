@@ -51,7 +51,7 @@ const RootHeader = () => {
         <section className={` max-w-[1920px] w-full h-auto flex justify-center ite z-20 fixed top-0 left-0 bg-white py-3 mx-auto ${!top && 'shadow-lg'}`}>
             <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] items-center ">
                 <Link href={"/"} className={`text-[32px] md:text-xl lg:5xl text-gray-900 px-5 uppercase hover:text-gray-900 font-extrabold`}>
-                    <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} />
+                    <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} className='w-[36px]'/>
                 </Link>
                 <div className="flex md:flex-auto items-center justify-between">
                     <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[13px] lg:text-[16px]`}>

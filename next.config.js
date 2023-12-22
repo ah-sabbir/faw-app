@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const nextConfig = {
     basePath: '',
-    compress: false,
+    compress: true,
     // experimental: {
 	// //enableStaticImages: true
     //     // serverActions: true,
