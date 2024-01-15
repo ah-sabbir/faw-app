@@ -3,6 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import GetLatestPost from '@/lib/blogPost/getLatestPost';
+import {GetPostByFeatured, GET_CATEGORIES} from '@/lib/blogPost/getPostByFeatured';
+import { getServerSession } from 'next-auth';
+import { authConfig } from '@/lib/auth';
 
 interface Props {
     img: string;
@@ -13,9 +16,14 @@ interface Props {
 
 const HeroSection = async()=>{
   
-    const post = await GetLatestPost();
+  const { data, meta } = await GetPostByFeatured(true);
+	const session = await getServerSession(authConfig);
+	const post = data[0]?.attributes
+  const categories = await GET_CATEGORIES();
 
-    if(!post.ok) return <></>
+  // console.log(categories.data)
+
+    // if(!post.ok) return <></>
 
     return (
         <>
@@ -26,15 +34,15 @@ const HeroSection = async()=>{
                   <div className="bg-white shadow-sm rounded-sm p-4 hidden lg:block">
                       <h3 className="text-xl font-semibold uppercase text-gray-700 font-poppins mb-3">top trending</h3>
                         {
-                          [1,2,3,4,5].map((item,i)=>{
+                          categories.data.map((item:any,i:any)=>{
                             return (
                             <div key={i} className=" space-y-2  font-semibold uppercase text-gray-700 ">
-                              <Link href="#" className='flex items-center leading-4 transition'>
+                              <Link href={`/category/${item.attributes.slug}`} className='flex items-center leading-4 transition'>
                                  <span className="mr-2">
                                     <i className="far fa-folder-open"></i>
                                  </span>
-                                 <span>Beauty</span>
-                                 <span className="font-normal ml-auto">({item})</span>
+                                 <span>{item.attributes.title}</span>
+                                 <span className="font-normal ml-auto">({item.id})</span>
                               </Link>
                             </div>
                             )
@@ -52,10 +60,10 @@ const HeroSection = async()=>{
                             return (
                               <Link key={i} href="#" className="gap-2 shadow-sm flex flex-row group lg:flex-row">
                                   <div className='flex-shrink-0'>
-                                    <Image src={post.coverimg} width={100} height={100} alt=""  quality="75" className="w-full lg:w-20 h-20 rounded object-cover" loading='lazy'/>
+                                    <Image src={`https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} width={100} height={100} alt=""  quality="75" className="w-full lg:w-20 h-20 rounded object-cover" loading='lazy'/>
                                   </div>
                                   <div className="flex-grow lg:pl-3">
-                                    <h5 className="  text-sm md:text-xl font-normal group-hover:text-[#FDBA00] transition duration-500">{post.title}</h5>
+                                    <h1 className="  text-sm md:text-xl font-normal group-hover:text-[#FDBA00] transition duration-500">{post.Title}</h1>
                                     <div className="flex text-gray-400 text-sm items-center">
                                       <span className="mr-1 text-xs">
                                         <i className="far fa-clock"></i>
@@ -73,7 +81,7 @@ const HeroSection = async()=>{
                 <div className="w-full lg:w-8/12 bg-white lg:mx-6">
                   <div className='relative'>
                   <Image 
-                    src={post.coverimg} 
+                    src={`https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} 
                     width={500}
                     height={500}
                     alt="" 
@@ -92,8 +100,8 @@ const HeroSection = async()=>{
                                   </a>
                               </div>
                           </div>
-                          <h1 className="title font-bold text-xl sm:text-3xl md:text-5xl my-2"><Link href={`/blog/${post.slug}`}>{post.title}</Link></h1>
-                          <p className="text-gray-500 text-sm md:text-base">{post?.content.substring(1,300)+"...  " || ""}<span className='bold text-3xl'><Link href={`/blog/${post.slug}`}>Read More</Link></span></p>
+                          <h1 className="title font-bold text-xl sm:text-3xl md:text-5xl my-2"><Link href={`/blog/${post.slug}`}>{post.Title}</Link></h1>
+                          <p className="text-gray-500 text-sm md:text-base">{post.Content[0].children[0].text.substring(1,100)+"..." || ""}<span className='bold text-3xl'><Link href={`/blog/${post.slug}`}>Read More</Link></span></p>
                           <div className="post-meta  my-5">
                               {/* <span className="post-author">
                                   <span className="post-author-name">

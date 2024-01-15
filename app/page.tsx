@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HeroSection from '@/components/sliderSection/sliderSection';
-import GetPostByFeatured from '@/lib/blogPost/getPostByFeatured';
+import {GetPostByFeatured} from '@/lib/blogPost/getPostByFeatured';
 
 import { authConfig } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
@@ -10,11 +10,11 @@ export const revalidate = 60;
 
 
 export default async function Home() {
-	const featuredPost = await GetPostByFeatured(true);
+	const { data, meta } = await GetPostByFeatured(true);
 	const session = await getServerSession(authConfig);
-	const post = featuredPost[0];
+	const post = data[0]?.attributes
 
-	// console.log(featuredPost[0])
+	// console.log("this is post from api ", post.Content[0]);
 
   return (
 			<>
@@ -35,11 +35,11 @@ export default async function Home() {
 											<div key={i} className="w-full md:w-full lg:w-3/12">
 												<article className="block mb-5 p-2 rounded ">
 													<Link className="mb-4 block" href="#">
-														<Image src={post?.coverimg} alt="..." width={500} height={500} className="block mb-4 w-full h-full" quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
+														<Image src={`https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} alt="..." width={500} height={500} className="block mb-4 w-full h-full" quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
 													</Link>
 													<span className="font-extra text-sm uppercase letter-spacing-1 text-[#ce8460]">Explore</span>
-													<h3 className="post-title mt-1"><Link href="#">{post.title}</Link></h3>
-													<p className='pt-5 pb-5 text-clip'>{post.content.substring(1,100)+"..."}</p>
+													<h3 className="post-title mt-1"><Link href="#">{post.Title}</Link></h3>
+													<p className='pt-5 pb-5 text-clip'>{post.Content[0].children[0].text.substring(1,100)+"..."}</p>
 													<span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.updatedAt).toDateString()}</span>
 												</article>
 											</div>
