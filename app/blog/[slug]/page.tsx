@@ -6,6 +6,7 @@ import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
 import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 import GetUserById from "@/lib/userInfo/getUserById";
 import GetAllPosts from "@/lib/blogPost/getPostAll";
+import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
 
 
 interface PageProps {
@@ -17,7 +18,7 @@ interface PageProps {
 
 const BlogPage = async ({params}:PageProps) => {  
     // console.log(params)
-    const post = await GetPostBySlug(params.slug);
+    const {data, meta} = await GET_POST_BY_SLUG(params.slug);
     // const res = await GetPostBySlug(params?.slug) || "";
     // const tagRes = await GetTagsById(res?.tagId ) || "";
     // const user = await GetUserById(res?.userId) || "";

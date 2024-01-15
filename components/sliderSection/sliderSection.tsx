@@ -6,18 +6,12 @@ import GetLatestPost from '@/lib/blogPost/getLatestPost';
 import {GetPostByFeatured, GET_CATEGORIES} from '@/lib/blogPost/getPostByFeatured';
 import { getServerSession } from 'next-auth';
 import { authConfig } from '@/lib/auth';
-
-interface Props {
-    img: string;
-    title: string;
-    slug?: string;
-}
+import GET_POSTS from '@/lib/blogPost/getPostAll';
 
 
 const HeroSection = async()=>{
   
-  const { data, meta } = await GetPostByFeatured(true);
-	const session = await getServerSession(authConfig);
+  const { data, meta } = await GET_POSTS();
 	const post = data[0]?.attributes
   const categories = await GET_CATEGORIES();
 

@@ -7,15 +7,17 @@
 // export default GetAllPosts;
 import database from '@/lib/prisma';
 
-const GetAllPosts = async () => {
-    try {
-        const posts:any = await database.Post.findMany();
+const GET_POSTS = async () => {
+    try{
+        const posts:any = await fetch(`${process.env.STRAPI_API_URL}/api/posts?populate=*`,{
+            headers: {
+                'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
+            }
+        }).then(res=> res.json())
         return posts;
-
-    } catch (error) {
-        return false
+    }catch(e){
+        return new Error()
     }
-
 };
 
-export default GetAllPosts;
+export default GET_POSTS;

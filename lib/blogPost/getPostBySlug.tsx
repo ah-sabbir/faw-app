@@ -1,23 +1,18 @@
-import database from '@/lib/prisma';
 
-const GetPostBySlug = async (slug: string) => {
-    if (slug === null) {
-        return null;
+
+
+const GET_POST_BY_SLUG = async (slug:string) => {
+    try{
+        const post:any = await fetch(`${process.env.STRAPI_API_URL}/api/posts?filters[slug][$eq]=${slug}`,{
+            headers: {
+                'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
+            }
+        }).then(res=> res.json())
+        return post;
+    }catch(e){
+        return new Error()
     }
-    const res = await database.Post.findUnique({
-        where: {
-            slug: slug
-        }
-    });
-
-    if (!res) {
-        return {ok: false, exist: false};
-    }
-
-    return {ok: true, exist: true, data:res };
-};
-
-export default GetPostBySlug;
+}
 
 // Compare this snippet from lib/blogPost/getPostAll.tsx:
 // const GetAllPosts = async () => {
@@ -26,4 +21,4 @@ export default GetPostBySlug;
 //     return posts;
 // };
 //
-// export default GetAllPosts;
+export default GET_POST_BY_SLUG;
