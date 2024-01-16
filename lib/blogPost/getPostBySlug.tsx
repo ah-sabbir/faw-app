@@ -3,7 +3,7 @@
 
 const GET_POST_BY_SLUG = async (slug:string) => {
     try{
-        const post:any = await fetch(`${process.env.STRAPI_API_URL}/api/posts?filters[slug][$eq]=${slug}`,{
+        const post:any = await fetch(`${process.env.STRAPI_API_URL}/api/posts?filters[slug][$eq]=${slug}&populate=*`,{
             headers: {
                 'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
             }

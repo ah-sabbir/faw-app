@@ -19,6 +19,9 @@ interface PageProps {
 const BlogPage = async ({params}:PageProps) => {  
     // console.log(params)
     const {data, meta} = await GET_POST_BY_SLUG(params.slug);
+    const post = data[0]?.attributes;
+
+    // console.log(post);
     // const res = await GetPostBySlug(params?.slug) || "";
     // const tagRes = await GetTagsById(res?.tagId ) || "";
     // const user = await GetUserById(res?.userId) || "";
@@ -34,16 +37,16 @@ const BlogPage = async ({params}:PageProps) => {
                                 <div className="meta-cat">
                                 {/* <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link> */}
                                 </div>
-                                <h1 className="my-2 text-center font-AvantGarde">{post?.data?.title || ""}</h1>
+                                <h1 className="my-2 text-center font-AvantGarde">{post?.Title || ""}</h1>
                                 <div className="post-meta ">
                                     <span className="uppercase text-xs letter-spacing-1 mr-3">by Liam</span>
                                     <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src={post?.data.coverimg} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
+                                    <Image src={post?.img?.data?.attributes?.formats?.url || `https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
-                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: post?.data?.content || ""}} />
+                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: post?.Content || ""}} />
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>
