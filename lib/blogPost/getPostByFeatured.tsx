@@ -21,7 +21,8 @@ const GetPostByFeatured = async (featured: boolean) => {
         const posts:any = await fetch(`${process.env.STRAPI_API_URL}/api/posts`,{
             headers: {
                 'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
-            }
+            },
+            cache: 'force-cache'
         }).then(res=> res.json())
         return posts;
     }catch(e){
