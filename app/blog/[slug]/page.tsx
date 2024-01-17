@@ -7,7 +7,6 @@ import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 import GetUserById from "@/lib/userInfo/getUserById";
 import GetAllPosts from "@/lib/blogPost/getPostAll";
 import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
-import { generateHTML } from '@tiptap/html'
 import convertTHTML from "@/lib/htmlParser";
 
 
