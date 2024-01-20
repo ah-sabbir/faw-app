@@ -15,7 +15,7 @@ const HeroSection = async()=>{
 	const post = data[0]?.attributes
   const categories = await GET_CATEGORIES();
 
-  //console.log(post.Slug)
+  // console.log(categories.data)
 
     // if(!post.ok) return <></>
 
@@ -94,8 +94,8 @@ const HeroSection = async()=>{
                                   </a>
                               </div>
                           </div>
-                          <h1 className="title font-bold text-xl sm:text-3xl md:text-5xl my-2"><Link href={`/blog/${post.Slug}`}>{post.Title}</Link></h1>
-                          <p className="text-gray-500 text-sm md:text-base">{post.Content[0].children[0].text.substring(1,100)+"..." || ""}<span className='bold text-3xl'><Link href={`/blog/${post.Slug}`}>Read More</Link></span></p>
+                          <h1 className="title font-bold text-xl sm:text-3xl md:text-5xl my-2"><Link href={`/blog/${post.slug}`}>{post.Title}</Link></h1>
+                          <p className="text-gray-500 text-sm md:text-base">{post.Content[0].children[0].text.substring(1,100)+"..." || ""}<span className='bold text-3xl'><Link href={`/blog/${post.slug}`}>Read More</Link></span></p>
                           <div className="post-meta  my-5">
                               {/* <span className="post-author">
                                   <span className="post-author-name">
