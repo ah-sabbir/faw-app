@@ -1,20 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import HeroSection from '@/components/sliderSection/sliderSection';
-import {GetPostByFeatured} from '@/lib/blogPost/getPostByFeatured';
+// import {GetPostByFeatured} from '@/lib/blogPost/getPostByFeatured';
 
-import { authConfig } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
+// import { authConfig } from '@/lib/auth';
+// import { getServerSession } from 'next-auth';
+import GET_ALL_POSTS from '@/lib/blogPost/getPostAll';
+import GET_ALL_CATEGORY from '@/lib/categories';
 
-export const revalidate = 60;
+// export const revalidate = 60;
 
 
-export default async function Home() {
-	const { data, meta } = await GetPostByFeatured(true);
-	const session = await getServerSession(authConfig);
-	const post = data[0]?.attributes
-
-	// console.log("this is post from api ", post.Content[0]);
+const Home = async() => {
+	const post = await GET_ALL_POSTS()
+	const categories = await GET_ALL_CATEGORY()
 
   return (
 			<>
@@ -53,3 +52,6 @@ export default async function Home() {
 			</>
   		)
 }
+
+
+export default Home

@@ -1,14 +1,14 @@
-import database from '@/lib/prisma';
+// import database from '@/lib/prisma';
 
-const GetUserById = async (id: string) => {
-    if (!id) return null;
-    const res = await database.User.findUnique({
-        where: {
-            id: id
-        }
-    });
+// const GetUserById = async (id: string) => {
+//     if (!id) return null;
+//     const res = await database.User.findUnique({
+//         where: {
+//             id: id
+//         }
+//     });
 
-    return res;
-}
+//     return res;
+// }
 
-export default GetUserById;
+// export default GetUserById;

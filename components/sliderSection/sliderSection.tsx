@@ -2,18 +2,19 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import GetLatestPost from '@/lib/blogPost/getLatestPost';
-import {GetPostByFeatured, GET_CATEGORIES} from '@/lib/blogPost/getPostByFeatured';
+// import GetLatestPost from '@/lib/blogPost/getLatestPost';
+// import {GetPostByFeatured, GET_CATEGORIES} from '@/lib/blogPost/getPostByFeatured';
 import { getServerSession } from 'next-auth';
-import { authConfig } from '@/lib/auth';
+// import { authConfig } from '@/lib/auth';
 import GET_POSTS from '@/lib/blogPost/getPostAll';
+import GET_ALL_POSTS from '@/lib/blogPost/getPostAll';
+import GET_ALL_CATEGORY from '@/lib/categories';
 
 
 const HeroSection = async()=>{
   
-  const { data, meta } = await GET_POSTS();
-	const post = data[0]?.attributes
-  const categories = await GET_CATEGORIES();
+  const post = await GET_ALL_POSTS()
+  const categories = await GET_ALL_CATEGORY()
 
   //console.log(post.Slug)
 

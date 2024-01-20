@@ -6,7 +6,7 @@ import React from 'react'
 
 
 
-export const FooterSection = () => {
+const FooterSection = () => {
     const path = usePathname()
     const isAdmin = path.split('/').includes('admin')
     const isLogin = path.split('/').includes('signin')
@@ -72,3 +72,6 @@ export const FooterSection = () => {
     </>
   )
 }
+
+
+export default FooterSection;

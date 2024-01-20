@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
-import type { Metadata } from 'next'
+
 import RootHeader from '@/components/header/header'
-import { FooterSection } from '@/components/footer/footer'
+import FooterSection from "@/components/footer/footer"
 import GoogleTagManager from '@/components/gtm/googleTagManager'
 import Provider from '@/providers/sessionProvider';
 import { Poppins } from 'next/font/google';
@@ -13,7 +13,7 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
-export const metadata:Metadata = {
+export const metadata:any = {
   icons: {
     icon: '/static/logos/fashionanywhere-logo.webp',
   },

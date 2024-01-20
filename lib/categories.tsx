@@ -1,6 +1,5 @@
-// GET_ALL_POSTS
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_ALL_POST } from "@/graphql/query"
+import { ALL_CATEGORY, GET_ALL_POST } from "@/graphql/query"
 
 // apolloclient for api request
 const client = new ApolloClient({
@@ -12,16 +11,16 @@ const client = new ApolloClient({
 });
 
 // function to get all the posts
-const GET_ALL_POSTS = async () => {
+const GET_ALL_CATEGORY = async () => {
     try{
         const { data } = await client.query({
-            query: GET_ALL_POST,
+            query: ALL_CATEGORY,
           })
-          const posts = data?.posts?.data
-          return posts
+          const categories = data?.categories?.data
+          return categories
     }catch(e){
         return new Error()
     }
 };
 
-export default GET_ALL_POSTS;
+export default GET_ALL_CATEGORY;

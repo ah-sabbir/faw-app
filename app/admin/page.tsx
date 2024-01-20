@@ -13,11 +13,6 @@ const Dashboard = () => {
   //     redirect('/auth/signin?callbackUrl=/protected/client')
   //   }
   // })
-  
-
-  useEffect(() => {
-    // console.log(session);
-  } ,[]);
 
 
   return (

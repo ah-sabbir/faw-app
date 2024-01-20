@@ -1,17 +1,17 @@
-import clientPrisma from '@/lib/prisma';
+// import clientPrisma from '@/lib/prisma';
 
-const GetTagsById = async (id: number) => {
-    if (!id) return null;
-    const res = await clientPrisma.Tag.findUnique({
-        where: {
-            id: id
-        }
-    });
+// const GetTagsById = async (id: number) => {
+//     if (!id) return null;
+//     const res = await clientPrisma.Tag.findUnique({
+//         where: {
+//             id: id
+//         }
+//     });
 
-    return res;
-};
+//     return res;
+// };
 
-export default GetTagsById;
+// export default GetTagsById;
 
 // Compare this snippet from lib/blogPost/getPostAll.tsx:
 // const GetAllPosts = async () => {

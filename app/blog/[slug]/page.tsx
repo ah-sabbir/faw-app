@@ -1,13 +1,9 @@
-import { notFound, usePathname } from "next/navigation"
+// import { notFound, usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
-import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
-import GetTagsById from "@/lib/blogPost/tags/getTagsById";
-import GetUserById from "@/lib/userInfo/getUserById";
-import GetAllPosts from "@/lib/blogPost/getPostAll";
-import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
 import convertTHTML from "@/lib/htmlParser";
+import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
 
 
 interface PageProps {
@@ -16,19 +12,8 @@ interface PageProps {
     }
 }
   
-
 const BlogPage = async ({params}:PageProps) => {  
-    // console.log(params)
-    const {data, meta} = await GET_POST_BY_SLUG(params.slug);
-    const post = data[0]?.attributes;
-
-    // console.log(convertTHTML(post?.Content))
-
-    // console.log(post);
-    // const res = await GetPostBySlug(params?.slug) || "";
-    // const tagRes = await GetTagsById(res?.tagId ) || "";
-    // const user = await GetUserById(res?.userId) || "";
-
+    const post = await GET_POST_BY_SLUG(params.slug)
   return (
     <>
         <section className={`w-full relative pt-[70px]`}>
@@ -38,7 +23,7 @@ const BlogPage = async ({params}:PageProps) => {
                         <div className="single-post">
                             <div className="flex flex-col items-center justify-center mb-5"> {/* post header */}
                                 <div className="meta-cat">
-                                {/* <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link> */}
+                                <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{post?.category?.data?.attributes?.title} ,</Link>
                                 </div>
                                 <h1 className="my-2 text-center font-AvantGarde">{post?.Title || ""}</h1>
                                 <div className="post-meta ">
