@@ -25,15 +25,15 @@ export default async function Home() {
 
 			{/* <pre>{JSON.stringify(session)}</pre> */}
 			{/* blog section */}
-				<section>
-					<div className="py-12 min-h-screen mx-auto px-4 flex">
+				<section className='mt-10'>
+					<div className="w-[90%] mx-auto">
 							{/* main blog container */}
-							<div className="flex flex-wrap mr-[-15px] items-center ">
+							<div className="flex flex-wrap items-center gap-5">
 								{
 									[1,2,3,4,5,6,7,8,9,10].map((item,i)=>{
 										return (
 											<div key={i} className="w-full md:w-full lg:w-3/12">
-												<article className="block mb-5 p-2 rounded ">
+												<article className="block rounded ">
 													<Link className="mb-4 block" href="#">
 														<Image src={`https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} alt="..." width={500} height={500} className="block mb-4 w-full h-full" quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
 													</Link>
