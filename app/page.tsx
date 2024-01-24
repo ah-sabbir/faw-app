@@ -19,14 +19,14 @@ export default async function Home() {
   return (
 			<>
 
-				<section className="slider mt-[15px] pt-[68px]">
+				<section className="w-[90%] mx-auto pt-12 mt-6">
 						<HeroSection/>
 				</section>
 
 			{/* <pre>{JSON.stringify(session)}</pre> */}
 			{/* blog section */}
 				<section>
-					<div className="container py-12 min-h-screen mx-auto px-4 flex">
+					<div className="py-12 min-h-screen mx-auto px-4 flex">
 							{/* main blog container */}
 							<div className="flex flex-wrap mr-[-15px] items-center ">
 								{

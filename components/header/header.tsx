@@ -48,40 +48,42 @@ const RootHeader = () => {
     if(isBuilder || isAdmin || isAccess ) return (<></>)
 
   return (
-        <section className={` max-w-[1920px] w-full h-auto flex justify-center ite z-20 fixed top-0 left-0 bg-white py-3 mx-auto ${!top && 'shadow-lg'}`}>
-            <nav className=" max-w-[1260px] w-full flex justify-between px-[15px] items-center ">
-                <Link href={"/"} className={`text-[32px] md:text-xl lg:5xl text-gray-900 px-5 uppercase hover:text-gray-900 font-extrabold`}>
-                    <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} className='w-[36px]'/>
-                </Link>
-                <div className="flex md:flex-auto items-center justify-between">
-                    <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[13px] lg:text-[16px]`}>
-                        <li className="font-semibold text-gray-700"><Link href={"#"}>Trends</Link></li>
-                        <li className="font-semibold text-gray-700"><Link href={"#"}>Beauty & Makeup</Link></li>
-                        <li className="font-semibold text-gray-700"><Link href={"#"}>Travel & Lifestyle</Link></li>
-                        <li className="font-semibold text-gray-700"><Link href={"#"}>Style Diary</Link></li>
-                    </ul>
-                    <div className={`flex items-center font-extrabold relative`}>
-                        <FaBars className="h-5 w-5 text-black mx-2 cursor-pointer block  md:hidden lg:hidden" onClick={menuHandler}/>
-                        {
-                            isAuthenticated && (
-                                <>
-                                    <FaUser className="h-4 w-4 text-black mx-1 cursor-pointer" onClick={()=> setIsUser(!isUser)}/>
-                                    <div className={` min-w-[200px] flex flex-col gap-1 p-5 m-5 h-auto bg-white border-2 rounded-md z-[1000] absolute top-[40px] right-0 ${isUser? 'block':'hidden'}`}>
-                                        <Link href={`/blog/builder`} className='text-[#ce8460]'>Create Post</Link>
-                                        <Link href={`/admin`} className='text-[#ce8460]'>Dashboard</Link>
-                                        <button className='bg-[#ce8460] text-white p-2 rounded-md' onClick={()=>signOut()}>Logout</button>
-                                    </div>
-                                </>
-                            ) 
-                        }
-                        <FaSearch className="h-4 w-4 text-black mx-2 cursor-pointer text-red" onClick={()=>console.log("search icon")}/>
-                        <Link href="#" className="py-1  hidden md:block lg:block"><FaFacebookF className="h-4 w-4 text-[#316FF6] mx-2 cursor-pointer hidden md:block lg:block"/></Link>
-                        <Link href="#" className="py-1  hidden md:block lg:block"><Image src="/static/logos/twitter-x-logo.png" width={15} height={15} alt="..." /></Link>
-                        <Link href="#" className="py-1  hidden md:block lg:block"><FaPinterest className="h-4 w-4 text-red-500 mx-2 cursor-pointer hidden md:block lg:block"/></Link>
-                        
+        <section className={`w-full h-auto flex justify-center ite z-20 fixed top-0 left-0 bg-white py-3 mx-auto ${!top && 'shadow-lg'} ${top && 'divide-x-2'}`}>
+            <div className='w-[90%] mx-auto'>
+                <nav className="w-full flex justify-between items-center ">
+                    <Link href={"/"} className={`text-[32px] md:text-xl lg:5xl text-gray-900 px-5 uppercase hover:text-gray-900 font-extrabold`}>
+                        <Image src={'/static/logos/fashionanywhere-logo.webp'} width={50} height={50} alt={'...'} className='w-[36px]'/>
+                    </Link>
+                    <div className="flex md:flex-auto items-center justify-between">
+                        <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[13px] lg:text-[16px]`}>
+                            <li className="font-semibold text-gray-700"><Link href={"#"}>Trends</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"#"}>Beauty & Makeup</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"#"}>Travel & Lifestyle</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"#"}>Style Diary</Link></li>
+                        </ul>
+                        <div className={`flex items-center font-extrabold relative`}>
+                            <FaBars className="h-5 w-5 text-black mx-2 cursor-pointer" onClick={menuHandler}/>
+                            {/* {
+                                isAuthenticated && (
+                                    <>
+                                        <FaUser className="h-4 w-4 text-black mx-1 cursor-pointer" onClick={()=> setIsUser(!isUser)}/>
+                                        <div className={` min-w-[200px] flex flex-col gap-1 p-5 m-5 h-auto bg-white border-2 rounded-md z-[1000] absolute top-[40px] right-0 ${isUser? 'block':'hidden'}`}>
+                                            <Link href={`/blog/builder`} className='text-[#ce8460]'>Create Post</Link>
+                                            <Link href={`/admin`} className='text-[#ce8460]'>Dashboard</Link>
+                                            <button className='bg-[#ce8460] text-white p-2 rounded-md' onClick={()=>signOut()}>Logout</button>
+                                        </div>
+                                    </>
+                                ) 
+                            }
+                            <FaSearch className="h-4 w-4 text-black mx-2 cursor-pointer text-red" onClick={()=>console.log("search icon")}/>
+                            <Link href="#" className="py-1  hidden md:block lg:block"><FaFacebookF className="h-4 w-4 text-[#316FF6] mx-2 cursor-pointer hidden md:block lg:block"/></Link>
+                            <Link href="#" className="py-1  hidden md:block lg:block"><Image src="/static/logos/twitter-x-logo.png" width={15} height={15} alt="..." /></Link>
+                            <Link href="#" className="py-1  hidden md:block lg:block"><FaPinterest className="h-4 w-4 text-red-500 mx-2 cursor-pointer hidden md:block lg:block"/></Link> */}
+                            
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
     </section>
 
   )
