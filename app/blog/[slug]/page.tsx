@@ -1,11 +1,11 @@
-import { notFound, usePathname } from "next/navigation"
+// import { notFound, usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
-import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
-import GetTagsById from "@/lib/blogPost/tags/getTagsById";
-import GetUserById from "@/lib/userInfo/getUserById";
-import GetAllPosts from "@/lib/blogPost/getPostAll";
+// import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
+// import GetTagsById from "@/lib/blogPost/tags/getTagsById";
+// import GetUserById from "@/lib/userInfo/getUserById";
+// import GetAllPosts from "@/lib/blogPost/getPostAll";
 import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
 import convertTHTML from "@/lib/htmlParser";
 
