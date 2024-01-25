@@ -21,7 +21,7 @@ interface PageProps {
 
 const BlogPage = async ({params}:PageProps) => {  
 
-        const data = await GET_POST_BY_SLUG();
+        const data = await GET_POST_BY_SLUG(params.slug);
 
 
 
