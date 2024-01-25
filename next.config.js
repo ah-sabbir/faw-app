@@ -57,6 +57,10 @@ const nextConfig = {
               protocol: 'https',
               hostname: 'themewagon.github.io',
             },
+            {
+              protocol: 'https',
+              hostname: 'res.cloudinary.com'
+            }
         ],
 
         // domains: ["images.unsplash.com", "media.istockphoto.com", "source.unsplash.com", "cdn.shopify.com", "fakestoreapi.com", "cdn.pixabay.com", "istockphoto.com","s3-alpha-sig.figma.com","themewagon.github.io"],

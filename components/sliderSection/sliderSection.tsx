@@ -2,20 +2,19 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import GetLatestPost from '@/lib/blogPost/getLatestPost';
-import {GetPostByFeatured, GET_CATEGORIES} from '@/lib/blogPost/getPostByFeatured';
 import { getServerSession } from 'next-auth';
 import { authConfig } from '@/lib/auth';
-import GET_POSTS from '@/lib/blogPost/getPostAll';
+import { GET_POST_BY_SLUG, LATEST_POST } from '@/lib/blogPost/getPost';
 
 
 const HeroSection = async()=>{
   
-  const { data, meta } = await GET_POSTS();
-	const post = data[0]?.attributes
-  const categories = await GET_CATEGORIES();
+  const data = await LATEST_POST();
 
-  // console.log(categories.data)
+  const post = data?.attributes
+  // console.log(post.Content[0].children[0].text)
+
+  // console.log(post.img.data.attributes.formats.medium.url)
 
     // if(!post.ok) return <></>
 
@@ -24,14 +23,14 @@ const HeroSection = async()=>{
               <div className="w-full flex flex-col lg:flex-row gap-8">
                 <div className=" w-full lg:w-10/12 flex flex-col md:flex-row gap-8">
                   <div className="md:w-1/2 w-full">
-                    <Image src={'https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb'} className='w-full h-full' width={500} height={500} quality={75} alt="..."/>
+                    <Image src={post.img.data.attributes.formats.medium.url} className='w-full h-full' width={500} height={500} quality={75} alt={post.Title}/>
                   </div>
                   <div className='md:w-1/2 w-full'>
-                    <Link href={'#'} className=' text-3xl md:text-5xl font-normal text-black'>Simone Rocha&apos;s Take on Jean Paul Gaultier</Link>
+                    <Link href={'#'} className=' text-3xl md:text-5xl font-normal text-black'>{post.Title}</Link>
                     <div className='py-5'>
-                      <span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date().toDateString()}</span>
+                      <span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.publishedAt).toDateString()}</span>
                     </div>
-                    <p className=' font-normal text-lg'>What do you get when you fuse an Irish-Chinese pagan feminist with a French couture house? Ask Simone Rocha. She&apos;s the latest &apos;guest&apos; designer to be invited by Jean Paul Gaultier to bring her own spin to his remarkable legacy.</p>
+                    <p className=' font-normal text-lg'>{post.Content[0].children[0].text}</p>
                   </div>
                 </div>
                 <div className='lg:w-2/12 w-full flex flex-col'>

@@ -1,0 +1,63 @@
+// GET_ALL_POSTS
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { GET_ALL_POST, GET_LATEST_POST, POST_BY_SLUG } from "@/graphql/query"
+
+// apolloclient for api request
+export const client = new ApolloClient({
+  uri: process.env.STRAPI_API_URL+"/graphql",
+  headers: {
+      'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
+  },
+  cache: new InMemoryCache()
+});
+
+// function to get all the posts
+const ALL_POSTS = async () => {
+    try{
+        const { data } = await client.query({
+            query: GET_ALL_POST,
+          })
+          const posts = data?.posts?.data
+          return posts
+    }catch(e){
+        return new Error()
+    }
+};
+
+// function to get latest posts
+const LATEST_POST = async () => {
+    try {
+        const { data } = await client.query({
+            query: GET_LATEST_POST,
+            })
+            return data?.posts?.data[0]
+    } catch (error) {
+        console.log(error)
+        return new Error()
+    }
+}
+
+
+const GET_POST_BY_SLUG = async (slug:String) => {
+    try {
+        const { data } = await client.query({
+            query: POST_BY_SLUG,
+            variables: {slug: slug}
+          })
+          const posts = data?.posts?.data
+          return posts
+    } catch (error) {
+        return new Error()
+    }
+}
+
+
+
+// ALL_CATEGORY,
+
+
+export {
+    ALL_POSTS,
+    LATEST_POST,
+    GET_POST_BY_SLUG
+}

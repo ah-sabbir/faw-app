@@ -6,9 +6,11 @@ import CommenstSection from "@/components/commentSection/comments";
 // import GetTagsById from "@/lib/blogPost/tags/getTagsById";
 // import GetUserById from "@/lib/userInfo/getUserById";
 // import GetAllPosts from "@/lib/blogPost/getPostAll";
-import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
+// import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
 import convertTHTML from "@/lib/htmlParser";
 
+import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
+import { GET_POST_BY_SLUG } from "@/lib/blogPost/getPost";
 
 interface PageProps {
     params: {
@@ -18,11 +20,17 @@ interface PageProps {
   
 
 const BlogPage = async ({params}:PageProps) => {  
-    // console.log(params)
-    const {data, meta} = await GET_POST_BY_SLUG(params.slug);
-    const post = data[0]?.attributes;
 
-    // console.log(convertTHTML(post?.Content))
+        const data = await GET_POST_BY_SLUG();
+
+
+
+    // console.log(params)
+    // const {data, meta} = await GET_POST_BY_SLUG(params.slug);
+    // const post = data[0]?.attributes;
+    // const postContent = post.Content
+
+    // console.log("this is single page", postContent)
 
     // console.log(post);
     // const res = await GetPostBySlug(params?.slug) || "";
@@ -49,7 +57,8 @@ const BlogPage = async ({params}:PageProps) => {
                                     <Image src={post?.img?.data?.attributes?.formats?.url || `https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
-                            <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} />
+                            {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} /> */}
+                            <BlocksRenderer content={postContent} />
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>
