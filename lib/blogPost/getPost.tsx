@@ -1,6 +1,6 @@
 // GET_ALL_POSTS
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_ALL_POST, GET_LATEST_POST, POST_BY_SLUG } from "@/graphql/query"
+import { ALL_CATEGORY, ALL_TAG, GET_ALL_POST, GET_LATEST_POST, POST_BY_SLUG } from "@/graphql/query"
 
 // apolloclient for api request
 export const client = new ApolloClient({
@@ -45,7 +45,28 @@ const GET_POST_BY_SLUG = async (slug:String) => {
             variables: {slug: slug}
           })
           const posts = data?.posts?.data
-          return posts
+          return posts[0]
+    } catch (error) {
+        return new Error()
+    }
+}
+
+
+const GET_CATEGORY = async () => {
+    try {
+        const { data } = await client.query({
+            query: ALL_CATEGORY
+        })
+    } catch (error) {
+        return new Error()
+    }
+}
+
+const GET_TAGS = async () => {
+    try {
+        const { data } = await client.query({
+            query: ALL_TAG
+        })
     } catch (error) {
         return new Error()
     }
@@ -59,5 +80,7 @@ const GET_POST_BY_SLUG = async (slug:String) => {
 export {
     ALL_POSTS,
     LATEST_POST,
-    GET_POST_BY_SLUG
+    GET_POST_BY_SLUG,
+    GET_CATEGORY,
+    GET_TAGS
 }

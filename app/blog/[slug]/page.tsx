@@ -23,6 +23,12 @@ const BlogPage = async ({params}:PageProps) => {
 
         const data = await GET_POST_BY_SLUG(params.slug);
 
+        const post = data?.attributes;
+
+        const postContent = data?.attributes?.Content
+
+        // console.log(post?.category?.data?.attributes?.slug)
+
 
 
     // console.log(params)
@@ -50,11 +56,11 @@ const BlogPage = async ({params}:PageProps) => {
                                 </div>
                                 <h1 className="my-2 text-center font-AvantGarde">{post?.Title || ""}</h1>
                                 <div className="post-meta ">
-                                    <span className="uppercase text-xs letter-spacing-1 mr-3">by Liam</span>
-                                    <span className="uppercase text-xs letter-spacing-1">January 17,2019</span>
+                                    <Link href={`/category/${post?.category?.data?.attributes?.slug}`} ><span className="uppercase text-sm letter-spacing-1 mr-3">{post?.category?.data?.attributes?.title}</span></Link>
+                                    <span className="uppercase text-xs letter-spacing-1">{new Date(post?.updatedAt).toDateString()}</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src={post?.img?.data?.attributes?.formats?.url || `https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
+                                    <Image src={post?.img?.data?.attributes?.formats?.medium?.url || `https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
                             {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} /> */}

@@ -9,6 +9,7 @@ query ($slug:String){
         Title
         Slug
         Content
+        updatedAt
         tags {
           data {
             id
@@ -22,6 +23,7 @@ query ($slug:String){
             id
             attributes{
               title
+              slug
             }
           }
         }
@@ -49,6 +51,7 @@ query {
         Slug
         Content
         publishedAt
+        updatedAt
         tags {
           data {
             id
@@ -113,10 +116,26 @@ query {
 }
 `
 
+const ALL_TAG = gql `
+query {
+    tags{
+      data {
+        id
+        attributes{
+          title
+        }
+      }
+    }
+}
+`
+
+
+
 export {
   POST_BY_SLUG,
   GET_ALL_POST,
   ALL_CATEGORY,
-  GET_LATEST_POST
+  GET_LATEST_POST,
+  ALL_TAG,
 };
 
