@@ -43,7 +43,7 @@ export default async function Home() {
 											<div key={i} className="w-full md:w-full lg:w-3/12">
 												<article className="block rounded my-12 md:my-0">
 													<Link className="mb-4 block" href={`/blog/${post.Slug}`}>
-														<Image src={`${post?.img.data.attributes.formats.medium.url}`} alt="..." width={100} height={100} className="object-cover w-full h-full lg:h-56 mb-4 " quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
+														<Image src={`${post?.img.data.attributes.formats.medium.url}`} alt="..." width={500} height={500} className="object-cover w-full h-full lg:h-56 mb-4 " quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
 													</Link>
 													<span className="font-extra text-sm uppercase letter-spacing-1 text-[#ce8460]">{post?.category?.data?.attributes?.title}</span>
 													<h3 className="post-title mt-1"><Link href={`/blog/${post.Slug}`}>{post.Title}</Link></h3>

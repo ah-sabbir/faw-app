@@ -60,7 +60,7 @@ const BlogPage = async ({params}:PageProps) => {
                                     <span className="uppercase text-xs letter-spacing-1">{new Date(post?.updatedAt).toDateString()}</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src={post?.img?.data?.attributes?.formats?.medium?.url || `https://images.unsplash.com/photo-1484327973588-c31f829103fe?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb`} className="w-full" width={100} height={100} quality="85" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
+                                    <Image src={post?.img?.data?.attributes?.formats?.medium?.url} className="w-full" width={500} height={500} quality="85" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
                             {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} /> */}

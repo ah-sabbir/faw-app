@@ -12,7 +12,7 @@ const HeroSection = async()=>{
   const data = await LATEST_POST();
 
   const post = data?.attributes
-  // console.log(post.Content[0].children[0].text)
+  // console.log(post.img.data.attributes.formats)
 
   // console.log(post.img.data.attributes.formats.medium.url)
 
@@ -23,7 +23,7 @@ const HeroSection = async()=>{
               <div className="w-full flex flex-col lg:flex-row gap-8">
                 <div className=" w-full lg:w-10/12 flex flex-col md:flex-row gap-8">
                   <div className="md:w-1/2 w-full">
-                    <Image src={post.img.data.attributes.formats.medium.url} className=' object-cover w-full h-[500px]' width={100} height={100} quality={75} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy' alt={post.Title}/>
+                    <Image src={post.img.data.attributes.formats.medium.url} className=' object-cover w-full h-[500px]' width={500} height={500} quality={75} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt={post.Title}/>
                   </div>
                   <div className='md:w-1/2 w-full'>
                     <Link href={`/blog/${post.Slug}`} className=' text-3xl md:text-5xl font-normal text-black'>{post.Title}</Link>

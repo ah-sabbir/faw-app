@@ -8,7 +8,21 @@ export const client = new ApolloClient({
   headers: {
       'Authorization': 'Bearer '+process.env.STRAPI_API_KEY
   },
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    typePolicies: {
+        Query: {
+          fields: {
+            YOUR_FIELD: {
+              merge(existing = [], incoming: any) {
+                return { ...existing, ...incoming };
+                // this part of code is depends what you actually need to do, in my 
+                // case i had to save my incoming data as single object in cache
+              }
+            }
+          }
+        }
+      }
+  })
 });
 
 // function to get all the posts
