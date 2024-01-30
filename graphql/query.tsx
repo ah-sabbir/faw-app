@@ -71,7 +71,10 @@ query {
         img {
           data {
             attributes {
-              formats
+              url
+              ext
+              name
+              hash
             }
           }
         }
@@ -106,7 +109,10 @@ query {
         img {
           data {
             attributes {
-              formats
+              url
+              ext
+              name
+              hash
             }
           }
         }

@@ -14,7 +14,12 @@ export const revalidate = 60;
 export default async function Home() {
 	const data = await ALL_POSTS();
 
-	// console.log(data)
+	
+	// const imgHash = data[0]?.attributes?.img?.data?.attributes?.hash
+	// const ext = data[0]?.attributes?.img?.data?.attributes?.ext
+	// const imgURL = data[0]?.attributes?.img?.data?.attributes?.url.split("upload")[0]+"upload/f_auto/"+imgHash+ext
+
+	// console.log(imgURL)
 
 
 
@@ -39,11 +44,14 @@ export default async function Home() {
 								{
 									data.map((item:any,i:any)=>{
 										const post = item?.attributes
+										const imgHash = post?.img?.data?.attributes?.hash
+										const ext = post?.img?.data?.attributes?.ext
+										const imgURL = post?.img?.data?.attributes?.url.split("upload")[0]+"upload/f_auto/"+imgHash+ext
 										return (
 											<div key={i} className="w-full md:w-full lg:w-3/12">
 												<article className="block rounded my-12 md:my-0">
 													<Link className="mb-4 block" href={`/blog/${post.Slug}`}>
-														<Image src={`${post?.img.data.attributes.formats.medium.url}`} alt="..." width={500} height={500} className="object-cover w-full h-full lg:h-56 mb-4 " quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
+														<Image src={`${imgURL}`} alt="..." width={500} height={500} className="object-cover w-full h-full lg:h-56 mb-4 " quality="75" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" loading='lazy'/>
 													</Link>
 													<span className="font-extra text-sm uppercase letter-spacing-1 text-[#ce8460]">{post?.category?.data?.attributes?.title}</span>
 													<h3 className="post-title mt-1"><Link href={`/blog/${post.Slug}`}>{post.Title}</Link></h3>
