@@ -9,17 +9,25 @@ import { getServerSession } from 'next-auth';
 import { ALL_POSTS, LATEST_POST } from '@/lib/blogPost/getPost';
 
 export const revalidate = 60;
-
+const BASE_URL = 'https://fashionanywhere.shop'
 
 export default async function Home() {
 	const data = await ALL_POSTS();
 
+	// const postsMap = data.map((obj:any, i:number)=>{
+	// 	return {
+	// 	  url: BASE_URL+'/blog/'+ obj.attributes.Slug,
+	// 	  lastModified: new Date(obj.attributes.updatedAt),
+	// 	  changeFrequency: 'weekly',
+	// 	  priority: 0.5,
+	// 	}
+	//   })
 	
 	// const imgHash = data[0]?.attributes?.img?.data?.attributes?.hash
 	// const ext = data[0]?.attributes?.img?.data?.attributes?.ext
 	// const imgURL = data[0]?.attributes?.img?.data?.attributes?.url.split("upload")[0]+"upload/f_auto/"+imgHash+ext
 
-	// console.log(imgURL)
+	// console.log(postsMap)
 
 
 
