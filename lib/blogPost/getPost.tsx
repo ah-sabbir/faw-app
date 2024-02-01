@@ -1,5 +1,8 @@
 // GET_ALL_POSTS
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+
+// https://www.npmjs.com/package/@apollo/experimental-nextjs-app-support
+
 import { ALL_CATEGORY, ALL_TAG, GET_ALL_POST, GET_LATEST_POST, POST_BY_SLUG } from "@/graphql/query"
 
 // apolloclient for api request
