@@ -8,37 +8,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const postsMap = posts.map((obj:any, i:number)=>{
     return {
 		  url: BASE_URL+'/blog/'+ obj.attributes.Slug,
-		  lastModified: new Date(obj.attributes.updatedAt),
+		  lastModified: new Date(obj.attributes.updatedAt).toISOString(),
 		  changeFrequency: 'weekly',
-		  priority: 0.5,
+		  priority: 1,
 		}
   })
 
-  return [
-    {
-      url: 'https://fashionanywhere.shop',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-    {
-      url: 'https://fashionanywhere.shop/about',
-      lastModified: new Date(),
+  const routeMap = ['', 'blog', 'cultures', 'about'].map((v,i)=>{
+    return {
+      url:BASE_URL+'/'+v,
+      lastModified: new Date().toISOString(),
       changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: 'https://fashionanywhere.shop/blog',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
-    },
-    {
-      url: 'https://fashionanywhere.shop/cultures',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.5,
-    },
+    }
+  })
+
+  return [
+    ...routeMap,
     ...postsMap
   ]
 }
