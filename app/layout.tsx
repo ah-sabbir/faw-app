@@ -14,18 +14,27 @@ const poppins = Poppins({
 });
 
 export const metadata:Metadata = {
-  icons: {
-    icon: '/static/logos/fashionanywhere-logo.webp',
-  },
-  metadataBase: new URL("https://fashionanywhere.shop"),
   title: {
-    default: "Fashion Anywhere",
-    template: `%s | Fashion Anywhere`,
+    default: "Fashion Anywhere - Your First Choice Fashion and Beauty Magazine.",
+    template: `%s | Fashion Anywhere - Worlds\'s #1 Fashion and Beauty Magazine.`,
   },
   description: 'Worlds\'s #1 Fashion and Beauty Magazine.',
-  verification: {
-    google: "google-site-verification=123123123",
+  twitter:{
+    card: 'summary_large_image'
   },
+  metadataBase: new URL('https://fashionanywhere.shop'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US',
+    },
+  },
+  openGraph: {
+    images: '/static/logos/fashionanywhere-logo.webp',
+  },
+  // verification: {
+  //   google: "google-site-verification=123123123",
+  // },
 };
 
 

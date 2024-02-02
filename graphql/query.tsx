@@ -2,14 +2,16 @@ import { gql } from '@apollo/client';
 
 const POST_BY_SLUG = gql `
 query ($slug:String){
-  posts (filters: {Slug: {eq: $slug}}){
+  posts (filters: {slug: {eq: $slug}}){
     data {
       id
       attributes {
-        Title
-        Slug
-        Content
+        title
+        slug
+        content
         updatedAt
+        meta_description
+        meta_title
         tags {
           data {
             id
@@ -47,9 +49,9 @@ query {
     data {
       id
       attributes {
-        Title
-        Slug
-        Content
+        title
+        slug
+        content
         publishedAt
         updatedAt
         tags {
@@ -102,9 +104,9 @@ query {
     data {
       id
       attributes {
-        Title
-        Slug
-        Content
+        title
+        slug
+        content
         publishedAt
         img {
           data {

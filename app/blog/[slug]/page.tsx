@@ -2,46 +2,53 @@
 import Link from "next/link"
 import Image from "next/image";
 import CommenstSection from "@/components/commentSection/comments";
-// import GetPostBySlug from "@/lib/blogPost/getPostBySlug";
-// import GetTagsById from "@/lib/blogPost/tags/getTagsById";
-// import GetUserById from "@/lib/userInfo/getUserById";
-// import GetAllPosts from "@/lib/blogPost/getPostAll";
-// import GET_POST_BY_SLUG from "@/lib/blogPost/getPostBySlug";
-import convertTHTML from "@/lib/htmlParser";
-
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 import { GET_POST_BY_SLUG } from "@/lib/blogPost/getPost";
+import './module.style.css'
+// import textParser from "@/lib/htmlParser";
 
 interface PageProps {
     params: {
         slug: string
     }
 }
-  
+
+// Generate MetaData
+export async function generateMetadata({ params:{slug} }:PageProps) {
+    const data = await GET_POST_BY_SLUG(slug);
+    // console.log("this is dynamic metadata", data?.attributes?.img?.data?.attributes?.formats?.large?.url)
+    return {
+      title: data?.attributes?.title,
+      description: data?.attributes?.meta_description,
+      openGraph: {
+        Image: [
+            {
+                url: data?.attributes?.img?.data?.attributes?.formats?.medium?.url,
+                width: 800,
+                height: 600,
+                alt: data?.attributes?.title
+            },
+            {
+                url: data?.attributes?.img?.data?.attributes?.formats?.large?.url, // Must be an absolute URL
+                width: 1800,
+                height: 1600,
+                alt: data?.attributes?.title
+              },
+        ],
+        locale: 'en_US',
+        type: 'website',
+      }
+    }
+  }
+// end Gerate MetaData
+
 
 const BlogPage = async ({params}:PageProps) => {  
 
         const data = await GET_POST_BY_SLUG(params.slug);
-
         const post = data?.attributes;
-
-        const postContent = data?.attributes?.Content
-
-        // console.log(post?.category?.data?.attributes?.slug)
-
-
-
-    // console.log(params)
-    // const {data, meta} = await GET_POST_BY_SLUG(params.slug);
-    // const post = data[0]?.attributes;
-    // const postContent = post.Content
-
-    // console.log("this is single page", postContent)
-
-    // console.log(post);
-    // const res = await GetPostBySlug(params?.slug) || "";
-    // const tagRes = await GetTagsById(res?.tagId ) || "";
-    // const user = await GetUserById(res?.userId) || "";
+        const postContent = data?.attributes?.content
+        // console.log(postContent)
 
   return (
     <>
@@ -54,7 +61,7 @@ const BlogPage = async ({params}:PageProps) => {
                                 <div className="meta-cat">
                                 {/* <Link className="text-color font-extra text-sm text-uppercase letter-spacing-1 text-[#ce8460]" href="#">{tagRes?.name?tagRes?.name:""} ,</Link> */}
                                 </div>
-                                <h1 className="my-2 text-center font-AvantGarde">{post?.Title || ""}</h1>
+                                <h1 className="my-2 text-center font-AvantGarde">{post?.title || ""}</h1>
                                 <div className="post-meta ">
                                     <Link href={`/category/${post?.category?.data?.attributes?.slug}`} ><span className="uppercase text-sm letter-spacing-1 mr-3">{post?.category?.data?.attributes?.title}</span></Link>
                                     <span className="uppercase text-xs letter-spacing-1">{new Date(post?.updatedAt).toDateString()}</span>
@@ -65,6 +72,7 @@ const BlogPage = async ({params}:PageProps) => {
                             </div>
                             {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} /> */}
                             <BlocksRenderer content={postContent} />
+                            {/* <Renderer BlockProps={postContent} /> */}
                             <div>
                                 <Link className="pl-2 text-xl" href="#">#Health</Link>
                                 <Link className="pl-2 text-xl" href="#">#Game</Link>

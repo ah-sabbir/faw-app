@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authConfig } from '@/lib/auth';
-import { GET_POST_BY_SLUG, LATEST_POST } from '@/lib/blogPost/getPost';
+import { LATEST_POST } from '@/lib/blogPost/getPost';
 
 
 const HeroSection = async()=>{
@@ -27,11 +27,11 @@ const HeroSection = async()=>{
                     <Image src={imgURL} className=' object-cover w-full h-[500px]' width={500} height={500} quality={75} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt={post.Title}/>
                   </div>
                   <div className='md:w-1/2 w-full'>
-                    <Link href={`/blog/${post.Slug}`} className=' text-3xl md:text-5xl font-normal text-black'>{post.Title}</Link>
+                    <Link href={`/blog/${post.slug}`} className=' text-3xl md:text-5xl font-normal text-black'>{post.title}</Link>
                     <div className='py-5'>
                       <span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.publishedAt).toDateString()}</span>
                     </div>
-                    <p className=' font-normal text-lg'>{post.Content[0].children[0].text}</p>
+                    <p className=' font-normal text-lg'>{post.content[0].children[0].text}</p>
                   </div>
                 </div>
                 <div className='lg:w-2/12 w-full flex flex-col'>
