@@ -47,12 +47,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${poppins.variable}`} >
-      <head>
-      <meta name="p:domain_verify" content="aa62db3cc92aa387d76d2ecd0c3b443e"/>
-      <meta name="google-adsense-account" content="ca-pub-3337775409702678"/>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3337775409702678"
-     crossOrigin="anonymous"></script>
-      </head>
       <body className=' font-normal'> 
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
