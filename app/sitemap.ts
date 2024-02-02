@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		}
   })
 
-  const routeMap = ['', 'blog', 'cultures', 'about'].map((v,i)=>{
+  const routeMap = ['', 'blog', 'category', 'cultures', 'about'].map((v,i)=>{
     return {
       url:BASE_URL+'/'+v,
       lastModified: new Date().toISOString(),

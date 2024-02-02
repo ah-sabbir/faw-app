@@ -56,10 +56,10 @@ const RootHeader = () => {
                     </Link>
                     <div className="flex md:flex-auto items-center justify-between">
                         <ul className={`items-center space-x-6 hidden md:inline-flex uppercase text-[#555] font-bold text-[13px] lg:text-[16px]`}>
-                            <li className="font-semibold text-gray-700"><Link href={"/trends"}>Trends</Link></li>
-                            <li className="font-semibold text-gray-700"><Link href={"/beauty-and-makeover"}>Beauty & Makeup</Link></li>
-                            <li className="font-semibold text-gray-700"><Link href={"/travel-and-lifestyle"}>Travel & Lifestyle</Link></li>
-                            <li className="font-semibold text-gray-700"><Link href={"/style-diary"}>Style Diary</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"/category/trends"}>Trends</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"/category/beauty-and-makeover"}>Beauty & Makeup</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"/category/travel-and-lifestyle"}>Travel & Lifestyle</Link></li>
+                            <li className="font-semibold text-gray-700"><Link href={"/category/style-diary"}>Style Diary</Link></li>
                         </ul>
                         <div className={`flex items-center font-extrabold relative`}>
                             <FaBars className="h-5 w-5 text-black mx-2 cursor-pointer" onClick={menuHandler}/>
