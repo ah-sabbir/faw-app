@@ -18,7 +18,7 @@ const OneCategoryPage = async ()=>{
                 <Link href="/">
                     <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow relative">
                         <h1 className="mb-4 text-4xl font-bold">Hello!</h1>
-                        <p className="w-full text-gray-600 text-left">We're working on this page.</p>
+                        <p className="w-full text-gray-600 text-left">We&apos;re working on this page.</p>
                         <h2 className="w-full text-gray-600 text-center">GOTO HOME.&#128073;</h2>
                     </div>
                 </Link>

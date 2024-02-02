@@ -18,7 +18,7 @@ const CategoryPage = async ()=>{
                 {
                     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map((v,i)=>{
                         return (
-                            <div className="flex flex-row items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow relative">
+                            <div key={i} className="flex flex-row items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow relative">
                                 <Image className="rounded-t-lg w-full object-cover" width={500} height={500} src={imgURL} alt="" />
                                 <div className="p-5 absolute">
                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{post.title}</h5>
