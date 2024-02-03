@@ -35,6 +35,10 @@ export const metadata:Metadata = {
   // verification: {
   //   google: "google-site-verification=123123123",
   // },
+robots: {
+    index: true,
+    follow: true
+   }
 };
 
 

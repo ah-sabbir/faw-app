@@ -1,0 +1,31 @@
+# we use Shopify as our ecommerce platform
+
+User-agent: *
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /access
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /users
+Disallow: /user
+Disallow: /user/checkouts
+Disallow: /users/checkout
+Disallow: /user/orders
+Disallow: /carts
+Disallow: /account
+Disallow: /policies/
+Disallow: /search
+
+allow: '/'
+Sitemap: https://fashionanywhere.shop/sitemap.xml
+
+# Google adsbot ignores robots.txt unless specifically named!
+User-agent: adsbot-google
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /carts
+Disallow: /orders
+Disallow: /*/checkouts
+Disallow: /*/orders
+Sitemap: https://fashionanywhere.shop/sitemap.xml

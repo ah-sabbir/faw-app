@@ -21,7 +21,11 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
       title: data?.attributes?.title,
       description: data?.attributes?.meta_description,
       url: 'https://fashionanywhere.shop',
-      siteName: 'fashion anywhere'
+      siteName: 'fashion anywhere',
+      robots:{
+	index: true,
+	follow: true
+	},
       openGraph: {
         images: [
             {

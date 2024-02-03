@@ -5,9 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/accounts/',
+      disallow: ['/amdin','/access'],
     },
-    sitemap: 'https://fashionanywhere.shop/sitemap.xml',
-    host: 'https://fashionanywhere.shop'
+    sitemap: `${process.env.NEXT_PUBLIC_RUL}/sitemap.xml`,
   }
 }
