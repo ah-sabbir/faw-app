@@ -27,20 +27,7 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
 	follow: true
 	},
       openGraph: {
-        images: [
-            {
-                url: data?.attributes?.img?.data?.attributes?.formats?.medium?.url,
-                width: 800,
-                height: 600,
-                alt: data?.attributes?.title
-            },
-            {
-                url: data?.attributes?.img?.data?.attributes?.formats?.large?.url, // Must be an absolute URL
-                width: 1800,
-                height: 1600,
-                alt: data?.attributes?.title
-              },
-        ],
+        images: data?.attributes?.img?.data?.attributes?.formats?.medium?.url,
         locale: 'en_US',
       }
     }
