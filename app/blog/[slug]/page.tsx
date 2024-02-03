@@ -20,8 +20,10 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
     return {
       title: data?.attributes?.title,
       description: data?.attributes?.meta_description,
+      url: 'https://fashionanywhere.shop',
+      siteName: 'fashion anywhere'
       openGraph: {
-        Image: [
+        images: [
             {
                 url: data?.attributes?.img?.data?.attributes?.formats?.medium?.url,
                 width: 800,
@@ -36,7 +38,6 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
               },
         ],
         locale: 'en_US',
-        type: 'website',
       }
     }
   }
