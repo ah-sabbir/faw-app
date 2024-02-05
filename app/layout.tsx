@@ -53,6 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable}`} >
       <head>
+      <meta name="google-site-verification" content="S8Kolc0TD_k650byiublRHJJnOZ3VZhXWf67d9rOsjY" />
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
