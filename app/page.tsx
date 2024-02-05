@@ -63,7 +63,7 @@ export default async function Home() {
 													</Link>
 													<span className="font-extra text-md font-semibold uppercase letter-spacing-1 text-[#FCBA00]">{post?.category?.data?.attributes?.title}</span>
 													<h3 className="post-title mt-1"><Link href={`/blog/${post.slug}`}>{post.title}</Link></h3>
-													<p className='pt-5 pb-5 text-clip'>{post.content[0].children[0].text.substring(1,100)+"..."}</p>
+													<p className='pt-5 pb-5 text-clip'>{post.content[0].children[0].text.substring(0,100)+"..."}</p>
 													<span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.updatedAt).toDateString()}</span>
 												</article>
 												<hr className='block md:hidden'/>

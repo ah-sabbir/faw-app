@@ -17,7 +17,7 @@ const HeroSection = async()=>{
   const ext = post?.img?.data?.attributes?.ext
   const imgURL = post?.img?.data?.attributes?.url.split("upload")[0]+"upload/f_auto/"+imgHash+ext
 
-  // console.log(post?.img)
+  // console.log(post.content[0].children[0].text +": "+ post.content[1].children[0].text)
 
     return (
         <>
@@ -31,7 +31,7 @@ const HeroSection = async()=>{
                     <div className='py-5'>
                       <span className="letter-spacing text-uppercase font-sm tracking-[3px]">{new Date(post.publishedAt).toDateString()}</span>
                     </div>
-                    <p className=' font-normal text-lg'>{post.content[0].children[0].text}</p>
+                    <p className=' font-normal text-lg'>{post.content[0].children[0].text +": "+ post.content[1].children[0].text}</p>
                   </div>
                 </div>
                 <div className='lg:w-2/12 w-full flex flex-col'>
