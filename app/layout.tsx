@@ -58,7 +58,7 @@ export default function RootLayout({
         }
       </head>
       <body className=' font-normal'> 
-      <Script>
+      <Script id="gtm-in-body">
           {/* <!-- Google Tag Manager (noscript) --> */}
           <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PL7DV8SL"
           height="0" width="0" className=" none hidden"></iframe></noscript>
