@@ -5,6 +5,7 @@ import { FooterSection } from '@/components/footer/footer'
 import GoogleTagManager from '@/components/gtm/googleTagManager'
 import Provider from '@/providers/sessionProvider';
 import { Poppins } from 'next/font/google';
+import Script from 'next/script';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -51,10 +52,18 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${poppins.variable}`} >
-      <body className=' font-normal'> 
+      <head>
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
+      </head>
+      <body className=' font-normal'> 
+      <Script>
+          {/* <!-- Google Tag Manager (noscript) --> */}
+          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PL7DV8SL"
+          height="0" width="0" className=" none hidden"></iframe></noscript>
+          {/* <!-- End Google Tag Manager (noscript) --> */}
+      </Script>
           <Provider>
             <RootHeader/>
               {children}
