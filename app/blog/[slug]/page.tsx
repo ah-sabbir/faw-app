@@ -16,20 +16,63 @@ interface PageProps {
 // Generate MetaData
 export async function generateMetadata({ params:{slug} }:PageProps) {
     const data = await GET_POST_BY_SLUG(slug);
-    // console.log("this is dynamic metadata", data?.attributes?.img?.data?.attributes?.formats?.large?.url)
+    
+    if(!data){
+        return {}
+    }
+
+    const title = `fashionanywhere - ${data?.attributes?.meta_title}`;
+    // const seo_img = `${process.env.NEXT_PUBLIC_HOST}/img/${data.headerImage.split("/").at(-1)}`;
+    const seo_img = data?.attributes?.img?.data?.attributes?.url;
+    const url = `${process.env.NEXT_PUBLIC_URL}/blog/${data?.attributes?.slug}`;
+    const color = '#ffffff';
+    const description = data?.attributes?.meta_description
+    const tags = "fashion, fashion shop, online shop, women fashion trends " + data?.attributes?.meta_title
+    
+
+
+    // console.log("this is meta image",title)
+
     return {
-      title: data?.attributes?.title,
-      description: data?.attributes?.meta_description,
-      url: 'https://fashionanywhere.shop',
-      siteName: 'fashion anywhere',
-      robots:{
-	index: true,
-	follow: true
-	},
-      openGraph: {
-        images: data?.attributes?.img?.data?.attributes?.formats?.medium?.url,
-        locale: 'en_US',
-      }
+        title,
+        description: description,
+        applicationName: title,
+        keywords: data.tags,
+        alternates: {
+        canonical: url,
+        },
+        icons: {
+            icon: '/static/logos/fashionanywhere-logo.webp',
+            shortcut: '/static/logos/fashionanywhere-logo.webp',
+            apple: '/static/logos/fashionanywhere-logo.webp',
+            other: {
+                rel: 'apple-touch-icon-precomposed',
+                url: '/static/logos/fashionanywhere-logo.webp',
+            },
+        },
+        openGraph: {
+        title,
+        description: description,
+        url,
+        siteName: 'fashionanywhere.shop',
+        images: [
+            {
+            url: seo_img,
+            },
+        ],
+        locale: 'en-US',
+        type: 'website',
+        },
+        twitter: {
+        card: 'summary_large_image',
+        title,
+        description: description,
+        images: [seo_img],
+        },
+        other: {
+        "og:image": seo_img,
+        "theme-color": color,
+        },
     }
   }
 // end Gerate MetaData
@@ -59,7 +102,7 @@ const BlogPage = async ({params}:PageProps) => {
                                     <span className="uppercase text-xs letter-spacing-1">{new Date(post?.updatedAt).toDateString()}</span>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
-                                    <Image src={post?.img?.data?.attributes?.formats?.medium?.url} className="w-full" width={500} height={500} quality="85" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
+                                    <Image src={post?.img?.data?.attributes?.url} className="w-full" width={500} height={500} quality="85" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
                                 </div>
                             </div>
                             {/* <div className="py-[30px]" dangerouslySetInnerHTML={{ __html: convertTHTML(post?.Content)  || ""}} /> */}

@@ -33,6 +33,7 @@ query ($slug:String){
           data {
             attributes {
               formats
+              url
             }
           }
         }
