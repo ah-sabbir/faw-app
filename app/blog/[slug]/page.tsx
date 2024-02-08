@@ -27,7 +27,7 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
     const url = `${process.env.NEXT_PUBLIC_URL}/blog/${data?.attributes?.slug}`;
     const color = '#ffffff';
     const description = data?.attributes?.meta_description
-    const tags = "fashion, fashion shop, online shop, women fashion trends " + data?.attributes?.meta_title
+    const tags = "fashionanywhere, fashion, fashion shop, online shop, women fashion trends " + data?.attributes?.meta_title
     
 
 
@@ -37,7 +37,7 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
         title,
         description: description,
         applicationName: title,
-        keywords: data.tags,
+        keywords: tags,
         alternates: {
         canonical: url,
         },
