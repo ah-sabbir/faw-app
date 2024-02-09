@@ -54,6 +54,8 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable}`} >
       <head>
       <meta name="google-site-verification" content="S8Kolc0TD_k650byiublRHJJnOZ3VZhXWf67d9rOsjY" />
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6385545446574142"
+         crossorigin="anonymous"></script>
       <meta name="google-adsense-account" content="ca-pub-6385545446574142"/>
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
