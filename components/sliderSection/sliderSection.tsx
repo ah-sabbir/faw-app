@@ -21,6 +21,9 @@ const HeroSection = async()=>{
 
     return (
         <>
+              {/* <!-- Ezoic - top_of_page - top_of_page --> */}
+              <div id="ezoic-pub-ad-placeholder-103"> </div>
+              {/* <!-- End Ezoic - top_of_page - top_of_page --> */}
               <div className="w-full flex flex-col lg:flex-row gap-8">
                 <div className=" w-full lg:w-10/12 flex flex-col md:flex-row gap-8">
                   <div className="md:w-1/2 w-full">
