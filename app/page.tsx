@@ -14,33 +14,12 @@ const BASE_URL = 'https://fashionanywhere.shop'
 export default async function Home() {
 	const data = await ALL_POSTS();
 
-	// const postsMap = data.map((obj:any, i:number)=>{
-	// 	return {
-	// 	  url: BASE_URL+'/blog/'+ obj.attributes.Slug,
-	// 	  lastModified: new Date(obj.attributes.updatedAt),
-	// 	  changeFrequency: 'weekly',
-	// 	  priority: 0.5,
-	// 	}
-	//   })
-	
-	// const imgHash = data[0]?.attributes?.img?.data?.attributes?.hash
-	// const ext = data[0]?.attributes?.img?.data?.attributes?.ext
-	// const imgURL = data[0]?.attributes?.img?.data?.attributes?.url.split("upload")[0]+"upload/f_auto/"+imgHash+ext
-
-	// console.log(postsMap)
-
-
-
-	// console.log("this is post from api ", data);
-
   return (
 			<>
 
-				<section className="w-[90%] mx-auto pt-12 mt-6">
-						<HeroSection/>
-				</section>
-
-			{/* <pre>{JSON.stringify(session)}</pre> */}
+			<section className="w-[90%] mx-auto pt-12 mt-6">
+					<HeroSection/>
+			</section>
 			{/* blog section */}
 				<section className='mt-10'>
 					<hr/>

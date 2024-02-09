@@ -1,7 +1,10 @@
-# we use Shopify as our ecommerce platform
-
+# we use strapi cms as our blog platform
 
 User-agent: *
+Allow: /
+allow: /blog
+allow: /blog/*
+
 Disallow: /admin
 Disallow: /cart
 Disallow: /orders
@@ -20,16 +23,13 @@ Disallow: /search
 Disallow: /*/checkouts
 Disallow: /*/orders
 
-allow: '/'
-allow: '/blog'
-allow: '/blog/*'
+#Disallow: /search*
+#Disallow: /search?q=*
+#Disallow: /search?updated-min=*
+#Disallow: /search?updated-max=*
+#Disallow: /search/label/*?updated-min=*
+#Disallow: /search/label/*?updated-max=*
+#Disallow: /*?m=*
+
+
 Sitemap: https://fashionanywhere.shop/sitemap.xml
-
-# Google adsbot ignores robots.txt unless specifically named!
-# User-agent: adsbot-google
-# Disallow: /checkouts/
-# Disallow: /checkout
-# Disallow: /carts
-# Disallow: /orders
-
-# Sitemap: https://fashionanywhere.shop/sitemap.xml
