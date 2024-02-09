@@ -100,6 +100,16 @@ const BlogPage = async ({params}:PageProps) => {
                                 <div className="post-meta ">
                                     <Link href={`/category/${post?.category?.data?.attributes?.slug}`} ><span className="uppercase text-sm letter-spacing-1 mr-3">{post?.category?.data?.attributes?.title}</span></Link>
                                     <span className="uppercase text-xs letter-spacing-1">{new Date(post?.updatedAt).toDateString()}</span>
+                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6385545446574142"
+                                        crossOrigin="anonymous"></script>
+                                    <ins className="adsbygoogle block text-center"
+                                        data-ad-layout="in-article"
+                                        data-ad-format="fluid"
+                                        data-ad-client="ca-pub-6385545446574142"
+                                        data-ad-slot="6861232252"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
                                 </div>
                                 <div className="post-cover-image w-full mt-[3rem]">
                                     <Image src={post?.img?.data?.attributes?.url} className="w-full" width={500} height={500} quality="85" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt="..."/>
