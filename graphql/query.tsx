@@ -12,6 +12,7 @@ query ($slug:String){
         updatedAt
         meta_description
         meta_title
+	meta_keywords
         tags {
           data {
             id
