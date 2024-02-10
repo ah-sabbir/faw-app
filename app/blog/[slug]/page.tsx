@@ -21,13 +21,13 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
         return {}
     }
 
-    const title = `fashionanywhere - ${data?.attributes?.meta_title}`;
+    const title = `${data?.attributes?.meta_title}`;
     // const seo_img = `${process.env.NEXT_PUBLIC_HOST}/img/${data.headerImage.split("/").at(-1)}`;
     const seo_img = data?.attributes?.img?.data?.attributes?.url;
     const url = `${process.env.NEXT_PUBLIC_URL}/blog/${data?.attributes?.slug}`;
     const color = '#ffffff';
     const description = data?.attributes?.meta_description
-    const tags = "fashionanywhere, fashion, fashion shop, online shop, women fashion trends " + data?.attributes?.meta_title
+    const tags = data?.attributes?.meta_keywords
     
 
 
@@ -53,6 +53,7 @@ export async function generateMetadata({ params:{slug} }:PageProps) {
         openGraph: {
         title,
         description: description,
+	keywords: tags,
         url,
         siteName: 'fashionanywhere.shop',
         images: [
