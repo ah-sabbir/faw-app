@@ -19,7 +19,7 @@ export const metadata:Metadata = {
     default: "Fashion Anywhere - Your First Choice Fashion and Beauty Magazine.",
     template: `%s | Fashion Anywhere - Worlds\'s #1 Fashion and Beauty Magazine.`,
   },
-  description: 'Worlds\'s #1 Fashion and Beauty Magazine.',
+  description: 'fashionanywhere.shop! The best fashion magazine. We explore the intersection of style, culture, and personal expression.',
   twitter:{
     card: 'summary_large_image'
   },
@@ -53,10 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable}`} >
       <head>
-      <meta name="google-site-verification" content="S8Kolc0TD_k650byiublRHJJnOZ3VZhXWf67d9rOsjY" />
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6385545446574142"
          crossOrigin="anonymous"></script>
-      <meta name="google-adsense-account" content="ca-pub-6385545446574142"/>
+        <meta name="google-adsense-account" content="ca-pub-6385545446574142"/>
         {
           process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER && <GoogleTagManager GTM_ID={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER} />
         }
